@@ -61,10 +61,10 @@ function AppHeader(props: AppProps) {
                             <li>
                                 <MDBDropdown>
                                     <MDBDropdownToggle caret color='transparent' className='z-depth-0 mx-2 p-0'>
-                                        <img
+                                 {/*       <img
                                             style={{width: 20}}
                                             src={require(`../../assets/images/flags/${flagName}`)}
-                                            alt={props.user?.name}/>
+                                            alt={props.user?.name}/>*/}
                                     </MDBDropdownToggle>
                                     <MDBDropdownMenu>
                                         {i18next.languages.sort((a, b) => {
@@ -83,10 +83,10 @@ function AppHeader(props: AppProps) {
                                                     i18next.changeLanguage(language)
                                                 }>
                                                 <div className='flex-row d-flex'>
-                                                    <div><img
+                                                    <div>{/*<img
                                                         style={{width: 20}}
                                                         src={require(`../../assets/images/flags/${flagName}`)}
-                                                        alt={props.user?.name}/></div>
+                                                        alt={props.user?.name}/>*/}</div>
                                                     <div className='ml-2'>{languageName}</div>
                                                 </div>
                                             </MDBDropdownItem>)
