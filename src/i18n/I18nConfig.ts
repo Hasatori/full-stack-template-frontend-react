@@ -3,7 +3,8 @@ import en from './en/translation.json';
 import cs from './cs/translation.json';
 import {initReactI18next} from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-
+import english_flag from "../assets/images/flags/united-kingdom.svg";
+import cs_flag from "../assets/images/flags/czech-republic.svg";
 export const resources = {
     en: {ns1: en,},
     cs: {ns1: cs,}
@@ -12,9 +13,9 @@ export const resources = {
 export function getLanguageFlagPairFromLocale(locale: string) {
     switch (locale) {
         case 'en':
-            return ['united-kingdom.svg', 'english'];
+            return [english_flag, 'english'];
         case 'cs':
-            return ['czech-republic.svg', 'čeština'];
+            return [cs_flag, 'čeština'];
         default:
             return ['', ''];
     }
