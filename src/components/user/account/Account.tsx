@@ -13,8 +13,8 @@ function Account() {
     return (
 
         <div>
-            <div className="container">
-                <h5 className='text-center mt-3 '>{t('ns1:manageProfileHeading')}</h5>
+            <div className="container mt-5">
+                <h5 className='text-center  '>{t('ns1:manageProfileHeading')}</h5>
                 <Profile {...{} as any}/>
                 <div className='divider'/>
                 <ChangePassword {...{} as any}/>

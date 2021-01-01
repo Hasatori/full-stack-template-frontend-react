@@ -39,7 +39,7 @@ function ChangePassword(props: ChangePasswordProps) {
     return (
         <form onSubmit={handleSubmit}>
             <div className='row py-5 px-3'>
-                <div className='col-md-4 col-sm-12'>
+                <div className='col-md-4 col-sm-12 mb-3'>
                     <div className='text-primary'>    {t('ns1:passwordHeading')}</div>
                     <div className='small'>{t('ns1:passwordDescription')}</div>
                 </div>

@@ -23,7 +23,7 @@ function CloseAccount(props: CloseAccountProps) {
     const {t} = useTranslation();
     return (
         <div className='row py-5 px-3'>
-            <div className='col-md-4 col-sm-12'>
+            <div className='col-md-4 col-sm-12 mb-3'>
                 <div className='text-danger'>{t('ns1:closeAccountHeading')}</div>
                 <div className='small'>{t('ns1:closeAccountDescription')}</div>
             </div>

@@ -64,8 +64,8 @@ function Profile(props: ProfileProps) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className='row py-5 px-3'>
-                <div className='col-md-4 col-sm-12'>
+            <div className='row py-5 px-3 '>
+                <div className='col-md-4 col-sm-12 mb-3'>
                     <div className='text-primary'>{t('ns1:profileHeading')}</div>
                     <div className='small'>{t('ns1:profileDescription')}</div>
                 </div>

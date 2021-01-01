@@ -6,7 +6,7 @@ export default function Home() {
 
         <div className='d-flex flex-column justify-content-center mt-4'>
             <div className='d-flex align-self-center'>
-                <img src={require('../../assets/images/common/fullstack.png')}></img>
+                <img width="100%" src={require('../../assets/images/common/fullstack.png')}></img>
             </div>
         </div>
 

@@ -4,7 +4,12 @@
     z-index: 10;
     border-bottom: 2px solid #0f96f6;
 }
-
+.active {
+   font-weight: bold;
+}
+.navbar-toggler{
+    color: #0f96f6 !important;
+}
 .app-title {
     line-height: 60px;
     vertical-align: middle;

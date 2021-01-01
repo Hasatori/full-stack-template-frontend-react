@@ -1,66 +1,87 @@
 import React, {useState} from 'react';
-import {Link, NavLink} from 'react-router-dom';
+import {NavLink, useLocation} from 'react-router-dom';
 import './AppHeader.css';
 import {connect} from "react-redux";
 import {AppProps} from "../../index";
-import {MDBDropdown, MDBDropdownItem, MDBDropdownMenu, MDBDropdownToggle, MDBIcon} from 'mdbreact';
+import {
+    MDBCollapse,
+    MDBContainer,
+    MDBDropdown,
+    MDBDropdownItem,
+    MDBDropdownMenu,
+    MDBDropdownToggle,
+    MDBIcon,
+    MDBNavbar,
+    MDBNavbarBrand,
+    MDBNavbarNav,
+    MDBNavbarToggler,
+    MDBNavItem,
+    MDBNavLink
+} from 'mdbreact';
 import {useTranslation} from "react-i18next";
 import i18next from "i18next";
-
-
 import {getLanguageFlagPairFromLocale} from "../../i18n/I18nConfig";
+import hamburger from "../../assets/images/common/hamburger-icon.png"
+import close from "../../assets/images/common/close-icon.png"
 
 function AppHeader(props: AppProps) {
     const [open, setOpen] = useState(false);
     const {t} = useTranslation();
     let [flagName] = getLanguageFlagPairFromLocale(i18next.language);
+    const location = useLocation();
+    const bgPink = {backgroundColor: '#ffffff'}
     return (
+
         <header className="app-header z-depth-1">
-            <div className="container">
-                <div className="app-branding mr-4">
-                    <Link to="/" className="app-title">Full stack template</Link>
-                </div>
-                <div className="nav-main">
-                    <nav className="app-nav">
-                        <ul>
-                            <li><NavLink to="/" exact>{t('ns1:homeLabel')}</NavLink></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div className="app-options">
-                    <nav className="app-nav">
-                        <ul>
+
+            <MDBNavbar fixed="top" style={bgPink} expand="lg">
+                <MDBContainer>
+                    <MDBNavbarBrand href="/">
+                        Full stack template
+                    </MDBNavbarBrand>
+                    <MDBNavbarToggler
+
+                        image={open ? close : hamburger}
+                        onClick={() => {
+                            setOpen(!open)
+                        }}/>
+                    <MDBCollapse isOpen={open} navbar>
+                        <MDBNavbarNav left>
+                            <MDBNavItem active={location.pathname === '/'}>
+                                <MDBNavLink to="/" link>{t('ns1:homeLabel')}</MDBNavLink>
+                            </MDBNavItem>
+                        </MDBNavbarNav>
+                        <MDBNavbarNav right>
                             {props.authenticated ? (
-                                <>
-                                    <li>
-                                        <MDBDropdown>
-                                            <MDBDropdownToggle caret color='transparent'
-                                                               className='z-depth-0  mx-2 p-0 profile-avatar text-center'>
-                                                <img
-                                                    style={{width: 30}}
-                                                    src={`data:${props.user?.profileImage.type};base64,${props.user?.profileImage.data}`}
-                                                    alt={props.user?.name}/>
-                                            </MDBDropdownToggle>
-                                            <MDBDropdownMenu>
-                                                <MDBDropdownItem> <MDBIcon icon="cog"/> <NavLink
-                                                    to="/account">{t('ns1:profileHeading')}</NavLink></MDBDropdownItem>
-                                                <MDBDropdownItem><MDBIcon icon="sign-out-alt"/> <a
-                                                    onClick={props.onLogOut}>{t('ns1:logoutLabel')}</a></MDBDropdownItem>
-                                            </MDBDropdownMenu>
-                                        </MDBDropdown>
-                                    </li>
-                                </>
+                                <MDBNavItem>
+                                    <MDBDropdown>
+                                        <MDBDropdownToggle caret color='transparent'
+                                                           className='z-depth-0  mx-2 p-0 profile-avatar text-center'>
+                                            <img
+                                                style={{width: 30}}
+                                                src={`data:${props.user?.profileImage.type};base64,${props.user?.profileImage.data}`}
+                                                alt={props.user?.name}/>
+                                        </MDBDropdownToggle>
+                                        <MDBDropdownMenu>
+                                            <MDBDropdownItem> <MDBIcon icon="cog"/> <NavLink
+                                                to="/account">{t('ns1:profileHeading')}</NavLink></MDBDropdownItem>
+                                            <MDBDropdownItem><MDBIcon icon="sign-out-alt"/> <a
+                                                onClick={props.onLogOut}>{t('ns1:logoutLabel')}</a></MDBDropdownItem>
+                                        </MDBDropdownMenu>
+                                    </MDBDropdown>
+                                </MDBNavItem>
                             ) : (
                                 <>
-                                    <li>
-                                        <NavLink to="/login">{t('ns1:loginLabel')}</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/signup">{t('ns1:signupLabel')}</NavLink>
-                                    </li>
+                                    <MDBNavItem active={location.pathname === '/login'} className='my-auto'>
+                                        <MDBNavLink to="/login" link>{t('ns1:loginLabel')}</MDBNavLink>
+                                    </MDBNavItem>
+                                    <MDBNavItem active={location.pathname === '/signup'} className='my-auto'>
+
+                                        <MDBNavLink to="/signup" link>{t('ns1:signupLabel')}</MDBNavLink>
+                                    </MDBNavItem>
                                 </>
                             )}
-                            <li>
+                            <MDBNavItem>
                                 <MDBDropdown>
                                     <MDBDropdownToggle caret color='transparent' className='z-depth-0 mx-2 p-0'>
                                         <img
@@ -79,7 +100,6 @@ function AppHeader(props: AppProps) {
                                             return 0
                                         }).map((language) => {
                                             let [flagName, languageName] = getLanguageFlagPairFromLocale(language);
-                                            console.log(flagName);
                                             return (<MDBDropdownItem
                                                 onClick={() =>
                                                     i18next.changeLanguage(language)
@@ -94,12 +114,11 @@ function AppHeader(props: AppProps) {
                                             </MDBDropdownItem>)
                                         })}
                                     </MDBDropdownMenu>
-                                </MDBDropdown>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
+                                </MDBDropdown></MDBNavItem>
+                        </MDBNavbarNav>
+                    </MDBCollapse>
+                </MDBContainer>
+            </MDBNavbar>
         </header>
     )
 }
