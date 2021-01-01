@@ -26,8 +26,8 @@ import close from "../../assets/images/common/close-icon.png"
 
 function AppHeader(props: AppProps) {
     const [open, setOpen] = useState(false);
-    const {t} = useTranslation();
-    let [flagName] = getLanguageFlagPairFromLocale(i18next.language);
+    const {t,i18n} = useTranslation();
+    let [flagName] = getLanguageFlagPairFromLocale(i18n.language);
     const location = useLocation();
     const bgPink = {backgroundColor: '#ffffff'}
     return (
@@ -90,7 +90,7 @@ function AppHeader(props: AppProps) {
                                             alt={props.user?.name}/>
                                     </MDBDropdownToggle>
                                     <MDBDropdownMenu>
-                                        {i18next.languages.sort((a, b) => {
+                                        {i18n.languages.sort((a, b) => {
                                             if (a > b) {
                                                 return -1;
                                             }
@@ -102,7 +102,7 @@ function AppHeader(props: AppProps) {
                                             let [flagName, languageName] = getLanguageFlagPairFromLocale(language);
                                             return (<MDBDropdownItem
                                                 onClick={() =>
-                                                    i18next.changeLanguage(language)
+                                                    i18n.changeLanguage(language)
                                                 }>
                                                 <div className='flex-row d-flex'>
                                                     <div><img
