@@ -29,7 +29,7 @@ export default function AreYouSureModal(modalProps: ModalProps) {
                     {modalProps.message}
                 </MDBModalBody>
                 <MDBModalFooter className="justify-content-center">
-                    <MDBBtn color="danger" onClick={() => {
+                    <MDBBtn color="danger" className='text-light' onClick={() => {
                         modalProps.yes()
                     }}>{t('ns1:yesLabel')}</MDBBtn>
                     <MDBBtn color="primary" onClick={() => {
