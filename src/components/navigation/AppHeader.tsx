@@ -56,7 +56,7 @@ function AppHeader(props: AppProps) {
                                 <MDBNavItem>
                                     <MDBDropdown>
                                         <MDBDropdownToggle caret color='transparent'
-                                                           className='z-depth-0  mx-2 p-0 profile-avatar text-center'>
+                                                           className='z-depth-0  mx-2 p-0 profile-avatar text-center border-0'>
                                             <img
                                                 style={{width: 30}}
                                                 src={`data:${props.user?.profileImage.type};base64,${props.user?.profileImage.data}`}
@@ -83,7 +83,7 @@ function AppHeader(props: AppProps) {
                             )}
                             <MDBNavItem>
                                 <MDBDropdown>
-                                    <MDBDropdownToggle caret color='transparent' className='z-depth-0 mx-2 p-0'>
+                                    <MDBDropdownToggle caret color='transparent' className='z-depth-0 mx-2 p-0  border-0'>
                                         <img
                                             style={{width: 20}}
                                             src={flagName}
