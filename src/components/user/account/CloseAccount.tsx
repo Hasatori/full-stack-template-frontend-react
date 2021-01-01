@@ -29,7 +29,7 @@ function CloseAccount(props: CloseAccountProps) {
             </div>
 
             <div className='col-md-4 col-sm-12'>
-                <MDBBtn outline color="danger" onClick={() => {
+                <MDBBtn  color="danger" onClick={() => {
                     setModalOpen(true)
                 }}>{t('ns1:closeAccountHeading')}</MDBBtn>
             </div>
