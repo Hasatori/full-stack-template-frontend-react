@@ -44,6 +44,7 @@ import {CookiesConsent} from "./modal/CookiesConsent";
 import {AppProps, store} from "../index";
 import {Footer} from './footer/Footer';
 import ConfirmEmailChange from "./user/confirmemilchange/ConfirmEmailChange";
+import {MDBContainer} from "mdbreact";
 
 function mapStateToProps(state: AppState, props: AppProps) {
     return {
@@ -157,7 +158,7 @@ function App(appProps: AppProps) {
                 <AppHeader {...appProps}/>
             </div>
             <CookiesConsent/>
-            <div className="app-body">
+            <MDBContainer className="mt-5 app-body">
 
                 <Switch>
                     <Route exact path="/" component={Home}/>
@@ -191,7 +192,7 @@ function App(appProps: AppProps) {
                     <Route component={NotFound}/>
                 </Switch>
 
-            </div>
+            </MDBContainer>
             <ToastContainer newestOnTop={true}/>
             <Footer/>
         </div>

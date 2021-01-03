@@ -1,0 +1,13 @@
+@import "../../index";
+.app-header {
+  height: 60px;
+  position: relative;
+  z-index: 10;
+
+}
+.navbar{
+  border-bottom: 2px solid $color-primary !important; 
+}
+.active {
+  font-weight: bold;
+}

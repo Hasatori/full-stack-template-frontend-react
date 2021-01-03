@@ -1,3 +1,7 @@
+$color-primary:#4285f4;
+$color-secondary:#333333;
+$color-background:#F7F7F7;
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -11,8 +15,8 @@
   box-sizing: border-box;
 }
 
-input[type=checkbox],
-input[type=radio] {
+input[type="checkbox"],
+input[type="radio"] {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -25,8 +29,8 @@ body {
   font-size: 16px;
   font-weight: 400;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #333333 !important;
-  background-color: #F7F7F7 !important;
+  color: $color-secondary !important;
+  background-color: $color-background !important;
 }
 
 .container {
@@ -44,23 +48,28 @@ body {
     padding-right: 30px;
   }
 }
+
 /**
   Link
 **/
+
 a {
-  color: #4285f4;
+  color: $color-primary;
   text-decoration: none;
   word-wrap: break-word;
   cursor: pointer;
 }
 
 a:hover {
+
   text-decoration: none;
 }
 
 /**
   Button
 **/
+
+
 .btn {
   display: inline-block;
   font-weight: 400;
@@ -80,10 +89,10 @@ a:hover {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -webkit-transition: all .3s cubic-bezier(.645, .045, .355, 1);
+  transition: all .3s cubic-bezier(.645, .045, .355, 1);
   position: relative;
-  color: rgba(0, 0, 0, 0.65);
+  color: rgba(0, 0, 0, .65);
   background-color: transparent;
   border-color: #e8e8e8;
   outline: none;
@@ -122,6 +131,7 @@ a:hover {
   border-color: #52c41a;
 }
 
+
 .btn-link {
   border: none;
   height: 34px;
@@ -129,12 +139,14 @@ a:hover {
 }
 
 .btn-link:hover {
-  background-color: rgba(158, 158, 158, 0.2);
+  background-color: rgba(158, 158, 158, 0.20);
 }
+
 
 /**
   Form
 **/
+
 .form-item {
   margin-bottom: 18px;
 }
@@ -148,7 +160,7 @@ a:hover {
   font-weight: 500;
   display: inline-block;
   margin-bottom: 5px;
-  color: rgba(0, 0, 0, 0.65);
+  color: rgba(0, 0, 0, .65);
 }
 
 .form-control {
@@ -162,13 +174,13 @@ a:hover {
   height: 45px;
   font-size: 0.87em;
   line-height: 45px;
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, .80);
   background-color: #fff;
   background-image: none;
   border: 1px solid #e8e8e8;
   border-radius: 4px;
-  transition: all 0.3s;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: all .3s;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
 }
 
 .checkBox {
@@ -183,15 +195,16 @@ a:hover {
 }
 
 .form-control:focus, .form-control:active {
-  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, .2);
 }
 
 .form-control.invalid {
   border-color: #f5222d;
 }
 
+
 .form-control.invalid:focus, .form-control.invalid:active {
-  box-shadow: 0 0 0 2px rgba(245, 34, 45, 0.2);
+  box-shadow: 0 0 0 2px rgba(245, 34, 45, .2);
 }
 
 .error-color {
@@ -214,6 +227,7 @@ a:hover {
 /**
   Or separator
 **/
+
 .or-separator {
   border-bottom: 1px solid #eee;
   padding: 10px 0;
@@ -230,9 +244,8 @@ a:hover {
   top: 0;
   background: #fff;
   padding: 10px;
-  color: rgba(0, 0, 0, 0.45);
+  color: rgba(0, 0, 0, .45);
 }
-
 .visible {
   display: block;
 }
@@ -240,19 +253,3 @@ a:hover {
 .hidden {
   display: none;
 }
-
-.app-header {
-  height: 60px;
-  position: relative;
-  z-index: 10;
-}
-
-.navbar {
-  border-bottom: 2px solid #4285f4 !important;
-}
-
-.active {
-  font-weight: bold;
-}
-
-/*# sourceMappingURL=AppHeader.css.map */

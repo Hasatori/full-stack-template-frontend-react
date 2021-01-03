@@ -1,22 +1,23 @@
 import React from 'react';
-import './NotFound.css';
 import {Link} from 'react-router-dom';
 import {useTranslation} from "react-i18next";
+import {MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardText, MDBCardTitle} from 'mdbreact';
 
 function NotFound() {
     const {t} = useTranslation();
     return (
-        <div className="page-not-found">
-            <h1 className="title">
-                404
-            </h1>
-            <div className="desc">
-                {t('ns1:pageNotFoundMessage')}
-            </div>
-            <Link to="/">
-                <button className="go-back-btn btn btn-primary" type="button"> {t('ns1:goBackButton')}</button>
-            </Link>
-        </div>
+        <MDBCard style={{ width: "22rem" }} className='m-auto'>
+
+            <MDBCardBody>
+                <MDBCardTitle className="text-center h1-responsive">404</MDBCardTitle>
+                <MDBCardText className='text-center'>
+                    {t('ns1:pageNotFoundMessage')}
+                </MDBCardText>
+                <Link to="/" >
+                <MDBBtn className="flex-center" color="primary" href="#">{t('ns1:goBackButton')}</MDBBtn>
+                </Link>
+            </MDBCardBody>
+        </MDBCard>
     );
 }
 
