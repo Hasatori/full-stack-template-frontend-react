@@ -1,11 +1,26 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
 .s-alert-box {
-    min-width: 250px;
+  min-width: 250px;
 }
 
 .s-alert-close::before, .s-alert-close::after {
-    width: 2px;
+  width: 2px;
 }
 
 .app-body {
-    min-height: 85vh !important;
+  margin-top: 10em;
+  min-height: 85vh !important;
 }
+
+/*# sourceMappingURL=App.css.map */

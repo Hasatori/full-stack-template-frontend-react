@@ -36,6 +36,7 @@
   "confirmPasswordLabel": "potvrzení hesla",
   "forgotPasswordQuestion": "zapomněli jste heslo?",
   "orLoginWithSuggestion": "Nebo se přihlašte pomocí",
+  "orSignupWithSuggestion": "Nebo se zaregistrujte pomocí",
   "forgottenPasswordHeading": "Zapomenuté heslo",
   "requestPasswordResetButtonLabel": "Požádat o resetování hesla",
   "manageProfileHeading": "Správa účtu",

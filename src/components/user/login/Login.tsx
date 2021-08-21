@@ -15,6 +15,8 @@ import {AppState} from "../../../redux/store/Store";
 import {failureActionCreator} from "../../../redux/actiontype/GeneralActionTypes";
 import {store} from "../../../index";
 import {useTranslation} from "react-i18next";
+import {Input} from "../../form/Input";
+import {isEmailValid, isPasswordValid} from "../../../util/APIUtils";
 
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
     return {
@@ -50,9 +52,6 @@ function Login(props: RouteComponentProps & LoginProps) {
     const {t} = useTranslation();
 
     useEffect(() => {
-
-        // If the OAuth2 login encounters an error, the user is redirected to the /login page with an error.
-        // Here we display the error and then remove the error query parameter from the location.
         // @ts-ignore
         if (props.location.state && props.location.state.error) {
             setTimeout(() => {
@@ -97,40 +96,36 @@ function Login(props: RouteComponentProps & LoginProps) {
 
     if (!props.twoFactorRequired) {
         return (
-            <MDBContainer className="mt-5">
+            <div>
                 <MDBRow>
-                    <MDBCol md="3"/>
-                    <MDBCol md="6">
+                    <MDBCol sm="1" md="2" xl="3"/>
+                    <MDBCol sm="10" md="8"  xl="6">
                         <MDBCard>
-
                             <MDBCardBody className="p-5">
-                                <p className="h4 text-center">{t('ns1:loginHeading')}</p>
                                 <form onSubmit={handleRegularLogin}
                                       noValidate>
-                                    <label
-                                        htmlFor="email"
-                                        className="grey-text font-weight-light"
-                                    >
-                                        {t('ns1:emailLabel')}
-                                    </label>
-                                    <input
+
+                                    <Input
+                                        id={"email"}
                                         type="email"
-                                        id="email"
-                                        className="form-control"
-                                        value={email} onChange={(event) => setEmail(event.target.value)} required
+                                        label={t("ns1:emailLabel")}
+                                        value={email}
+                                        valid={true}
+                                        validationStarted={false}
+                                        onChange={(event) => setEmail(event.target.value)}
+                                        required={false}
+                                        invalidValueMessage= {t('ns1:invalidEmailMessage')}
                                     />
-                                    <br/>
-                                    <label
-                                        htmlFor="password"
-                                        className="grey-text font-weight-light"
-                                    >
-                                        {t('ns1:passwordLabel')}
-                                    </label>
-                                    <input
+                                    <Input
+                                        id={"password"}
                                         type="password"
-                                        id="password"
-                                        className="form-control"
-                                        value={password} onChange={(event) => setPassword(event.target.value)} required
+                                        label={t("ns1:passwordLabel")}
+                                        value={password}
+                                        valid={true}
+                                        validationStarted={false}
+                                        onChange={(event) => setPassword(event.target.value)}
+                                        required={false}
+                                        invalidValueMessage= {t('ns1:invalidPasswordFormatMessage')}
                                     />
                                     <div className="d-flex"><span className="link"> <Link
                                         to="/forgotten-password">{t('ns1:forgotPasswordQuestion')}</Link></span>
@@ -154,11 +149,9 @@ function Login(props: RouteComponentProps & LoginProps) {
                             </MDBCardFooter>
                         </MDBCard>
                     </MDBCol>
-                    <MDBCol md="3"/>
-
-
+                    <MDBCol sm="1" md="2"  xl="3"/>
                 </MDBRow>
-            </MDBContainer>
+            </div>
         );
     } else if (userRecoveryCode) {
         return (<MDBContainer className="mt-5">

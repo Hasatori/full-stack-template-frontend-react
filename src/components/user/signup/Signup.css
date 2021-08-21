@@ -1,66 +1,42 @@
-.signup-container {
-    text-align: center;
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-
-.signup-content {
-    background: #fff;
-    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
-    border-radius: 2px;
-    max-width: 500px;
-    display: inline-block;
-    margin-top: 30px;
-    vertical-align: middle;
-    position: relative;
-    padding: 35px;
+.visible {
+  display: block;
 }
 
-.social-btn {
-    margin-bottom: 15px;
-    font-weight: 400;
-    font-size: 16px;
+.hidden {
+  display: none;
 }
 
-.social-btn img {
-    height: 32px;
-    float: left;
-    margin-top: 10px;
+.s-alert-box {
+  min-width: 250px;
 }
 
-.social-btn.google {
-    margin-top: 7px;
+.s-alert-close::before, .s-alert-close::after {
+  width: 2px;
 }
 
-.social-btn.facebook img {
-    height: 24px;
-    margin-left: 3px;
+.app-body {
+  margin-top: 10em;
+  min-height: 85vh !important;
 }
 
-.social-btn.github img {
-    height: 24px;
-    margin-left: 3px;
-}
-
-.login-link {
-    color: rgba(0, 0, 0, 0.65);
-    font-size: 14px;
-}
-
-.signup-title {
-    font-size: 1.5em;
-    font-weight: 500;
-    margin-top: 0;
-    margin-bottom: 30px;
-    color: rgba(0, 0, 0, 0.65);
-}
-
-.required {
-    position: absolute;
-    right: 0;
-    top: -10%;
-    font-size: 0.4rem;
+.card {
+  max-width: 450px;
+  margin: auto;
 }
 
 .form-item {
-    position: relative;
+  position: relative;
 }
+
+.required {
+  position: absolute;
+  right: 0;
+  top: 35%;
+  font-size: 0.4rem;
+}
+
+/*# sourceMappingURL=Signup.css.map */

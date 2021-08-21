@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import CloseAccount from "./CloseAccount";
 import Profile from "./Profile";
 import {useTranslation} from "react-i18next";
+import {MDBContainer} from "mdbreact";
 
 
 function Account() {
@@ -13,7 +14,7 @@ function Account() {
     return (
 
         <div>
-            <div className="container mt-5">
+            <div>
                 <h5 className='text-center  '>{t('ns1:manageProfileHeading')}</h5>
                 <Profile {...{} as any}/>
                 <div className='divider'/>

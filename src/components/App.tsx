@@ -151,15 +151,13 @@ function App(appProps: AppProps) {
     }, [appProps.loading])
 
     return (
-
-        <div className="app">
+        <div>
             <LoadingIndicator {...appProps}/>
             <div className="app-top-box">
                 <AppHeader {...appProps}/>
             </div>
             <CookiesConsent/>
-            <MDBContainer className="mt-5 app-body">
-
+            <MDBContainer className="app-body">
                 <Switch>
                     <Route exact path="/" component={Home}/>
                     <PrivateRoute
@@ -191,7 +189,6 @@ function App(appProps: AppProps) {
                            render={(props) => <ConfirmEmailChange {...appProps}{...props}/>}/>
                     <Route component={NotFound}/>
                 </Switch>
-
             </MDBContainer>
             <ToastContainer newestOnTop={true}/>
             <Footer/>

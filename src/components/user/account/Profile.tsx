@@ -3,12 +3,13 @@ import React, {ChangeEvent, useState} from "react";
 import {RouteComponentProps} from "react-router-dom";
 import {ProfileImage, User} from "../../App";
 import {AppState} from "../../../redux/store/Store";
-import {getFormControlClass, isEmailValid} from "../../../util/APIUtils";
+import {isEmailValid} from "../../../util/APIUtils";
 import {MDBBtn} from "mdbreact";
 import {useTranslation} from "react-i18next";
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
 import {updateProfile} from "../../../redux/actiontype/UserActionTypes";
+import {Input} from "../../form/Input";
 
 export interface ProfileProps extends RouteComponentProps {
     user: User,
@@ -32,9 +33,11 @@ function Profile(props: ProfileProps) {
     let user: User = props.user;
     let [file, setFile] = useState<ProfileImage | undefined>(undefined);
     let [email, setEmail] = useState(user.email);
-    let [name, setName] = useState(user.name);
     const [emailValidationStarted, setEmailValidationStarted] = useState(false);
     const [emailValid, setEmailValid] = useState(isEmailValid(user.email));
+    let [name, setName] = useState(user.name);
+    let [nameValid, setNameValid] = useState(false);
+    let [nameValidationStarted, setNameValidationStarted] = useState(false);
     const {t} = useTranslation();
 
     function handleChange(event: ChangeEvent<HTMLInputElement>) {
@@ -55,6 +58,7 @@ function Profile(props: ProfileProps) {
 
     function handleSubmit(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
+        if (emailValid && name)
         props.updateProfile({
             name: name,
             email: email,
@@ -117,39 +121,34 @@ function Profile(props: ProfileProps) {
                             </label>
                         </div>
                     </div>
-                    <label
-                        htmlFor="password"
-                        className="grey-text font-weight-light"
-                    >
-                        {t('ns1:emailLabel')}
-                    </label>
-                    <div className="form-item">
-                        <input type="email" name="email"
-                               className={getFormControlClass(emailValidationStarted, emailValid)} placeholder="Email"
-                               value={email} onChange={(event) => {
-                            setEmailValidationStarted(true);
-                            setEmailValid(isEmailValid(event.target.value));
+                    <Input
+                        id={"email"}
+                        type="email"
+                        label={t("ns1:emailLabel")}
+                        value={email}
+                        valid={isEmailValid(email)}
+                        validationStarted={emailValidationStarted}
+                        onChange={(event) => {
                             setEmail(event.target.value);
-
-                        }} required
-                        />
-                        <div className="invalid-feedback text-left">
-                            {t('ns1:invalidEmailMessage')}
-                        </div>
-                    </div>
-                    <label
-                        htmlFor="Name"
-                        className="grey-text font-weight-light"
-                    >
-                        {t('ns1:nameLabel')}
-                    </label>
-                    <input
-                        type="text"
-                        id="password"
-                        className="form-control"
-                        value={name}
-                        onChange={(event) => setName(event.target.value)}
+                            setEmailValidationStarted(true);
+                            setEmailValid(isEmailValid(email));
+                        }}
+                        required={false}
+                        invalidValueMessage= {t('ns1:invalidEmailMessage')}
                     />
+                    <Input id={"name"}
+                           type={"text"}
+                           label={t('ns1:nameLabel')}
+                           value={name}
+                           valid={nameValid}
+                           validationStarted={nameValidationStarted}
+                           onChange={(event) => {
+                               setNameValidationStarted(true);
+                               setNameValid(event.target.value.length >= 4);
+                               setName(event.target.value);
+                           }}
+                           invalidValueMessage= {t('ns1:invalidNameMessage')}
+                           required={false}/>
                     <div className="form-item mt-3 save text-center">
                         <MDBBtn color="primary"
                                 type="submit"

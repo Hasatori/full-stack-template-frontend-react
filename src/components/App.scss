@@ -1,0 +1,14 @@
+@import "../index";
+
+.s-alert-box {
+  min-width: 250px;
+}
+
+.s-alert-close::before, .s-alert-close::after {
+  width: 2px;
+}
+
+.app-body {
+  margin-top: 10em;
+  min-height: 85vh !important;
+}

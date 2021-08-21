@@ -68,10 +68,10 @@ export function isPasswordValid(password: string): boolean {
     return pattern.test(password);
 }
 
-
-export function getFormControlClass(validationStarted: boolean, valid: boolean): string {
-    return !validationStarted ? 'form-control' : valid ? "form-control is-valid" : "form-control is-invalid";
+export function arePasswordsSame(password: string,confirmPassword:string): boolean {
+   return password === confirmPassword;
 }
+
 
 export interface AccountActivationRequest {
     token: string

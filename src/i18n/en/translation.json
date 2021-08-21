@@ -36,6 +36,7 @@
   "confirmPasswordLabel": "confirm password",
   "forgotPasswordQuestion": "forgot your password?",
   "orLoginWithSuggestion": "Or login with",
+  "orSignupWithSuggestion": "Or signup with",
   "forgottenPasswordHeading": "Forgotten password",
   "requestPasswordResetButtonLabel": "Request password reset",
   "manageProfileHeading": "Manage account",

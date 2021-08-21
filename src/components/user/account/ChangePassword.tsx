@@ -4,9 +4,10 @@ import {connect} from "react-redux";
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
 import {changePassword} from "../../../redux/actiontype/UserActionTypes";
-import {getFormControlClass, isPasswordValid} from "../../../util/APIUtils";
 import {MDBBtn} from "mdbreact";
 import {useTranslation} from "react-i18next";
+import {Input} from "../../form/Input";
+import {arePasswordsSame, isPasswordValid} from "../../../util/APIUtils";
 
 
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
@@ -20,19 +21,19 @@ interface ChangePasswordProps {
 }
 
 function ChangePassword(props: ChangePasswordProps) {
-    const [password, setPassword] = useState('');
+    const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [newPasswordValidationStarted, setNewPasswordValidationStarted] = useState(false);
     const [newPasswordValid, setNewPasswordValid] = useState(false);
-    const [passwordConfirmed, setPasswordConfirmed] = useState('');
-    const [passwordConfirmedValidationStarted, setPasswordConfirmedValidationStarted] = useState(false);
-    const [passwordConfirmedValid, setPasswordConfirmedValid] = useState(false);
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [confirmPasswordValidationStarted, setConfirmPasswordValidationStarted] = useState(false);
+    const [confirmPasswordValid, setConfirmPasswordValid] = useState(false);
     const {t} = useTranslation();
 
     function handleSubmit(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
-        if (newPasswordValid && passwordConfirmedValid) {
-            props.changePassword({currentPassword: password, newPassword: newPassword});
+        if (newPasswordValid && confirmPasswordValid) {
+            props.changePassword({currentPassword: currentPassword, newPassword: newPassword});
         }
     }
 
@@ -45,66 +46,56 @@ function ChangePassword(props: ChangePasswordProps) {
                 </div>
 
                 <div className='col-md-4 col-sm-12'>
-                    <label
-                        htmlFor="password"
-                        className="grey-text font-weight-light"
-                    >
-                        {t('ns1:currentPasswordLabel')}
-                    </label>
-                    <div className="form-item">
-                        <input type="password" name="password"
-                               className='form-control'
-                               defaultValue={password}
-                               value={password} onChange={(event) => {
-                            setPassword(event.target.value);
+
+                    <Input
+                        id={"password"}
+                        type="password"
+                        label={t("ns1:currentPasswordLabel")}
+                        value={currentPassword}
+                        valid={true}
+                        validationStarted={false}
+                        onChange={(event) => {
+                            setCurrentPassword(event.target.value);
                         }}
-                               required/>
-                    </div>
-                    <label
-                        htmlFor="newPassword"
-                        className="grey-text font-weight-light"
-                    >
-                        {t('ns1:newPasswordLabel')}
-                    </label>
-                    <div className="form-item">
-                        <input type="password" name="newPassword"
-                               className={getFormControlClass(newPasswordValidationStarted, newPasswordValid)}
-                               value={newPassword} onChange={(event) => {
+                        required={false}
+                        invalidValueMessage= {t('ns1:invalidPasswordFormatMessage')}
+                    />
+                    <Input
+                        id={"newPassword"}
+                        type="password"
+                        label={t("ns1:newPasswordLabel")}
+                        value={newPassword}
+                        valid={newPasswordValid}
+                        validationStarted={newPasswordValidationStarted}
+                        onChange={(event) => {
                             setNewPasswordValidationStarted(true);
-                            setPasswordConfirmedValidationStarted(true);
+                            setConfirmPasswordValidationStarted(true)
                             setNewPasswordValid(isPasswordValid(event.target.value));
-                            setPasswordConfirmedValid(passwordConfirmed === event.target.value);
                             setNewPassword(event.target.value);
+                        }}
+                        required={false}
+                        invalidValueMessage= {t('ns1:invalidPasswordFormatMessage')}
+                    />
+                    <Input
+                        id={"confirmPassword"}
+                        type="password"
+                        label={t('ns1:confirmPasswordLabel')}
+                        value={confirmPassword}
+                        valid={confirmPasswordValid}
+                        validationStarted={confirmPasswordValidationStarted}
+                        onChange={(event) => {
+                            setConfirmPasswordValidationStarted(true);
+                            setConfirmPasswordValid(arePasswordsSame(newPassword, event.target.value));
+                            setConfirmPassword(event.target.value);
+                        }}
+                        required={false}
+                        invalidValueMessage= {t('ns1:passwordsDoNotMatchMessage')}
 
-                        }} required/>
-                        <div className="invalid-feedback text-left">
-                            {t('ns1:invalidPasswordFormatMessage')}
-                        </div>
-                    </div>
-                    <label
-                        htmlFor="password"
-                        className="grey-text font-weight-light"
-                    >
-                        {t('ns1:confirmPasswordLabel')}
-                    </label>
-                    <div className="form-item">
-                        <input type="password" name="newPassword"
-                               className={getFormControlClass(passwordConfirmedValidationStarted, passwordConfirmedValid)}
-
-                               value={passwordConfirmed} onChange={(event) => {
-                            setPasswordConfirmedValidationStarted(true);
-                            setPasswordConfirmedValid(event.target.value === newPassword);
-                            setPasswordConfirmed(event.target.value);
-
-                        }} required/>
-                        <div className="invalid-feedback text-left">
-                            {t('ns1:passwordsDoNotMatchMessage')}
-                        </div>
-                    </div>
+                    />
 
                     <div className="form-item mt-3 save text-center">
                         <MDBBtn color="primary" type='submit'
-                                disabled={!passwordConfirmedValid || !passwordConfirmedValidationStarted || !newPasswordValid || !newPasswordValidationStarted}>     {t('ns1:saveButtonLabel')}</MDBBtn>
+                                disabled={!confirmPasswordValid || !confirmPasswordValidationStarted || !newPasswordValid || !newPasswordValidationStarted}>     {t('ns1:saveButtonLabel')}</MDBBtn>
                     </div>
                 </div>
             </div>

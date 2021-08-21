@@ -19,7 +19,6 @@ import {
     MDBNavLink
 } from 'mdbreact';
 import {useTranslation} from "react-i18next";
-import i18next from "i18next";
 import {getLanguageFlagPairFromLocale} from "../../i18n/I18nConfig";
 import hamburger from "../../assets/images/common/hamburger-icon.png"
 import close from "../../assets/images/common/close-icon.png"
@@ -33,7 +32,6 @@ function AppHeader(props: AppProps) {
     return (
 
         <header className="app-header z-depth-1">
-
             <MDBNavbar fixed="top" style={bgPink} expand="lg">
                 <MDBContainer>
                     <MDBNavbarBrand href="/">
