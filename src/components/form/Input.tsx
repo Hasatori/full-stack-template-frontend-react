@@ -1,6 +1,4 @@
 import {ChangeEvent} from "react";
-import {useTranslation} from "react-i18next";
-import {MDBIcon} from "mdbreact";
 import * as React from "react";
 
 
@@ -31,7 +29,6 @@ export function Input(inputProps: InputProps) {
                 className={getFormControlClass(inputProps.validationStarted, inputProps.valid)}
                 value={inputProps.value} onChange={inputProps.onChange} required={inputProps.required}
             />
-            {inputProps.required?<small className='required error-color'><MDBIcon icon="asterisk"/></small>:<></>}
             {inputProps.validationStarted && !inputProps.valid ?
                 <div className="text-left invalid-feedback visible">
                     {inputProps.invalidValueMessage}

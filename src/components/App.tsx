@@ -171,7 +171,7 @@ function App(appProps: AppProps) {
 
                     <Route path={"/login"}
                            render={(props) => appProps.authenticated ? <Redirect to='account'/> :
-                               <Login twoFactorRequired={false} login={() => {
+                               <Login twoFactorRequired={true} login={() => {
                                }} loginTwoFactor={() => {
                                }} loginRecoveryCode={() => {
                                }} loading={appProps.loading}  {...props} />}/>

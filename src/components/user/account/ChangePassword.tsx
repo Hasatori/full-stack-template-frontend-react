@@ -57,7 +57,7 @@ function ChangePassword(props: ChangePasswordProps) {
                         onChange={(event) => {
                             setCurrentPassword(event.target.value);
                         }}
-                        required={false}
+                        required={true}
                         invalidValueMessage= {t('ns1:invalidPasswordFormatMessage')}
                     />
                     <Input
@@ -73,7 +73,7 @@ function ChangePassword(props: ChangePasswordProps) {
                             setNewPasswordValid(isPasswordValid(event.target.value));
                             setNewPassword(event.target.value);
                         }}
-                        required={false}
+                        required={true}
                         invalidValueMessage= {t('ns1:invalidPasswordFormatMessage')}
                     />
                     <Input
@@ -88,7 +88,7 @@ function ChangePassword(props: ChangePasswordProps) {
                             setConfirmPasswordValid(arePasswordsSame(newPassword, event.target.value));
                             setConfirmPassword(event.target.value);
                         }}
-                        required={false}
+                        required={true}
                         invalidValueMessage= {t('ns1:passwordsDoNotMatchMessage')}
 
                     />

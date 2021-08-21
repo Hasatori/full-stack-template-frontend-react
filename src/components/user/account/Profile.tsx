@@ -133,7 +133,7 @@ function Profile(props: ProfileProps) {
                             setEmailValidationStarted(true);
                             setEmailValid(isEmailValid(email));
                         }}
-                        required={false}
+                        required={true}
                         invalidValueMessage= {t('ns1:invalidEmailMessage')}
                     />
                     <Input id={"name"}
@@ -148,7 +148,7 @@ function Profile(props: ProfileProps) {
                                setName(event.target.value);
                            }}
                            invalidValueMessage= {t('ns1:invalidNameMessage')}
-                           required={false}/>
+                           required={true}/>
                     <div className="form-item mt-3 save text-center">
                         <MDBBtn color="primary"
                                 type="submit"

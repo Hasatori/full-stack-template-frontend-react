@@ -32,11 +32,4 @@ body {
   position: relative;
 }
 
-.required {
-  position: absolute;
-  right: 0;
-  top: 35%;
-  font-size: 0.4rem;
-}
-
 /*# sourceMappingURL=Signup.css.map */

@@ -7,6 +7,7 @@ import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
 import {useTranslation} from "react-i18next";
 import {Input} from "../../form/Input";
+import {MDBCard, MDBCardBody, MDBCol, MDBRow} from "mdbreact";
 
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
     return {
@@ -29,53 +30,71 @@ function PasswordReset(props: PasswordResetProps & RouteComponentProps) {
     const token = getUrlParameter(props.location.search, 'token');
     const email = getUrlParameter(props.location.search, 'email');
     const {t} = useTranslation();
-    console.log(token);
     if (token === '' || email === '') {
         props.history.push("/login");
     }
 
     function handleSubmit(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
+        setPasswordValidationStarted(true);
+        setPasswordValid(isPasswordValid(password));
+        setConfirmPasswordValidationStarted(true);
+        setConfirmPasswordValid(arePasswordsSame(password,confirmPassword));
         if (passwordValid && confirmPasswordValid) {
             props.resetPassword({email: email, password: password, token: token})
         }
     }
 
     return (
-        <div className="login-container">
-            <div className="login-content">
-                <h1 className="login-title">{t('ns1:forgottenPasswordHeading')}</h1>
-                <form onSubmit={handleSubmit}>
-                    <Input id={"password"} type={"password"} label={t('ns1:passwordLabel')} value={password} valid={passwordValid} validationStarted={passwordValidationStarted} required={true} onChange={(event) => {
-                        setPasswordValidationStarted(true);
-                        setPasswordValid(isPasswordValid(event.target.value));
-                        setConfirmPasswordValidationStarted(true);
-                        setPassword(event.target.value);
+        <MDBRow>
+            <MDBCol sm="1" md="2" xl="3"/>
+            <MDBCol sm="10" md="8" xl="6">
+                <MDBCard>
+                    <MDBCardBody className="p-5">
+                        <form onSubmit={handleSubmit} noValidate>
+                            <Input
+                                id={"password"}
+                                type="password"
+                                label={t("ns1:passwordLabel")}
+                                value={password}
+                                valid={passwordValid}
+                                validationStarted={passwordValidationStarted}
+                                onChange={(event) => {
+                                    setPasswordValidationStarted(true);
+                                    setConfirmPasswordValidationStarted(true)
+                                    setPasswordValid(isPasswordValid(event.target.value));
+                                    setPassword(event.target.value);
+                                }}
+                                required={true}
+                                invalidValueMessage= {t('ns1:invalidPasswordFormatMessage')}
+                            />
+                            <Input
+                                id={"confirmPassword"}
+                                type="password"
+                                label={t('ns1:confirmPasswordLabel')}
+                                value={confirmPassword}
+                                valid={confirmPasswordValid}
+                                validationStarted={confirmPasswordValidationStarted}
+                                onChange={(event) => {
+                                    setConfirmPasswordValidationStarted(true);
+                                    setConfirmPasswordValid(arePasswordsSame(password, event.target.value));
+                                    setConfirmPassword(event.target.value);
+                                }}
+                                required={true}
+                                invalidValueMessage= {t('ns1:passwordsDoNotMatchMessage')}
 
-                    }}  invalidValueMessage={t('ns1:invalidPasswordFormatMessage')} />
-                    <Input
-                        id={"confirmPassword"}
-                        type="password"
-                        label={t('ns1:confirmPasswordLabel')}
-                        value={confirmPassword}
-                        valid={confirmPasswordValid}
-                        validationStarted={confirmPasswordValidationStarted}
-                        onChange={(event) => {
-                            setConfirmPasswordValidationStarted(true);
-                            setConfirmPasswordValid(arePasswordsSame(password, event.target.value));
-                            setConfirmPassword(event.target.value);
-                        }}
-                        required={true}
-                        invalidValueMessage= {t('ns1:passwordsDoNotMatchMessage')}
+                            />
+                            <div className="form-item">
+                                <button type="submit"
+                                        className="btn btn-block btn-primary">{t('ns1:requestPasswordResetButtonLabel')}</button>
+                            </div>
+                        </form>
+                    </MDBCardBody>
+                </MDBCard>
+            </MDBCol>
+            <MDBCol sm="1" md="2" xl="3"/>
+        </MDBRow>
 
-                    />
-                    <div className="form-item">
-                        <button type="submit"
-                                className="btn btn-block btn-primary">{t('ns1:requestPasswordResetButtonLabel')}</button>
-                    </div>
-                </form>
-            </div>
-        </div>
     );
 }
 

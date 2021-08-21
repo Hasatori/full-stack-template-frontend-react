@@ -96,7 +96,7 @@ function Login(props: RouteComponentProps & LoginProps) {
                                         valid={true}
                                         validationStarted={false}
                                         onChange={(event) => setEmail(event.target.value)}
-                                        required={false}
+                                        required={true}
                                         invalidValueMessage={t('ns1:invalidEmailMessage')}
                                     />
                                     <Input
@@ -107,7 +107,7 @@ function Login(props: RouteComponentProps & LoginProps) {
                                         valid={true}
                                         validationStarted={false}
                                         onChange={(event) => setPassword(event.target.value)}
-                                        required={false}
+                                        required={true}
                                         invalidValueMessage={t('ns1:invalidPasswordFormatMessage')}
                                     />
                                     <div className="d-flex"><span className="link"> <Link

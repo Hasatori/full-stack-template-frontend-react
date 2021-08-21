@@ -82,7 +82,7 @@ function Signup(props: SignUpProps) {
                                     onChange={(event) => {
                                         setEmail(event.target.value);
                                         setEmailValidationStarted(true);
-                                        setEmailValid(isEmailValid(email));
+                                        setEmailValid(isEmailValid(event.target.value));
                                     }}
                                     required={true}
                                     invalidValueMessage= {t('ns1:invalidEmailMessage')}
