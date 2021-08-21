@@ -1,8 +1,35 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.s-alert-box {
+  min-width: 250px;
+}
+
+.s-alert-close::before, .s-alert-close::after {
+  width: 2px;
+}
+
+.app-body {
+  margin-top: 10em;
+  min-height: 85vh !important;
+}
+
 .profile-info {
-    text-align: center;
+  text-align: center;
 }
 
 .profile-avatar img {
-    border-radius: 50%;
-    max-width: 250px;
+  border-radius: 50%;
+  max-width: 250px;
 }
+
+/*# sourceMappingURL=Account.css.map */
