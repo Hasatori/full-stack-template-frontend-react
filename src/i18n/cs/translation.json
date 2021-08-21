@@ -16,6 +16,7 @@
   "twoFactorCodeLabel": "Dvoufázový kód",
   "havingProblemsLoginTwoFactorQuestion": "Máte problémy?",
   "useRecoveryCodeLabel": "Použijte záložní kód",
+  "backToTwoFactorLoginLabel": "Zpět na přihlášení pomocí kódu",
   "recoveryCodeLabel": "Záložní kód",
   "signupLabel": "Registrovat",
   "signupHeading": "Registrace",

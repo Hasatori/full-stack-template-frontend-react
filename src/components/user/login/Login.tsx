@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './Login.css';
 import {Link, RouteComponentProps} from 'react-router-dom'
-import {MDBCard, MDBCardBody, MDBCardFooter, MDBCol, MDBContainer, MDBRow} from "mdbreact";
+import {MDBCard, MDBCardBody, MDBCardFooter, MDBCol, MDBRow} from "mdbreact";
 import O2AuthAuthentication from "../oauth2/O2AuthAuthentication";
 import {connect} from "react-redux";
 import {ThunkDispatch} from "redux-thunk";
@@ -16,14 +16,13 @@ import {failureActionCreator} from "../../../redux/actiontype/GeneralActionTypes
 import {store} from "../../../index";
 import {useTranslation} from "react-i18next";
 import {Input} from "../../form/Input";
-import {isEmailValid, isPasswordValid} from "../../../util/APIUtils";
+import TwoFactorCodeForm from "./TwoFactorCodeForm";
 
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
     return {
         login: (loginRequest: LoginRequest) => dispatch(loginActionCreator(loginRequest)),
         loginTwoFactor: (twoFactorLoginRequest: TwoFactorLoginRequest) => dispatch(loginTwoFactorActionCreator(twoFactorLoginRequest)),
         loginRecoveryCode: (twoFactorLoginRequest: TwoFactorLoginRequest) => dispatch(loginRecoveryCodeActionCreator(twoFactorLoginRequest))
-
     };
 };
 
@@ -37,18 +36,23 @@ function mapStateToProps(state: AppState, props: LoginProps) {
 export interface LoginProps {
     login: (loginRequest: LoginRequest) => void;
     loginTwoFactor: (loginRequest: TwoFactorLoginRequest) => void,
-    loginRecoveryCode: (loginRequest: TwoFactorLoginRequest) => void,
+    loginRecoveryCode: (loginRequest: TwoFactorLoginRequest) => void;
     twoFactorRequired: boolean,
     loading: boolean
+}
+
+export interface TwoFactorFormProps {
+    email: string;
+    password: string;
+    rememberMe: boolean;
+    loginTwoFactor: (loginRequest: TwoFactorLoginRequest) => void
+    loginRecoveryCode: (loginRequest: TwoFactorLoginRequest) => void;
 }
 
 function Login(props: RouteComponentProps & LoginProps) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
-    const [code, setCode] = useState("");
-    const [recoveryCode, setRecoveryCode] = useState("");
-    const [userRecoveryCode, setUseRecoveryCode] = useState(false);
     const {t} = useTranslation();
 
     useEffect(() => {
@@ -72,34 +76,13 @@ function Login(props: RouteComponentProps & LoginProps) {
 
     }
 
-    function handleTwoFactorLogin(event: React.FormEvent<EventTarget>) {
-        event.preventDefault();
-        const loginRequest: TwoFactorLoginRequest = {
-            email: email,
-            password: password,
-            rememberMe: rememberMe,
-            code: code
-        };
-        props.loginTwoFactor(loginRequest);
-    }
-
-    function handleRecoveyCodeLogin(event: React.FormEvent<EventTarget>) {
-        event.preventDefault();
-        const loginRequest: TwoFactorLoginRequest = {
-            email: email,
-            password: password,
-            rememberMe: rememberMe,
-            code: recoveryCode
-        };
-        props.loginRecoveryCode(loginRequest);
-    }
 
     if (!props.twoFactorRequired) {
         return (
             <div>
                 <MDBRow>
                     <MDBCol sm="1" md="2" xl="3"/>
-                    <MDBCol sm="10" md="8"  xl="6">
+                    <MDBCol sm="10" md="8" xl="6">
                         <MDBCard>
                             <MDBCardBody className="p-5">
                                 <form onSubmit={handleRegularLogin}
@@ -114,7 +97,7 @@ function Login(props: RouteComponentProps & LoginProps) {
                                         validationStarted={false}
                                         onChange={(event) => setEmail(event.target.value)}
                                         required={false}
-                                        invalidValueMessage= {t('ns1:invalidEmailMessage')}
+                                        invalidValueMessage={t('ns1:invalidEmailMessage')}
                                     />
                                     <Input
                                         id={"password"}
@@ -125,7 +108,7 @@ function Login(props: RouteComponentProps & LoginProps) {
                                         validationStarted={false}
                                         onChange={(event) => setPassword(event.target.value)}
                                         required={false}
-                                        invalidValueMessage= {t('ns1:invalidPasswordFormatMessage')}
+                                        invalidValueMessage={t('ns1:invalidPasswordFormatMessage')}
                                     />
                                     <div className="d-flex"><span className="link"> <Link
                                         to="/forgotten-password">{t('ns1:forgotPasswordQuestion')}</Link></span>
@@ -149,92 +132,19 @@ function Login(props: RouteComponentProps & LoginProps) {
                             </MDBCardFooter>
                         </MDBCard>
                     </MDBCol>
-                    <MDBCol sm="1" md="2"  xl="3"/>
+                    <MDBCol sm="1" md="2" xl="3"/>
                 </MDBRow>
             </div>
         );
-    } else if (userRecoveryCode) {
-        return (<MDBContainer className="mt-5">
-                <MDBRow>
-                    <MDBCol md="3"/>
-                    <MDBCol md="6">
-                        <MDBCard>
-
-                            <MDBCardBody>
-                                <p className="h4 text-center">{t('ns1:loginHeading')}</p>
-                                <form onSubmit={handleRecoveyCodeLogin}>
-                                    <label
-                                        htmlFor="code"
-                                        className="grey-text font-weight-light"
-                                    >
-                                        {t('ns1:recoveryCodeLabel')}
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="code"
-                                        className="form-control"
-                                        value={recoveryCode} onChange={(event) => setRecoveryCode(event.target.value)}
-                                        required
-                                    />
-                                    <div className="text-center py-4 mt-3">
-                                        <div className="text-center my-2">
-
-                                            <button className="btn btn-block btn-primary p-1" type="submit"
-                                                    disabled={props.loading}>{t('ns1:loginLabel')}</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </MDBCardBody>
-                        </MDBCard>
-                    </MDBCol>
-                    <MDBCol md="3"/>
-                </MDBRow>
-            </MDBContainer>
-        )
     } else {
         return (
-            <MDBContainer className="mt-5">
-                <MDBRow>
-                    <MDBCol md="3"/>
-                    <MDBCol md="6">
-                        <MDBCard>
-
-                            <MDBCardBody>
-                                <p className="h4 text-center">{t('ns1:loginHeading')}</p>
-                                <form onSubmit={handleTwoFactorLogin}>
-                                    <label
-                                        htmlFor="code"
-                                        className="grey-text font-weight-light"
-                                    >
-                                        {t('ns1:twoFactorCodeLabel')}
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="code"
-                                        className="form-control"
-                                        value={code} onChange={(event) => setCode(event.target.value)} required
-                                    />
-                                    <div className="text-center py-4 mt-1">
-                                        <div className="text-center my-2">
-
-                                            <button className="btn btn-block btn-primary p-1" type="submit"
-                                                    disabled={props.loading}>{t('ns1:loginLabel')}</button>
-                                        </div>
-                                    </div>
-                                </form>
-                                <span
-                                    className="font-weight-light-blue flex-center">{t('ns1:havingProblemsLoginTwoFactorQuestion')}
-                                    <Link
-                                        className="ml-1" onClick={() => {
-                                        setUseRecoveryCode(true)
-                                    }}
-                                        to="#">{t('ns1:useRecoveryCodeLabel')}</Link></span>
-                            </MDBCardBody>
-                        </MDBCard>
-                    </MDBCol>
-                    <MDBCol md="3"/>
-                </MDBRow>
-            </MDBContainer>)
+            <TwoFactorCodeForm email={email}
+                               password={password}
+                               rememberMe={rememberMe}
+                               loginTwoFactor={props.loginTwoFactor}
+                               loginRecoveryCode={props.loginRecoveryCode}
+            />
+        )
     }
 }
 

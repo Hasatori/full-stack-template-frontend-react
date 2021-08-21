@@ -16,6 +16,7 @@
   "twoFactorCodeLabel": "Two factor code",
   "havingProblemsLoginTwoFactorQuestion": "Having problems?",
   "useRecoveryCodeLabel": "User recovery code",
+  "backToTwoFactorLoginLabel": "Back to two factor login",
   "recoveryCodeLabel": "Recovery code",
   "signupLabel": "Signup",
   "signupHeading": "Signup",
