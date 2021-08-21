@@ -49,31 +49,16 @@ export interface TwoFactorFormProps {
     loginRecoveryCode: (loginRequest: TwoFactorLoginRequest) => void;
 }
 
-function Login(props: RouteComponentProps & LoginProps) {
+function Login(props:LoginProps) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
     const {t} = useTranslation();
 
-    useEffect(() => {
-        // @ts-ignore
-        if (props.location.state && props.location.state.error) {
-            setTimeout(() => {
-                // @ts-ignore
-                store.dispatch(failureActionCreator(props.location.state.error));
-                props.history.replace({
-                    pathname: props.location.pathname,
-                    state: {}
-                });
-            }, 100);
-        }
-    });
-
     function handleRegularLogin(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
         const loginRequest: LoginRequest = {email: email, password: password, rememberMe: rememberMe,}
         props.login(loginRequest);
-
     }
 
 

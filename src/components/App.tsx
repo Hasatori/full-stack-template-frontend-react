@@ -9,7 +9,6 @@ import LoadingIndicator from './loading/LoadingIndicator';
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 import './App.css';
-import Login from "./user/login/Login";
 import ForgottenPassword from "./user/forgottenpassword/ForgottenPassword";
 import PasswordReset from "./user/forgottenpassword/PasswordReset";
 import {PrivateRoute} from "./user/PrivateRoute";
@@ -45,6 +44,7 @@ import {AppProps, store} from "../index";
 import {Footer} from './footer/Footer';
 import ConfirmEmailChange from "./user/confirmemilchange/ConfirmEmailChange";
 import {MDBContainer} from "mdbreact";
+import Login from "./user/login/Login";
 
 function mapStateToProps(state: AppState, props: AppProps) {
     return {
@@ -150,6 +150,7 @@ function App(appProps: AppProps) {
         }
     }, [appProps.loading])
 
+
     return (
         <div>
             <LoadingIndicator {...appProps}/>
@@ -170,21 +171,18 @@ function App(appProps: AppProps) {
                         render={(props) => <Account/>}/>
 
                     <Route path={"/login"}
-                           render={(props) => appProps.authenticated ? <Redirect to='account'/> :
-                               <Login twoFactorRequired={true} login={() => {
-                               }} loginTwoFactor={() => {
-                               }} loginRecoveryCode={() => {
-                               }} loading={appProps.loading}  {...props} />}/>
+                           render={(props) => appProps.authenticated ? <Redirect to='account'/> :// @ts-ignore
+                                <Login{...props} />}/>
                     <Route path="/signup"
-                           render={(props) => <Signup {...props} />}/>
+                           render={(props) =>  appProps.authenticated ? <Redirect to='account'/> :<Signup {...props} />}/>
                     <Route path="/forgotten-password"
-                           render={(props) => <ForgottenPassword {...props}/>}/>
+                           render={(props) => appProps.authenticated ? <Redirect to='account'/> : <ForgottenPassword {...props}/>}/>
                     <Route path="/password-reset"
-                           render={(props) => <PasswordReset {...props}/>}/>
+                           render={(props) =>  appProps.authenticated ? <Redirect to='account'/> :<PasswordReset {...props}/>}/>
                     <Route path="/oauth2/redirect"
-                           render={(props) => <OAuth2RedirectHandler {...appProps}{...props}/>}/>
+                           render={(props) =>  appProps.authenticated ? <Redirect to='account'/> :<OAuth2RedirectHandler {...appProps}{...props}/>}/>
                     <Route path="/activate-account*"
-                           render={(props) => <ActivateAccount {...appProps}{...props}/>}/>
+                           render={(props) =>  appProps.authenticated ? <Redirect to='account'/> :<ActivateAccount {...appProps}{...props}/>}/>
                     <Route path="/confirm-email-change*"
                            render={(props) => <ConfirmEmailChange {...appProps}{...props}/>}/>
                     <Route component={NotFound}/>
