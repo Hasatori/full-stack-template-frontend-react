@@ -20,8 +20,6 @@ import {
 } from 'mdbreact';
 import {useTranslation} from "react-i18next";
 import {getLanguageFlagPairFromLocale} from "../../i18n/I18nConfig";
-import hamburger from "../../assets/images/common/hamburger-icon.png"
-import close from "../../assets/images/common/close-icon.png"
 
 function AppHeader(props: AppProps) {
     const [open, setOpen] = useState(false);
@@ -38,10 +36,15 @@ function AppHeader(props: AppProps) {
                         Full stack template
                     </MDBNavbarBrand>
                     <MDBNavbarToggler
-                        image={open ? close : hamburger}
+                        className={open?'toggler-icon open':'toggler-icon'}
+
                         onClick={() => {
                             setOpen(!open)
-                        }}/>
+                        }}>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </MDBNavbarToggler>
                     <MDBCollapse isOpen={open} navbar>
                         <MDBNavbarNav left>
                             <MDBNavItem active={location.pathname === '/'}>

@@ -58,7 +58,7 @@ function Profile(props: ProfileProps) {
 
     function handleSubmit(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
-        if (emailValid && name)
+        if (emailValid)
         props.updateProfile({
             name: name,
             email: email,
@@ -126,12 +126,12 @@ function Profile(props: ProfileProps) {
                         type="email"
                         label={t("ns1:emailLabel")}
                         value={email}
-                        valid={isEmailValid(email)}
+                        valid={emailValid}
                         validationStarted={emailValidationStarted}
                         onChange={(event) => {
                             setEmail(event.target.value);
                             setEmailValidationStarted(true);
-                            setEmailValid(isEmailValid(email));
+                            setEmailValid(isEmailValid(event.target.value));
                         }}
                         required={true}
                         invalidValueMessage= {t('ns1:invalidEmailMessage')}
@@ -152,7 +152,7 @@ function Profile(props: ProfileProps) {
                     <div className="form-item mt-3 save text-center">
                         <MDBBtn color="primary"
                                 type="submit"
-                                disabled={(((typeof file === 'undefined' || file.data === user.profileImage.data) && email === user.email && name === user.name)) || !emailValid}
+                                disabled={((typeof file === 'undefined' || file.data === user.profileImage.data) && email === user.email && name === user.name) || !isEmailValid(email)}
 
                         >  {t('ns1:saveButtonLabel')}</MDBBtn>
                     </div>
