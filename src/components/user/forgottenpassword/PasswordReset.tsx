@@ -7,7 +7,8 @@ import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
 import {useTranslation} from "react-i18next";
 import {Input} from "../../form/Input";
-import {MDBCard, MDBCardBody, MDBCol, MDBRow} from "mdbreact";
+import {MDBCard, MDBCardBody} from "mdbreact";
+import "../../App.css"
 
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
     return {
@@ -46,11 +47,8 @@ function PasswordReset(props: PasswordResetProps & RouteComponentProps) {
     }
 
     return (
-        <MDBRow>
-            <MDBCol sm="1" md="2" xl="3"/>
-            <MDBCol sm="10" md="8" xl="6">
-                <MDBCard>
-                    <MDBCardBody className="p-5">
+        <MDBCard className="card">
+            <MDBCardBody className="p-5">
                         <form onSubmit={handleSubmit} noValidate>
                             <Input
                                 id={"password"}
@@ -91,9 +89,6 @@ function PasswordReset(props: PasswordResetProps & RouteComponentProps) {
                         </form>
                     </MDBCardBody>
                 </MDBCard>
-            </MDBCol>
-            <MDBCol sm="1" md="2" xl="3"/>
-        </MDBRow>
 
     );
 }

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ChangeEvent, useState} from "react";
+import {useState} from "react";
 import './Signup.css';
 import {Link} from 'react-router-dom'
 import O2AuthAuthentication from "../oauth2/O2AuthAuthentication";
@@ -7,7 +7,7 @@ import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
 import {signUp} from "../../../redux/actiontype/UserActionTypes";
 import {arePasswordsSame, isEmailValid, isPasswordValid} from "../../../util/APIUtils";
-import {MDBCard, MDBCardBody, MDBCardFooter, MDBCol, MDBContainer, MDBIcon, MDBRow} from "mdbreact";
+import {MDBCard, MDBCardBody, MDBCardFooter} from "mdbreact";
 import {useTranslation} from "react-i18next";
 import {connect} from "react-redux";
 import {Input} from "../../form/Input";
@@ -51,11 +51,7 @@ function Signup(props: SignUpProps) {
     }
 
     return (
-        <MDBContainer className="mt-5">
-            <MDBRow>
-                <MDBCol sm="1" md="2" xl="3"/>
-                <MDBCol sm="10" md="8" xl="6">
-                    <MDBCard>
+        <MDBCard className="card">
                         <MDBCardBody className="p-5">
                             <form onSubmit={handleSubmit}
                                   noValidate>
@@ -135,10 +131,7 @@ function Signup(props: SignUpProps) {
                             {<O2AuthAuthentication {...props} registration={false}/>}
                         </MDBCardFooter>
                     </MDBCard>
-                </MDBCol>
-                <MDBCol sm="1" md="2" xl="3"/>
-            </MDBRow>
-        </MDBContainer>
+
     );
 }
 

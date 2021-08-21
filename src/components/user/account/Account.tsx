@@ -6,13 +6,12 @@ import {connect} from "react-redux";
 import CloseAccount from "./CloseAccount";
 import Profile from "./Profile";
 import {useTranslation} from "react-i18next";
-import {MDBCol, MDBContainer, MDBRow} from "mdbreact";
+import {MDBCol, MDBRow} from "mdbreact";
 
 
 function Account() {
     const {t} = useTranslation();
     return (
-
         <MDBRow>
             <MDBCol lg="1"/>
             <MDBCol  md="12" lg="10">

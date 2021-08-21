@@ -2,6 +2,7 @@ import {MDBBtn, MDBContainer, MDBModal, MDBModalBody, MDBModalFooter, MDBModalHe
 import React from "react";
 import {useTranslation} from "react-i18next";
 import "./AreYouSureModal.css"
+
 export interface ModalProps {
     isOpen: boolean
     no: () => void

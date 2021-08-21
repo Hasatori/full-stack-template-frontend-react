@@ -4,9 +4,10 @@ import {forgottenPasswordRequest} from "../../../redux/actiontype/UserActionType
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
 import {useTranslation} from "react-i18next";
-import {MDBCol, MDBRow} from "mdbreact";
+import {MDBCard, MDBCardBody} from "mdbreact";
 import {Input} from "../../form/Input";
 import {isEmailValid} from "../../../util/APIUtils";
+import "../../App.css"
 
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
     return {
@@ -35,10 +36,8 @@ function ForgottenPassword(props: ForgottenPasswordProps) {
     }
 
     return (
-        <MDBRow>
-            <MDBCol sm="1" md="2" xl="3"/>
-            <MDBCol sm="10" md="8" xl="6">
-                <div className="login-content">
+        <MDBCard className="card">
+            <MDBCardBody className="p-5">
                     <form onSubmit={handleSubmit}>
                         <Input
                             id={"email"}
@@ -61,10 +60,8 @@ function ForgottenPassword(props: ForgottenPasswordProps) {
                             </div>
                         </div>
                     </form>
-                </div>
-            </MDBCol>
-            <MDBCol sm="1" md="2" xl="3"/>
-        </MDBRow>
+            </MDBCardBody>
+        </MDBCard>
     );
 }
 

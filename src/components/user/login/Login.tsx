@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './Login.css';
-import {Link, RouteComponentProps} from 'react-router-dom'
-import {MDBCard, MDBCardBody, MDBCardFooter, MDBCol, MDBRow} from "mdbreact";
+import {Link} from 'react-router-dom'
+import {MDBCard, MDBCardBody, MDBCardFooter} from "mdbreact";
 import O2AuthAuthentication from "../oauth2/O2AuthAuthentication";
 import {connect} from "react-redux";
 import {ThunkDispatch} from "redux-thunk";
@@ -12,8 +12,6 @@ import {
 } from "../../../redux/actiontype/UserActionTypes";
 import {AnyAction} from "redux";
 import {AppState} from "../../../redux/store/Store";
-import {failureActionCreator} from "../../../redux/actiontype/GeneralActionTypes";
-import {store} from "../../../index";
 import {useTranslation} from "react-i18next";
 import {Input} from "../../form/Input";
 import TwoFactorCodeForm from "./TwoFactorCodeForm";
@@ -64,11 +62,7 @@ function Login(props:LoginProps) {
 
     if (!props.twoFactorRequired) {
         return (
-            <div>
-                <MDBRow>
-                    <MDBCol sm="1" md="2" xl="3"/>
-                    <MDBCol sm="10" md="8" xl="6">
-                        <MDBCard>
+                        <MDBCard className="card">
                             <MDBCardBody className="p-5">
                                 <form onSubmit={handleRegularLogin}
                                       noValidate>
@@ -116,10 +110,6 @@ function Login(props:LoginProps) {
                                 {<O2AuthAuthentication {...props} registration={false}/>}
                             </MDBCardFooter>
                         </MDBCard>
-                    </MDBCol>
-                    <MDBCol sm="1" md="2" xl="3"/>
-                </MDBRow>
-            </div>
         );
     } else {
         return (

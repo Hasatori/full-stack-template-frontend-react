@@ -10,6 +10,15 @@ body {
   display: none;
 }
 
+.card {
+  max-width: 450px;
+  margin: auto;
+}
+
+.form-item {
+  position: relative;
+}
+
 .footer {
   background-color: #4285f4 !important;
 }

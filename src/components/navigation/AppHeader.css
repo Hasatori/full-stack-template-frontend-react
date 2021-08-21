@@ -10,6 +10,15 @@ body {
   display: none;
 }
 
+.card {
+  max-width: 450px;
+  margin: auto;
+}
+
+.form-item {
+  position: relative;
+}
+
 .navbar {
   border-bottom: 2px solid #4285f4 !important;
 }

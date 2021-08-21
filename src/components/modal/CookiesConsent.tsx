@@ -2,12 +2,11 @@ import CookieConsent from "react-cookie-consent";
 import React from "react";
 import {useTranslation} from "react-i18next";
 
-
 export function CookiesConsent() {
     const {t} = useTranslation();
     return (
         <CookieConsent
-            location="top"
+            location="bottom"
             buttonText={t('ns1:closeLabel')}
             cookieName="cookiesConsent"
             style={{'box-shadow': '0 1px 11px rgba(0, 0, 0, 0.27)', color: '#fff'}}
@@ -19,8 +18,7 @@ export function CookiesConsent() {
                 padding: '10px'
             }}
             expires={150}
-        >
-            {t('ns1:cookiesConsentMessage')}
+        >{t('ns1:cookiesConsentMessage')}
         </CookieConsent>
     )
 }

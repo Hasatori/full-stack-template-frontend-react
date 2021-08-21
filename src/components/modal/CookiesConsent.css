@@ -10,15 +10,6 @@ body {
   display: none;
 }
 
-.card {
-  max-width: 450px;
-  margin: auto;
-}
-
-.form-item {
-  position: relative;
-}
-
 .s-alert-box {
   min-width: 250px;
 }
@@ -32,4 +23,8 @@ body {
   min-height: 85vh !important;
 }
 
-/*# sourceMappingURL=Signup.css.map */
+.CookiesConsent {
+  z-index: 10000 !important;
+}
+
+/*# sourceMappingURL=CookiesConsent.css.map */

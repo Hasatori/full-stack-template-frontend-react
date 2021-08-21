@@ -38,7 +38,6 @@ function AppHeader(props: AppProps) {
                         Full stack template
                     </MDBNavbarBrand>
                     <MDBNavbarToggler
-
                         image={open ? close : hamburger}
                         onClick={() => {
                             setOpen(!open)

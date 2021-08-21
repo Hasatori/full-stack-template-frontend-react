@@ -16,7 +16,7 @@ function LoadingIndicator(props: AppProps) {
                 <CircleLoader
                     css={override}
                     size={150}
-                    color={"#123abc"}
+                    color={"#4285f4"}
                     loading={props.loading}
                 />
                 <h2 className='loadingMessage'>{props.loadingMessage}</h2>
