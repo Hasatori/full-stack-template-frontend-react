@@ -10505,14 +10505,6 @@ react-numeric-input@2.2.3:
   resolved "https://registry.yarnpkg.com/react-numeric-input/-/react-numeric-input-2.2.3.tgz#4bf5918c3eafed851a80df1eb992d941002bb552"
   integrity sha1-S/WRjD6v7YUagN8euZLZQQArtVI=
 
-react-open-app@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-open-app/-/react-open-app-1.0.3.tgz#3a2256f7861838d7396bea6b5b50a27e989303ba"
-  integrity sha512-PuWsGp/egwZJOYWkfzru3WObHW1rzz4KSt8eAy42m5dMCEIJY25Zebfh70W8Wo85TkrzY5AwmZJU/N2KB7cSYA==
-  dependencies:
-    babel-runtime "^6.26.0"
-    url-to-deep-link "^1.0.3"
-
 react-overlay-loader@0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/react-overlay-loader/-/react-overlay-loader-0.0.3.tgz#1b46441aad2cb40a261d905c9c0ad6b5da999103"
@@ -12548,13 +12540,6 @@ url-parse@^1.4.3:
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
-
-url-to-deep-link@^1.0.3:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/url-to-deep-link/-/url-to-deep-link-1.0.7.tgz#1f6f8396726a28dc4a5fecfdca8091a70e89c0f9"
-  integrity sha512-iW8Qbm1DOuqwmhdRizPwWLmeYMalRUQPJxxxHTLpiwNeAP8IIrujsN2R/PeFYe//AzeMnXFpr3ExdzglOXj5zg==
-  dependencies:
-    babel-runtime "^6.26.0"
 
 url@^0.11.0:
   version "0.11.0"
