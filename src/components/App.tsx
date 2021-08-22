@@ -97,7 +97,7 @@ function toastEmitter(type: string): ToastOptions {
             dismissOnClose = () => {
                 store.dispatch(dismissInfo())
             };
-            autoClose = 5000;
+            autoClose = false;
             break;
     }
     return {
