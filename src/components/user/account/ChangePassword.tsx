@@ -7,7 +7,7 @@ import {changePassword} from "../../../redux/actiontype/UserActionTypes";
 import {MDBBtn} from "mdbreact";
 import {useTranslation} from "react-i18next";
 import {Input} from "../../form/Input";
-import {arePasswordsSame, isPasswordValid} from "../../../util/APIUtils";
+import {arePasswordsSame, isPasswordValid} from "../../../util/ValidationUtils";
 
 
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {

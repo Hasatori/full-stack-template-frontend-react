@@ -6,11 +6,11 @@ import O2AuthAuthentication from "../oauth2/O2AuthAuthentication";
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
 import {signUp} from "../../../redux/actiontype/UserActionTypes";
-import {arePasswordsSame, isEmailValid, isPasswordValid} from "../../../util/APIUtils";
 import {MDBCard, MDBCardBody, MDBCardFooter} from "mdbreact";
 import {useTranslation} from "react-i18next";
 import {connect} from "react-redux";
 import {Input} from "../../form/Input";
+import {arePasswordsSame, isEmailValid, isPasswordValid} from "../../../util/ValidationUtils";
 
 interface SignUpProps {
     signUp: (signUpRequest: SignUpRequest) => void;

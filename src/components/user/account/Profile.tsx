@@ -3,13 +3,13 @@ import React, {ChangeEvent, useState} from "react";
 import {RouteComponentProps} from "react-router-dom";
 import {ProfileImage, User} from "../../App";
 import {AppState} from "../../../redux/store/Store";
-import {isEmailValid} from "../../../util/APIUtils";
 import {MDBBtn} from "mdbreact";
 import {useTranslation} from "react-i18next";
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
 import {updateProfile} from "../../../redux/actiontype/UserActionTypes";
 import {Input} from "../../form/Input";
+import {isEmailValid} from "../../../util/ValidationUtils";
 
 export interface ProfileProps extends RouteComponentProps {
     user: User,

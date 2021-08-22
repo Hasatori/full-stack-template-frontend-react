@@ -1,10 +1,11 @@
 import {Redirect, RouteComponentProps} from "react-router";
 import React from "react";
 import {connect} from "react-redux";
-import {AccountActivationRequest, getUrlParameter} from "../../../util/APIUtils";
+import {AccountActivationRequest} from "../../../util/APIUtils";
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
 import {confirmEmailChange} from "../../../redux/actiontype/UserActionTypes";
+import {getUrlParameter} from "../../../util/ValidationUtils";
 
 
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {

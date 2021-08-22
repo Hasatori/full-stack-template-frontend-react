@@ -6,8 +6,8 @@ import {AnyAction} from "redux";
 import {useTranslation} from "react-i18next";
 import {MDBCard, MDBCardBody} from "mdbreact";
 import {Input} from "../../form/Input";
-import {isEmailValid} from "../../../util/APIUtils";
 import "../../App.css"
+import {isEmailValid} from "../../../util/ValidationUtils";
 
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
     return {

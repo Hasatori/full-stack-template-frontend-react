@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from "react-redux";
 import {Redirect, RouteComponentProps} from "react-router";
 import {AppProps, store} from "../../../index";
-import {getUrlParameter} from "../../../util/APIUtils";
 import {successActionCreator} from "../../../redux/actiontype/GeneralActionTypes";
+import {getUrlParameter} from "../../../util/ValidationUtils";
 
 function OAuth2RedirectHandler(props: AppProps & RouteComponentProps) {
     const token = getUrlParameter(props.location.search, 'token');

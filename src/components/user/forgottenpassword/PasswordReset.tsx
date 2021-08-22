@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {arePasswordsSame, getUrlParameter, isPasswordValid} from "../../../util/APIUtils";
 import {RouteComponentProps} from "react-router-dom";
 import {connect} from "react-redux";
 import {resetPassword} from "../../../redux/actiontype/UserActionTypes";
@@ -9,6 +8,7 @@ import {useTranslation} from "react-i18next";
 import {Input} from "../../form/Input";
 import {MDBCard, MDBCardBody} from "mdbreact";
 import "../../App.css"
+import {arePasswordsSame, getUrlParameter, isPasswordValid} from "../../../util/ValidationUtils";
 
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
     return {
