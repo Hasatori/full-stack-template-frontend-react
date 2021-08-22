@@ -8,7 +8,7 @@ import {AccountActivationRequest} from "../../util/APIUtils";
 import {
     doneActionCreator,
     failureActionCreator,
-    GeneralActionTypes,
+    GeneralActionTypes, infoActionCreator,
     inProgressActionCreator,
     successActionCreator
 } from "./GeneralActionTypes";
@@ -328,7 +328,7 @@ export const updateProfile: ActionCreator<ThunkAction<void, void, UpdateProfileR
         }).then(response => {
             dispatch(doneActionCreator());
             dispatch({type: UPDATE_USER, newUser: response.data.user})
-            dispatch(successActionCreator(response.data.message));
+            dispatch(infoActionCreator(response.data.message));
         }).catch(error => {
             dispatch(doneActionCreator());
             dispatch(failureActionCreator((error.response && error.response.data && error.response.data.message) || i18next.t('ns1:defaultErrorMessage')));
