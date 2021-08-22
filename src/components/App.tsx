@@ -33,7 +33,7 @@ import {
     dismissInfo,
     dismissSuccess,
     dismissWarning,
-    FAILURE,
+    FAILURE, failureActionCreator,
     INFO,
     SUCCESS,
     WARNING
@@ -45,6 +45,7 @@ import {Footer} from './footer/Footer';
 import ConfirmEmailChange from "./user/confirmemilchange/ConfirmEmailChange";
 import {MDBContainer} from "mdbreact";
 import Login from "./user/login/Login";
+import {useHistory, useLocation} from 'react-router-dom'
 
 function mapStateToProps(state: AppState, props: AppProps) {
     return {
@@ -149,8 +150,19 @@ function App(appProps: AppProps) {
             toast.dismiss();
         }
     }, [appProps.loading])
-
-
+    const history = useHistory();
+    let location = useLocation<{error:string}>();
+    useEffect(() => {
+        if (location.state && location.state.error) {
+            setTimeout(() => {
+                store.dispatch(failureActionCreator(location.state.error));
+                history.replace({
+                    pathname: location.pathname,
+                    state: {}
+                });
+            }, 100);
+        }
+    });
     return (
         <div>
             <LoadingIndicator {...appProps}/>
@@ -172,7 +184,7 @@ function App(appProps: AppProps) {
 
                     <Route path={"/login"}
                            render={(props) => appProps.authenticated ? <Redirect to='account'/> :// @ts-ignore
-                                <Login{...props} />}/>
+                                <Login {...props} />}/>
                     <Route path="/signup"
                            render={(props) =>  appProps.authenticated ? <Redirect to='account'/> :<Signup {...props} />}/>
                     <Route path="/forgotten-password"
