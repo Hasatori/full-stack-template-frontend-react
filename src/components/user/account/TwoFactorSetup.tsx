@@ -29,6 +29,7 @@ import {
 import {AnyAction} from "redux";
 import {ThunkDispatch} from "redux-thunk";
 import {store} from "../../../index";
+import API from "../../../util/APIUtils";
 
 interface TwoFactorProps {
     twoFactorEnabled: boolean,
@@ -59,7 +60,7 @@ function TwoFactorSetup(props: TwoFactorProps) {
     const {t} = useTranslation();
 
     function getTwoFactorSetup() {
-        axios({
+        API({
             url: process.env.REACT_APP_REST_API_URL + "/getTwoFactorSetup",
             method: 'POST'
         }).then(response => {
