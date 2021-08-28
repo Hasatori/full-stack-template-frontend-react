@@ -1,5 +1,5 @@
 import {store} from "../index";
-import {TOKEN_REFRESHED} from "../redux/actiontype/UserActionTypes";
+import {LOGOUT_USER, TOKEN_REFRESHED} from "../redux/actiontype/UserActionTypes";
 import axios from "axios";
 import i18next from "i18next";
 
@@ -28,6 +28,7 @@ API.interceptors.response.use(
                         return axios(originalRequest);
                     }
                 }).catch(error => {
+                    store.dispatch({type:LOGOUT_USER})
                     return Promise.reject(error);
                 });
         }
