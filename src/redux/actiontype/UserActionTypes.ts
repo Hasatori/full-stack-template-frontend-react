@@ -17,7 +17,6 @@ import  {AxiosResponse} from "axios";
 import API from "../../util/APIUtils";
 import i18next from "i18next";
 
-import {UpdateProfileRequest} from "../../components/user/account/Profile";
 import {VerifyTwoFactor} from "../../components/user/account/TwoFactorSetup";
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -306,17 +305,18 @@ export const cancelAccount: ActionCreator<ThunkAction<void, void, LoginRequest, 
     };
 };
 
-export const updateProfile: ActionCreator<ThunkAction<void, void, UpdateProfileRequest, GeneralActionTypes>> = (updateProfileRequest: UpdateProfileRequest) => {
+export const updateProfile: ActionCreator<ThunkAction<void, void, User, GeneralActionTypes>> = (newUser: User) => {
     return async (dispatch: Dispatch) => {
         dispatch(inProgressActionCreator(''));
         API({
             url: "update-profile",
-            method: 'POST',
-            data: JSON.stringify(updateProfileRequest)
+            method: 'PUT',
+            data: JSON.stringify(newUser)
         }).then(response => {
             dispatch(doneActionCreator());
-            dispatch({type: UPDATE_USER, newUser: response.data.user})
-            dispatch(infoActionCreator(response.data.message));
+            dispatch({type: UPDATE_USER, newUser: newUser})
+            dispatch(successActionCreator(i18next.t('ns1:profileUpdated')));
+            dispatch(infoActionCreator(i18next.t('ns1:profileUpdateEmailActivation')))
         }).catch(error => {
             dispatch(doneActionCreator());
             dispatch(failureActionCreator((error.response && error.response.data && error.response.data.message) || i18next.t('ns1:defaultErrorMessage')));

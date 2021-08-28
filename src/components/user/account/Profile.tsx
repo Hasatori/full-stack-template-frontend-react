@@ -13,7 +13,7 @@ import {isEmailValid} from "../../../util/ValidationUtils";
 
 export interface ProfileProps extends RouteComponentProps {
     user: User,
-    updateProfile: (updateProfileRequest: UpdateProfileRequest) => void
+    updateProfile: (updateProfileRequest: User) => void
 }
 
 function mapStateToProps(state: AppState, props: ProfileProps) {
@@ -24,14 +24,14 @@ function mapStateToProps(state: AppState, props: ProfileProps) {
 
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
     return {
-        updateProfile: (updateProfileRequest: UpdateProfileRequest) => dispatch(updateProfile(updateProfileRequest)),
+        updateProfile: (updateProfileRequest: User) => dispatch(updateProfile(updateProfileRequest)),
     };
 };
 
 
 function Profile(props: ProfileProps) {
     let user: User = props.user;
-    let [file, setFile] = useState<ProfileImage | undefined>(undefined);
+    let [file, setFile] = useState<ProfileImage>(user.profileImage);
     let [email, setEmail] = useState(user.email);
     const [emailValidationStarted, setEmailValidationStarted] = useState(false);
     const [emailValid, setEmailValid] = useState(isEmailValid(user.email));
@@ -60,9 +60,13 @@ function Profile(props: ProfileProps) {
         event.preventDefault();
         if (emailValid)
         props.updateProfile({
+            id:user.id,
             name: name,
             email: email,
-            profileImage: file
+            profileImage: file,
+            twoFactorEnabled:user.twoFactorEnabled,
+            backupCodes:[]
+
         });
     }
 
@@ -164,11 +168,5 @@ function Profile(props: ProfileProps) {
     )
 }
 
-export interface UpdateProfileRequest {
-    email?: string,
-    name?: string,
-    profileImage?: ProfileImage
-
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)

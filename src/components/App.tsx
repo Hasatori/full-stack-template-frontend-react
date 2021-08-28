@@ -208,6 +208,7 @@ function App(appProps: AppProps) {
 }
 
 export interface User {
+    id: number;
     name: string;
     email: string;
     profileImage: ProfileImage;

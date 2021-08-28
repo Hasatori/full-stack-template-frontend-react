@@ -49,6 +49,8 @@
   "chooseFile": "Vybrat soubor",
   "passwordHeading": "Heslo",
   "passwordDescription": "Změnte své heslo",
+  "profileUpdated": "Profil upraven",
+  "profileUpdateEmailActivation": "Aby byl zmeněn email je potřeba změnu potvrdit prostrednictvím odkazu na novém emailu",
   "twoFactorAuthenticationLabel": "Dvoufázová autentizace",
   "twoFactorAuthenticationDescription": "Zapněte nebo upravte dvoufázovou autentizaci",
   "twoFactorAuthenticationEnabledMessage": "Dvoufázová autentizace je povolena!",

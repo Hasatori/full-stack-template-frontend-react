@@ -49,6 +49,8 @@
   "chooseFile": "Choose file",
   "passwordHeading": "Password",
   "passwordDescription": "Change your password",
+  "profileUpdated": "Profile updated",
+  "profileUpdateEmailActivation": "In order for email update to take effect the change needs to be confirmed via link that has been send to the new email ",
   "twoFactorAuthenticationLabel": "Two factor authentication",
   "twoFactorAuthenticationDescription": "Set up or update the two-factor authentication",
   "twoFactorAuthenticationEnabledMessage": "Two factor authentication enabled!",
