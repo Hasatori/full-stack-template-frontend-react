@@ -346,10 +346,10 @@ export const disableTwoFactor: ActionCreator<ThunkAction<void, void, void, Gener
         dispatch(inProgressActionCreator(''));
         API({
             url: "disable-two-factor",
-            method: 'POST'
+            method: 'PUT'
         }).then(response => {
             dispatch({type: TWO_FACTOR_DISABLED});
-            dispatch(successActionCreator(response.data.message));
+            dispatch(successActionCreator(i18next.t('ns1:profileUpdated')));
             dispatch(doneActionCreator());
         }).catch(error => {
             dispatch(doneActionCreator());
