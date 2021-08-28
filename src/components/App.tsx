@@ -218,6 +218,7 @@ export interface User {
 }
 
 export interface ProfileImage {
+    id:number;
     name?: string;
     type?: string;
     data?: string;

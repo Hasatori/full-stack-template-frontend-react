@@ -49,25 +49,28 @@ function Profile(props: ProfileProps) {
             reader.onload = () => {
                 setFile({
                     data: reader.result?.toString().split(",")[1],
-                    type: newProfileFile?.type
+                    type: newProfileFile?.type,
+                    name: file.name,
+                    id: file.id
                 })
             };
             reader.readAsDataURL(newProfileFile)
+
         }
     }
 
     function handleSubmit(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
         if (emailValid)
-        props.updateProfile({
-            id:user.id,
-            name: name,
-            email: email,
-            profileImage: file,
-            twoFactorEnabled:user.twoFactorEnabled,
-            backupCodes:[]
+            props.updateProfile({
+                id: user.id,
+                name: name,
+                email: email,
+                profileImage: file,
+                twoFactorEnabled: user.twoFactorEnabled,
+                backupCodes: []
 
-        });
+            });
     }
 
     return (
@@ -138,7 +141,7 @@ function Profile(props: ProfileProps) {
                             setEmailValid(isEmailValid(event.target.value));
                         }}
                         required={true}
-                        invalidValueMessage= {t('ns1:invalidEmailMessage')}
+                        invalidValueMessage={t('ns1:invalidEmailMessage')}
                     />
                     <Input id={"name"}
                            type={"text"}
@@ -151,7 +154,7 @@ function Profile(props: ProfileProps) {
                                setNameValid(event.target.value.length >= 4);
                                setName(event.target.value);
                            }}
-                           invalidValueMessage= {t('ns1:invalidNameMessage')}
+                           invalidValueMessage={t('ns1:invalidNameMessage')}
                            required={true}/>
                     <div className="form-item mt-3 save text-center">
                         <MDBBtn color="primary"
