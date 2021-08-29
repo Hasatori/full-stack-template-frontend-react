@@ -29,7 +29,7 @@ export default function TwoFactorCodeForm(twoFactorFormProps: TwoFactorFormProps
             rememberMe: twoFactorFormProps.rememberMe,
             code: recoveryCode
         };
-        twoFactorFormProps.loginTwoFactor(loginRequest);
+        twoFactorFormProps.loginRecoveryCode(loginRequest);
     }
 
     if (userRecoveryCode) {
