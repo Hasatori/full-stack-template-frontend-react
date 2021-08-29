@@ -65,5 +65,7 @@
   "closeAccountDescription": "This action will delete your account and all your data",
   "closeAccountAreYouSureHeading": "Account cancelling",
   "closeAccountAreYouSureMessage": "Are you sure you want to cancel your account?",
-  "defaultErrorMessage": "Something went wrong. Please try again!"
+  "defaultErrorMessage": "Something went wrong. Please try again!",
+  "invalidFileType": "Invalid file type. Allowed types are {{fileTypes}}",
+  "invalidFileSize": "File is too big. Max size is {{maxFileSize}}"
 }

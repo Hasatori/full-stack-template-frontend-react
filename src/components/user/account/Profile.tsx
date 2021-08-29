@@ -10,6 +10,9 @@ import {AnyAction} from "redux";
 import {updateProfile} from "../../../redux/actiontype/UserActionTypes";
 import {Input} from "../../form/Input";
 import {isEmailValid} from "../../../util/ValidationUtils";
+import {store} from "../../../index";
+import {failureActionCreator} from "../../../redux/actiontype/GeneralActionTypes";
+import i18next from "i18next";
 
 export interface ProfileProps extends RouteComponentProps {
     user: User,
@@ -44,18 +47,28 @@ function Profile(props: ProfileProps) {
         event.preventDefault();
         let files = event.target.files;
         if (files !== null) {
-            let newProfileFile = files[0];
-            let reader = new FileReader();
-            reader.onload = () => {
-                setFile({
-                    data: reader.result?.toString().split(",")[1],
-                    type: newProfileFile?.type,
-                    name: file.name,
-                    id: file.id
-                })
-            };
-            reader.readAsDataURL(newProfileFile)
-
+            const newProfileFile = files[0];
+            const allowedTypes = [
+                {extension: "jpg", mimeType: "image/jpeg"},
+                {extension: "png", mimeType: "image/png"}
+            ];
+            const maxSize: number = 10000000;
+            if (newProfileFile.size > maxSize) {
+                store.dispatch(failureActionCreator(i18next.t('ns1:invalidFileSize', {maxFileSize: `${Math.ceil(maxSize / 1000000)} MB`})));
+            } else if (!allowedTypes.map(type => type.mimeType).includes(newProfileFile.type)) {
+                store.dispatch(failureActionCreator(i18next.t('ns1:invalidFileType', {fileTypes: `[ ${allowedTypes.map(type => type.extension).join(", ")} ]`})));
+            } else {
+                let reader = new FileReader();
+                reader.onload = () => {
+                    setFile({
+                        data: reader.result?.toString().split(",")[1],
+                        type: newProfileFile?.type,
+                        name: file.name,
+                        id: file.id
+                    })
+                };
+                reader.readAsDataURL(newProfileFile)
+            }
         }
     }
 

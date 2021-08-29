@@ -65,5 +65,7 @@
   "closeAccountDescription": "Tato akce vymaže váš účet a všechna Vaše data",
   "closeAccountAreYouSureHeading": "Rušení účtu",
   "closeAccountAreYouSureMessage": "Opravdu chcete zrušit Váš účet?",
-  "defaultErrorMessage": "Něco se pokazilo. Zkuste to prosím znovu!"
+  "defaultErrorMessage": "Něco se pokazilo. Zkuste to prosím znovu!",
+  "invalidFileType": "Nesprávný typ souboru. Povolené typy jsou {{fileTypes}}",
+  "invalidFileSize": "Soubor je příliš veliký. Maximální velikost je {{maxFileSize}}"
 }
