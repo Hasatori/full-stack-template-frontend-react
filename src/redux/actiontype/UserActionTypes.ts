@@ -107,7 +107,6 @@ export const loginActionCreator: ActionCreator<ThunkAction<void, void, LoginRequ
         });
     };
 };
-
 export const refreshTokenActionCreator: ActionCreator<ThunkAction<void, void, void, AnyAction>> = () => {
     return async (dispatch: Dispatch) => {
         API({
@@ -133,7 +132,6 @@ export const loginTwoFactorActionCreator: ActionCreator<ThunkAction<void, void, 
         });
     };
 };
-
 export const loginRecoveryCodeActionCreator: ActionCreator<ThunkAction<void, void, TwoFactorLoginRequest, LoginSuccessAction>> = (loginRequest: TwoFactorLoginRequest) => {
     return async (dispatch: Dispatch) => {
         dispatch(inProgressActionCreator(""));
@@ -149,8 +147,6 @@ export const loginRecoveryCodeActionCreator: ActionCreator<ThunkAction<void, voi
         });
     };
 };
-
-
 export const logoutActionCreator: ActionCreator<ThunkAction<void, void, void, LoginSuccessAction>> = () => {
     return async (dispatch: Dispatch) => {
         dispatch(inProgressActionCreator(""));
@@ -166,7 +162,6 @@ export const logoutActionCreator: ActionCreator<ThunkAction<void, void, void, Lo
         });
     }
 };
-
 export const loadCurrentlyLoggedInUser: ActionCreator<ThunkAction<void, void, TwoFactorLoginRequest, LoginSuccessAction>> = () => {
     return async (dispatch: Dispatch) => {
         dispatch(inProgressActionCreator(''));
@@ -182,12 +177,11 @@ export const loadCurrentlyLoggedInUser: ActionCreator<ThunkAction<void, void, Tw
         });
     }
 };
-
 export const activateAccount: ActionCreator<ThunkAction<void, void, TwoFactorLoginRequest, GeneralActionTypes>> = (accountActivationRequest: AccountActivationRequest) => {
     return async (dispatch: Dispatch) => {
         dispatch(inProgressActionCreator(''));
         API({
-            url: "auth/activateAccount",
+            url: "auth/activate-account",
             method: 'POST',
             data: JSON.stringify(accountActivationRequest)
         }).then(response => {
@@ -219,7 +213,6 @@ export const confirmEmailChange: ActionCreator<ThunkAction<void, void, TwoFactor
         );
     };
 };
-
 export const signUp: ActionCreator<ThunkAction<void, void, TwoFactorLoginRequest, GeneralActionTypes>> = (signupRequest: SignUpRequest) => {
     return async (dispatch: Dispatch) => {
         dispatch(inProgressActionCreator(''));
@@ -237,12 +230,11 @@ export const signUp: ActionCreator<ThunkAction<void, void, TwoFactorLoginRequest
         );
     };
 };
-
 export const forgottenPasswordRequest: ActionCreator<ThunkAction<void, void, TwoFactorLoginRequest, GeneralActionTypes>> = (email: string) => {
     return async (dispatch: Dispatch) => {
         dispatch(inProgressActionCreator(''));
         API({
-            url: "auth/forgottenPassword",
+            url: "auth/forgotten-password",
             method: 'POST',
             data: JSON.stringify({email: email})
         }).then(response => {
@@ -254,12 +246,11 @@ export const forgottenPasswordRequest: ActionCreator<ThunkAction<void, void, Two
         });
     };
 };
-
 export const resetPassword: ActionCreator<ThunkAction<void, void, TwoFactorLoginRequest, GeneralActionTypes>> = (resetPasswordRequest: ResetPasswordRequest) => {
     return async (dispatch: Dispatch) => {
         dispatch(inProgressActionCreator(''));
         API({
-            url: "auth/passwordReset",
+            url: "auth/password-reset",
             method: 'POST',
             data: JSON.stringify(resetPasswordRequest)
         }).then(response => {
@@ -275,7 +266,7 @@ export const changePassword: ActionCreator<ThunkAction<void, void, TwoFactorLogi
     return async (dispatch: Dispatch) => {
         dispatch(inProgressActionCreator(''));
         API({
-            url: "changePassword",
+            url: "change-password",
             method: 'POST',
             data: JSON.stringify(changePasswordRequest)
         }).then(response => {
@@ -304,7 +295,6 @@ export const cancelAccount: ActionCreator<ThunkAction<void, void, LoginRequest, 
         });
     };
 };
-
 export const updateProfile: ActionCreator<ThunkAction<void, void, User, GeneralActionTypes>> = (newUser: User) => {
     return async (dispatch: Dispatch) => {
         dispatch(inProgressActionCreator(''));
@@ -327,7 +317,7 @@ export const enableTwoFactor: ActionCreator<ThunkAction<void, void, VerifyTwoFac
     return async (dispatch: Dispatch) => {
         dispatch(inProgressActionCreator(''));
         API({
-            url: "verifyTwoFactor",
+            url: "verify-two-factor",
             method: 'POST',
             data: JSON.stringify(verifyTwoFactor)
         }).then(response => {
@@ -340,7 +330,6 @@ export const enableTwoFactor: ActionCreator<ThunkAction<void, void, VerifyTwoFac
         });
     };
 };
-
 export const disableTwoFactor: ActionCreator<ThunkAction<void, void, void, GeneralActionTypes>> = () => {
     return async (dispatch: Dispatch) => {
         dispatch(inProgressActionCreator(''));
@@ -361,7 +350,7 @@ export const getNewBackupCodes: ActionCreator<ThunkAction<void, void, void, Gene
     return async (dispatch: Dispatch) => {
         dispatch(inProgressActionCreator(''));
         API({
-            url: "getNewBackupCodes",
+            url: "new-backup-codes",
             method: 'POST',
         }).then(response => {
             dispatch({type: TWO_FACTOR_ENABLED, backupCodes: response.data.verificationCodes});

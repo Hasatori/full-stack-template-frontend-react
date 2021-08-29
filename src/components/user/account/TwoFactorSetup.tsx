@@ -61,7 +61,7 @@ function TwoFactorSetup(props: TwoFactorProps) {
 
     function getTwoFactorSetup() {
         API({
-            url: process.env.REACT_APP_REST_API_URL + "/getTwoFactorSetup",
+            url: process.env.REACT_APP_REST_API_URL + "/two-factor-setup",
             method: 'POST'
         }).then(response => {
             console.log(response);
