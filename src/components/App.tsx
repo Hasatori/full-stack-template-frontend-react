@@ -213,8 +213,16 @@ export interface User {
     email: string;
     profileImage: ProfileImage;
     twoFactorEnabled: boolean;
+    authProvider?: AuthProvider;
     backupCodes: string[]
 
+}
+
+export enum AuthProvider{
+    local="local",
+    github = "github",
+    facebook = "facebook",
+    google = "google"
 }
 
 export interface ProfileImage {

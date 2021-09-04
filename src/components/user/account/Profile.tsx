@@ -1,9 +1,9 @@
 import {connect} from "react-redux";
 import React, {ChangeEvent, useState} from "react";
 import {RouteComponentProps} from "react-router-dom";
-import {ProfileImage, User} from "../../App";
+import {AuthProvider, ProfileImage, User} from "../../App";
 import {AppState} from "../../../redux/store/Store";
-import {MDBBtn} from "mdbreact";
+import {MDBAlert, MDBBtn} from "mdbreact";
 import {useTranslation} from "react-i18next";
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";

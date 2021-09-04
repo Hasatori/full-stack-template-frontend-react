@@ -12,6 +12,7 @@ interface InputProps {
     required: boolean;
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
     invalidValueMessage:string;
+    enabled?:boolean;
 }
 
 export function Input(inputProps: InputProps) {
@@ -27,6 +28,7 @@ export function Input(inputProps: InputProps) {
                 type={inputProps.type}
                 id={inputProps.id}
                 className={getFormControlClass(inputProps.validationStarted, inputProps.valid)}
+                disabled={typeof  inputProps.enabled === 'undefined' ? false : !inputProps.enabled}
                 value={inputProps.value} onChange={inputProps.onChange} required={inputProps.required}
             />
             {inputProps.validationStarted && !inputProps.valid ?

@@ -12,24 +12,12 @@ export default function TwoFactorCodeForm(twoFactorFormProps: TwoFactorFormProps
 
     function handleTwoFactorLogin(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
-        const loginRequest: TwoFactorLoginRequest = {
-            email: twoFactorFormProps.email,
-            password: twoFactorFormProps.password,
-            rememberMe: twoFactorFormProps.rememberMe,
-            code: code
-        };
-        twoFactorFormProps.loginTwoFactor(loginRequest);
+        twoFactorFormProps.loginTwoFactor(code);
     }
 
     function handleRecoveryCodeLogin(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
-        const loginRequest: TwoFactorLoginRequest = {
-            email: twoFactorFormProps.email,
-            password: twoFactorFormProps.password,
-            rememberMe: twoFactorFormProps.rememberMe,
-            code: recoveryCode
-        };
-        twoFactorFormProps.loginRecoveryCode(loginRequest);
+        twoFactorFormProps.loginRecoveryCode(recoveryCode);
     }
 
     if (userRecoveryCode) {

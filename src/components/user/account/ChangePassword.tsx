@@ -4,10 +4,12 @@ import {connect} from "react-redux";
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
 import {changePassword} from "../../../redux/actiontype/UserActionTypes";
-import {MDBBtn} from "mdbreact";
+import {MDBAlert, MDBBtn} from "mdbreact";
 import {useTranslation} from "react-i18next";
 import {Input} from "../../form/Input";
 import {arePasswordsSame, isPasswordValid} from "../../../util/ValidationUtils";
+import {AppState} from "../../../redux/store/Store";
+import {AuthProvider} from "../../App";
 
 
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
@@ -16,8 +18,16 @@ function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
     };
 };
 
+
+function mapStateToProps(state: AppState, props: ChangePasswordProps) {
+    return {
+        o2authAccount: state.userState.currentUser.authProvider !== AuthProvider.local
+    }
+}
+
 interface ChangePasswordProps {
-    changePassword: (changePasswordRequest: ChangePasswordRequest) => void
+    changePassword: (changePasswordRequest: ChangePasswordRequest) => void,
+    o2authAccount: boolean
 }
 
 function ChangePassword(props: ChangePasswordProps) {
@@ -38,6 +48,7 @@ function ChangePassword(props: ChangePasswordProps) {
     }
 
     return (
+
         <form onSubmit={handleSubmit}>
             <div className='row py-5 px-3'>
                 <div className='col-md-4 col-sm-12 mb-3'>
@@ -58,7 +69,8 @@ function ChangePassword(props: ChangePasswordProps) {
                             setCurrentPassword(event.target.value);
                         }}
                         required={true}
-                        invalidValueMessage= {t('ns1:invalidPasswordFormatMessage')}
+                        enabled={!props.o2authAccount}
+                        invalidValueMessage={t('ns1:invalidPasswordFormatMessage')}
                     />
                     <Input
                         id={"newPassword"}
@@ -74,7 +86,8 @@ function ChangePassword(props: ChangePasswordProps) {
                             setNewPassword(event.target.value);
                         }}
                         required={true}
-                        invalidValueMessage= {t('ns1:invalidPasswordFormatMessage')}
+                        enabled={!props.o2authAccount}
+                        invalidValueMessage={t('ns1:invalidPasswordFormatMessage')}
                     />
                     <Input
                         id={"confirmPassword"}
@@ -89,18 +102,27 @@ function ChangePassword(props: ChangePasswordProps) {
                             setConfirmPassword(event.target.value);
                         }}
                         required={true}
-                        invalidValueMessage= {t('ns1:passwordsDoNotMatchMessage')}
+                        enabled={!props.o2authAccount}
+                        invalidValueMessage={t('ns1:passwordsDoNotMatchMessage')}
 
                     />
 
                     <div className="form-item mt-3 save text-center">
                         <MDBBtn color="primary" type='submit'
-                                disabled={!confirmPasswordValid || !confirmPasswordValidationStarted || !newPasswordValid || !newPasswordValidationStarted}>     {t('ns1:saveButtonLabel')}</MDBBtn>
+                                disabled={props.o2authAccount || !confirmPasswordValid || !confirmPasswordValidationStarted || !newPasswordValid || !newPasswordValidationStarted}>     {t('ns1:saveButtonLabel')}</MDBBtn>
                     </div>
+                    {props.o2authAccount?
+                        <MDBAlert color="info">
+                            {t('ns1:notAvailableForO2AuthAccount')}
+                        </MDBAlert>
+                        :
+                    <></>}
+
                 </div>
             </div>
         </form>
     )
+
 
 }
 
@@ -110,4 +132,4 @@ export interface ChangePasswordRequest {
     newPassword: string;
 }
 
-export default connect(null, mapDispatchToProps)(ChangePassword);
+export default connect(mapStateToProps, mapDispatchToProps)(ChangePassword);

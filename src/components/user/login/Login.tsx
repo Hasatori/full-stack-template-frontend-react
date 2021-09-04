@@ -40,11 +40,8 @@ export interface LoginProps {
 }
 
 export interface TwoFactorFormProps {
-    email: string;
-    password: string;
-    rememberMe: boolean;
-    loginTwoFactor: (loginRequest: TwoFactorLoginRequest) => void
-    loginRecoveryCode: (loginRequest: TwoFactorLoginRequest) => void;
+    loginTwoFactor: (code:string) => void
+    loginRecoveryCode: (code:string) => void;
 }
 
 function Login(props:LoginProps) {
@@ -113,11 +110,25 @@ function Login(props:LoginProps) {
         );
     } else {
         return (
-            <TwoFactorCodeForm email={email}
-                               password={password}
-                               rememberMe={rememberMe}
-                               loginTwoFactor={props.loginTwoFactor}
-                               loginRecoveryCode={props.loginRecoveryCode}
+            <TwoFactorCodeForm
+                loginTwoFactor={(code:string)=>{
+                                   const loginRequest: TwoFactorLoginRequest = {
+                                       email: email,
+                                       password: password,
+                                       rememberMe: rememberMe,
+                                       code: code
+                                   };
+                                   props.loginTwoFactor(loginRequest);
+                               }}
+                               loginRecoveryCode={(code:string)=>{
+                                   const loginRequest: TwoFactorLoginRequest = {
+                                       email: email,
+                                       password: password,
+                                       rememberMe: rememberMe,
+                                       code: code
+                                   };
+                                   props.loginRecoveryCode(loginRequest);
+                               }}
             />
         )
     }
