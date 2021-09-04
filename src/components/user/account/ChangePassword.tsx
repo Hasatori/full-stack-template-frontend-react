@@ -9,7 +9,6 @@ import {useTranslation} from "react-i18next";
 import {Input} from "../../form/Input";
 import {arePasswordsSame, isPasswordValid} from "../../../util/ValidationUtils";
 import {AppState} from "../../../redux/store/Store";
-import {AuthProvider} from "../../App";
 
 
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
@@ -21,13 +20,13 @@ function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
 
 function mapStateToProps(state: AppState, props: ChangePasswordProps) {
     return {
-        o2authAccount: state.userState.currentUser.authProvider !== AuthProvider.local
+        isO2authAccount: state.userState.currentUser.isO2AuthAccount
     }
 }
 
 interface ChangePasswordProps {
     changePassword: (changePasswordRequest: ChangePasswordRequest) => void,
-    o2authAccount: boolean
+    isO2authAccount: boolean
 }
 
 function ChangePassword(props: ChangePasswordProps) {
@@ -69,7 +68,7 @@ function ChangePassword(props: ChangePasswordProps) {
                             setCurrentPassword(event.target.value);
                         }}
                         required={true}
-                        enabled={!props.o2authAccount}
+                        enabled={!props.isO2authAccount}
                         invalidValueMessage={t('ns1:invalidPasswordFormatMessage')}
                     />
                     <Input
@@ -86,7 +85,7 @@ function ChangePassword(props: ChangePasswordProps) {
                             setNewPassword(event.target.value);
                         }}
                         required={true}
-                        enabled={!props.o2authAccount}
+                        enabled={!props.isO2authAccount}
                         invalidValueMessage={t('ns1:invalidPasswordFormatMessage')}
                     />
                     <Input
@@ -102,16 +101,16 @@ function ChangePassword(props: ChangePasswordProps) {
                             setConfirmPassword(event.target.value);
                         }}
                         required={true}
-                        enabled={!props.o2authAccount}
+                        enabled={!props.isO2authAccount}
                         invalidValueMessage={t('ns1:passwordsDoNotMatchMessage')}
 
                     />
 
                     <div className="form-item mt-3 save text-center">
                         <MDBBtn color="primary" type='submit'
-                                disabled={props.o2authAccount || !confirmPasswordValid || !confirmPasswordValidationStarted || !newPasswordValid || !newPasswordValidationStarted}>     {t('ns1:saveButtonLabel')}</MDBBtn>
+                                disabled={props.isO2authAccount || !confirmPasswordValid || !confirmPasswordValidationStarted || !newPasswordValid || !newPasswordValidationStarted}>     {t('ns1:saveButtonLabel')}</MDBBtn>
                     </div>
-                    {props.o2authAccount?
+                    {props.isO2authAccount?
                         <MDBAlert color="info">
                             {t('ns1:notAvailableForO2AuthAccount')}
                         </MDBAlert>

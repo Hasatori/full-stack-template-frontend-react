@@ -29,7 +29,6 @@ import {AnyAction} from "redux";
 import {ThunkDispatch} from "redux-thunk";
 import {store} from "../../../index";
 import API from "../../../util/APIUtils";
-import {AuthProvider} from "../../App";
 
 interface TwoFactorProps {
     twoFactorEnabled: boolean,
@@ -37,14 +36,14 @@ interface TwoFactorProps {
     enableTwoFactor: (verifyTwoFactor: VerifyTwoFactor) => void,
     disableTwoFactor: () => void,
     getNewBackupCodes: () => void,
-    o2authAccount: boolean
+    isO2AuthAccount: boolean
 }
 
 function mapStateToProps(state: AppState, props: TwoFactorProps) {
     return {
         twoFactorEnabled: state.userState.currentUser.twoFactorEnabled,
         backupCodes: state.userState.currentUser.backupCodes,
-        o2authAccount: state.userState.currentUser.authProvider !== AuthProvider.local
+        isO2AuthAccount: state.userState.currentUser.isO2AuthAccount
     }
 }
 
@@ -115,10 +114,10 @@ function TwoFactorSetup(props: TwoFactorProps) {
                         </>
                         : twoFactorSetup == null ?
                             <div className='d-flex flex-column'>
-                                <div><MDBBtn color="primary" disabled={props.o2authAccount}
+                                <div><MDBBtn color="primary" disabled={props.isO2AuthAccount}
                                              onClick={getTwoFactorSetup}>{t('ns1:enableTwoFactorAuthenticationButton')}</MDBBtn>
                                 </div>
-                                {props.o2authAccount ?
+                                {props.isO2AuthAccount ?
                                     <div><MDBAlert color="info">{t('ns1:notAvailableForO2AuthAccount')}</MDBAlert></div>
                                     : <></>
                                 }

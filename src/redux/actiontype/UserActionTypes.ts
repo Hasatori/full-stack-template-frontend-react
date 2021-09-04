@@ -18,6 +18,7 @@ import API from "../../util/APIUtils";
 import i18next from "i18next";
 
 import {VerifyTwoFactor} from "../../components/user/account/TwoFactorSetup";
+import {UpdateProfileRequest} from "../../components/user/account/Profile";
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
@@ -295,16 +296,16 @@ export const cancelAccount: ActionCreator<ThunkAction<void, void, LoginRequest, 
         });
     };
 };
-export const updateProfile: ActionCreator<ThunkAction<void, void, User, GeneralActionTypes>> = (newUser: User) => {
+export const updateProfile: ActionCreator<ThunkAction<void, void, UpdateProfileRequest, GeneralActionTypes>> = (updateProfileRequest: UpdateProfileRequest) => {
     return async (dispatch: Dispatch) => {
         dispatch(inProgressActionCreator(''));
         API({
             url: "update-profile",
             method: 'PUT',
-            data: JSON.stringify(newUser)
+            data: JSON.stringify(updateProfileRequest)
         }).then(response => {
             dispatch(doneActionCreator());
-            dispatch({type: UPDATE_USER, newUser: newUser})
+            dispatch({type: UPDATE_USER, newUser: updateProfileRequest})
             dispatch(successActionCreator(i18next.t('ns1:profileUpdated')));
             dispatch(infoActionCreator(i18next.t('ns1:profileUpdateEmailActivation')))
         }).catch(error => {

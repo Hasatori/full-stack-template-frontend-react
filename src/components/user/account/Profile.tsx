@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import React, {ChangeEvent, useState} from "react";
 import {RouteComponentProps} from "react-router-dom";
-import {AuthProvider, ProfileImage, User} from "../../App";
+import {ProfileImage, User} from "../../App";
 import {AppState} from "../../../redux/store/Store";
 import {MDBAlert, MDBBtn} from "mdbreact";
 import {useTranslation} from "react-i18next";
@@ -16,7 +16,13 @@ import i18next from "i18next";
 
 export interface ProfileProps extends RouteComponentProps {
     user: User,
-    updateProfile: (updateProfileRequest: User) => void
+    updateProfile: (updateProfileRequest: UpdateProfileRequest) => void
+}
+
+export interface UpdateProfileRequest {
+    name: string;
+    email: string;
+    profileImage: ProfileImage;
 }
 
 function mapStateToProps(state: AppState, props: ProfileProps) {
@@ -27,7 +33,7 @@ function mapStateToProps(state: AppState, props: ProfileProps) {
 
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
     return {
-        updateProfile: (updateProfileRequest: User) => dispatch(updateProfile(updateProfileRequest)),
+        updateProfile: (updateProfileRequest: UpdateProfileRequest) => dispatch(updateProfile(updateProfileRequest)),
     };
 };
 
@@ -76,13 +82,9 @@ function Profile(props: ProfileProps) {
         event.preventDefault();
         if (emailValid)
             props.updateProfile({
-                id: user.id,
                 name: name,
                 email: email,
-                profileImage: file,
-                twoFactorEnabled: user.twoFactorEnabled,
-                backupCodes: []
-
+                profileImage: file
             });
     }
 
