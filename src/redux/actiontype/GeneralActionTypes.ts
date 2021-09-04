@@ -11,7 +11,7 @@ export const DISMISS_INFO = "DISMISS_INFO";
 export const WARNING = "WARNING";
 export const DISMISS_WARNING = "DISMISS_WARNING";
 export const DONE = "DONE";
-
+export const REDIRECT = "REDIRECT";
 
 export interface InProgressAction extends Action {
     type: typeof IN_PROGRESS,
@@ -58,6 +58,10 @@ export interface DismissWarning extends Action {
     type: typeof DISMISS_WARNING
 }
 
+export interface Redirect extends Action {
+    type: typeof REDIRECT,
+    url: string
+}
 
 export const inProgressActionCreator: ActionCreator<InProgressAction> = (message: string) => {
     return configureStore().dispatch({type: IN_PROGRESS, message: message});
@@ -90,6 +94,10 @@ export const dismissInfo: ActionCreator<DismissInfo> = () => {
 export const dismissFailure: ActionCreator<DismissFailure> = () => {
     return configureStore().dispatch({type: DISMISS_FAILURE});
 };
+export const dismissRedirect: ActionCreator<Redirect> = (url:string) => {
+    return configureStore().dispatch({type: REDIRECT,url:url});
+};
+
 export type GeneralActionTypes =
     InProgressAction
     | FailureAction
@@ -100,4 +108,5 @@ export type GeneralActionTypes =
     | InfoAction
     | DismissInfo
     | WarningAction
-    | DismissWarning;
+    | DismissWarning
+    | Redirect;

@@ -68,5 +68,6 @@
   "defaultErrorMessage": "Něco se pokazilo. Zkuste to prosím znovu!",
   "invalidFileType": "Nesprávný typ souboru. Povolené typy jsou {{fileTypes}}",
   "invalidFileSize": "Soubor je příliš veliký. Maximální velikost je {{maxFileSize}}",
-  "notAvailableForO2AuthAccount": "Nedostupné pro účty třetích stran"
+  "notAvailableForO2AuthAccount": "Nedostupné pro účty třetích stran",
+  "requestNewPassword": "Požádat o nové heslo"
 }

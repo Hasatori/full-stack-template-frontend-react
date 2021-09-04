@@ -18,6 +18,7 @@ export interface AppProps {
     failureMessage: string | undefined
     warningMessage: string | undefined
     infoMessage: string | undefined
+    redirectUrl: string | undefined
     authenticated: boolean,
     loggedIn: boolean,
     loadCurrentUser: () => void
@@ -36,6 +37,7 @@ export const initProps: AppProps = {
         failureMessage: undefined,
         warningMessage: undefined,
         infoMessage: undefined,
+        redirectUrl:undefined,
         user: {} as any,
         onLogOut: () => {
         },

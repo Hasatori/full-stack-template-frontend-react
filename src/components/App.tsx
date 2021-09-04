@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Redirect, Route, Switch} from 'react-router-dom';
+import {Redirect, Route, Switch, useHistory, useLocation} from 'react-router-dom';
 import AppHeader from './navigation/AppHeader';
 import Home from './home/Home';
 import Signup from './user/signup/Signup';
@@ -33,7 +33,8 @@ import {
     dismissInfo,
     dismissSuccess,
     dismissWarning,
-    FAILURE, failureActionCreator,
+    FAILURE,
+    failureActionCreator,
     INFO,
     SUCCESS,
     WARNING
@@ -45,7 +46,6 @@ import {Footer} from './footer/Footer';
 import ConfirmEmailChange from "./user/confirmemilchange/ConfirmEmailChange";
 import {MDBContainer} from "mdbreact";
 import Login from "./user/login/Login";
-import {useHistory, useLocation} from 'react-router-dom'
 
 function mapStateToProps(state: AppState, props: AppProps) {
     return {
@@ -58,7 +58,8 @@ function mapStateToProps(state: AppState, props: AppProps) {
         authenticated: state.userState.authenticated,
         loggedIn: state.userState.loggedIn,
         user: state.userState.currentUser,
-        accessToken: state.userState.accessToken
+        accessToken: state.userState.accessToken,
+        redirectUrl: state.generalState.redirectUrl
     }
 }
 
@@ -113,7 +114,7 @@ function toastEmitter(type: string): ToastOptions {
 };
 
 function App(appProps: AppProps) {
-
+    const history = useHistory();
     useEffect(() => {
         if (typeof appProps.warningMessage !== "undefined") {
             toast.warning('⚠    ' + appProps.warningMessage, toastEmitter(WARNING));
@@ -150,8 +151,14 @@ function App(appProps: AppProps) {
             toast.dismiss();
         }
     }, [appProps.loading])
-    const history = useHistory();
-    let location = useLocation<{error:string}>();
+
+    useEffect(() => {
+        if (typeof appProps.redirectUrl !== 'undefined'){
+            history.push(appProps.redirectUrl)
+        }
+    },[appProps.redirectUrl])
+
+    let location = useLocation<{ error: string }>();
     useEffect(() => {
         if (location.state && location.state.error) {
             setTimeout(() => {
@@ -184,17 +191,21 @@ function App(appProps: AppProps) {
 
                     <Route path={"/login"}
                            render={(props) => appProps.authenticated ? <Redirect to='account'/> :// @ts-ignore
-                                <Login {...props} />}/>
+                               <Login {...props} />}/>
                     <Route path="/signup"
-                           render={(props) =>  appProps.authenticated ? <Redirect to='account'/> :<Signup {...props} />}/>
+                           render={(props) => appProps.authenticated ? <Redirect to='account'/> :
+                               <Signup {...props}/>}/>
                     <Route path="/forgotten-password"
-                           render={(props) => appProps.authenticated ? <Redirect to='account'/> : <ForgottenPassword {...props}/>}/>
+                           render={(props) => appProps.authenticated ? <Redirect to='account'/> :
+                               <ForgottenPassword {...props} />}/>
                     <Route path="/password-reset"
-                           render={(props) =>  appProps.authenticated ? <Redirect to='account'/> :<PasswordReset {...props}/>}/>
+                           render={(props) => <PasswordReset  {...props}/>}/>
                     <Route path="/oauth2/redirect"
-                           render={(props) =>  appProps.authenticated ? <Redirect to='account'/> :<OAuth2RedirectHandler {...appProps}{...props}/>}/>
+                           render={(props) => appProps.authenticated ? <Redirect to='account'/> :
+                               <OAuth2RedirectHandler {...appProps}{...props}/>}/>
                     <Route path="/activate-account*"
-                           render={(props) =>  appProps.authenticated ? <Redirect to='account'/> :<ActivateAccount {...appProps}{...props}/>}/>
+                           render={(props) => appProps.authenticated ? <Redirect to='account'/> :
+                               <ActivateAccount {...appProps}{...props}/>}/>
                     <Route path="/confirm-email-change*"
                            render={(props) => <ConfirmEmailChange {...appProps}{...props}/>}/>
                     <Route component={NotFound}/>
@@ -213,12 +224,17 @@ export interface User {
     email: string;
     profileImage: ProfileImage;
     twoFactorEnabled: boolean;
-    isO2AuthAccount: boolean;
+    o2AuthInfo?: O2AuthInfo;
     backupCodes: string[]
 
 }
+
+export interface O2AuthInfo {
+    needToSetPassword: boolean;
+}
+
 export interface ProfileImage {
-    id:number;
+    id: number;
     name?: string;
     type?: string;
     data?: string;

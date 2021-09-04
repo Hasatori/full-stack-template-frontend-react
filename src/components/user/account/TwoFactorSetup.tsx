@@ -43,7 +43,7 @@ function mapStateToProps(state: AppState, props: TwoFactorProps) {
     return {
         twoFactorEnabled: state.userState.currentUser.twoFactorEnabled,
         backupCodes: state.userState.currentUser.backupCodes,
-        isO2AuthAccount: state.userState.currentUser.isO2AuthAccount
+        isO2AuthAccount: typeof state.userState.currentUser.o2AuthInfo !== 'undefined'
     }
 }
 
@@ -59,7 +59,6 @@ function TwoFactorSetup(props: TwoFactorProps) {
     const [twoFactorSetup, setTwoFactorSetup] = useState<TwoFactorSetup>();
     const [verificationCode, setVerificationCode] = useState('');
     const {t} = useTranslation();
-
     function getTwoFactorSetup() {
         API({
             url: process.env.REACT_APP_REST_API_URL + "/two-factor-setup",

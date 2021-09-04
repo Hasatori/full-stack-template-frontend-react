@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {RouteComponentProps} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {RouteComponentProps, useHistory} from "react-router-dom";
 import {connect} from "react-redux";
 import {resetPassword} from "../../../redux/actiontype/UserActionTypes";
 import {ThunkDispatch} from "redux-thunk";
@@ -16,7 +16,7 @@ function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
     };
 };
 
-interface PasswordResetProps {
+interface PasswordResetProps{
     resetPassword: (resetPasswordRequest: ResetPasswordRequest) => void;
 }
 
@@ -31,6 +31,7 @@ function PasswordReset(props: PasswordResetProps & RouteComponentProps) {
     const token = getUrlParameter(props.location.search, 'token');
     const email = getUrlParameter(props.location.search, 'email');
     const {t} = useTranslation();
+    const history = useHistory();
     if (token === '' || email === '') {
         props.history.push("/login");
     }

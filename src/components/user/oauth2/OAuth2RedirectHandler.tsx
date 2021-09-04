@@ -8,6 +8,7 @@ import {LOGIN_SUCCESS} from "../../../redux/actiontype/UserActionTypes";
 
 function OAuth2RedirectHandler(props: AppProps & RouteComponentProps) {
     const token = getUrlParameter(props.location.search, 'access_token');
+    const error = getUrlParameter(props.location.search, 'error');
     if (token) {
         store.dispatch(doneActionCreator());
         store.dispatch({type:LOGIN_SUCCESS,accessToken:token})
@@ -19,7 +20,8 @@ function OAuth2RedirectHandler(props: AppProps & RouteComponentProps) {
         return <Redirect to={{
             pathname: "/login",
             state: {
-                from: props.location
+                from: props.location,
+                error:error
             }
         }}/>;
     }

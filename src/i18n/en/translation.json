@@ -68,5 +68,6 @@
   "defaultErrorMessage": "Something went wrong. Please try again!",
   "invalidFileType": "Invalid file type. Allowed types are {{fileTypes}}",
   "invalidFileSize": "File is too big. Max size is {{maxFileSize}}",
-  "notAvailableForO2AuthAccount": "Not available for third party accounts"
+  "notAvailableForO2AuthAccount": "Not available for third party accounts",
+  "requestNewPassword": "Request new password"
 }

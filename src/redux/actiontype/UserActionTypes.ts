@@ -4,6 +4,7 @@ import {ThunkAction} from "redux-thunk";
 import {LoginRequest, TwoFactorLoginRequest} from "../../components/user/login/Login";
 import {AccountActivationRequest} from "../../util/APIUtils";
 import {
+    dismissRedirect,
     doneActionCreator,
     failureActionCreator,
     GeneralActionTypes, infoActionCreator,
@@ -30,6 +31,8 @@ export const TOKEN_REFRESHED = 'TOKEN_REFRESHED';
 export const TWO_FACTOR_DISABLED = 'TWO_FACTOR_DISABLED';
 export const TWO_FACTOR_ENABLED = 'TWO_FACTOR_ENABLED';
 export const EMPTY_BACKUP_CODES = 'EMPTY_BACKUP_CODES';
+export const REGISTRATION_SUCCESSFUL = 'REGISTRATION_SUCCESSFUL';
+
 
 export interface LoginSuccessAction extends Action {
     readonly  type: typeof LOGIN_SUCCESS,
@@ -84,6 +87,10 @@ export interface TwoFactorEnabled extends Action {
 
 export interface EmptyBackupCodes extends Action {
     readonly  type: typeof EMPTY_BACKUP_CODES
+}
+
+export interface RegistrationSuccessful extends Action {
+    readonly  type: typeof REGISTRATION_SUCCESSFUL
 }
 
 export const loginActionCreator: ActionCreator<ThunkAction<void, void, LoginRequest, LoginSuccessAction>> = (loginRequest: LoginRequest) => {
@@ -224,6 +231,7 @@ export const signUp: ActionCreator<ThunkAction<void, void, TwoFactorLoginRequest
         }).then(response => {
             dispatch(successActionCreator(response.data.message));
             dispatch(doneActionCreator());
+            dispatch(dismissRedirect("/login"))
         }).catch(error => {
                 dispatch(doneActionCreator());
                 dispatch(failureActionCreator((error.response && error.response.data && error.response.data.message) || i18next.t('ns1:defaultErrorMessage')));
@@ -241,6 +249,7 @@ export const forgottenPasswordRequest: ActionCreator<ThunkAction<void, void, Two
         }).then(response => {
             dispatch(doneActionCreator());
             dispatch(successActionCreator(response.data.message));
+            dispatch(dismissRedirect("/login"))
         }).catch(error => {
             dispatch(doneActionCreator());
             dispatch(failureActionCreator((error.response && error.response.data && error.response.data.message) || i18next.t('ns1:defaultErrorMessage')));
@@ -257,6 +266,7 @@ export const resetPassword: ActionCreator<ThunkAction<void, void, TwoFactorLogin
         }).then(response => {
             dispatch(doneActionCreator());
             dispatch(successActionCreator(response.data.message));
+            dispatch(dismissRedirect("/login"))
         }).catch(error => {
             dispatch(doneActionCreator());
             dispatch(failureActionCreator((error.response && error.response.data && error.response.data.message) || i18next.t('ns1:defaultErrorMessage')));

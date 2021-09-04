@@ -11,7 +11,8 @@ export interface GeneralState {
     failureMessage: string | undefined,
     successMessage: string | undefined,
     warningMessage: string | undefined,
-    infoMessage: string | undefined
+    infoMessage: string | undefined,
+    redirectUrl:string | undefined
 }
 
 const notLoading = {
@@ -75,6 +76,12 @@ export default function generalReducer(state = initialState, action: GeneralActi
                 ...state,
                 ...notLoading,
             };
+
+        case "REDIRECT":
+            return {
+                ...state,
+                redirectUrl: action.url
+            }
         default:
             return state;
     }
