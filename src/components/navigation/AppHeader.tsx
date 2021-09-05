@@ -29,19 +29,22 @@ function AppHeader(props: AppProps) {
     let [flagName] = getLanguageFlagPairFromLocale(i18n.language);
     const location = useLocation();
     const bgPink = {backgroundColor: '#ffffff'}
+    const themeCookieName = 'theme';
     const cookies = new Cookies();
-
-    const [isDark,setIsDark]  = useState(cookies.get("theme")=== 'dark');
-
+    let theme = cookies.get(themeCookieName);
+    console.log(theme);
+    if (typeof  theme === 'undefined'){
+        cookies.set(themeCookieName,'dark',{expires:createThemeCookieExpirationDate()})
+        theme = cookies.get(themeCookieName);
+    }
+    const [isDark,setIsDark]  = useState(theme==='dark');
     useEffect(() => {
         if (isDark) {
             document.body.classList.add('dark');
         } else {
             document.body.classList.remove('dark');
         }
-        let expiresDate = new Date();
-        expiresDate.setTime(expiresDate.getTime() + (100*365*24*60*60*1000)); // expires in 100 years
-        cookies.set("theme",isDark?'dark':'light',{expires:expiresDate})
+        cookies.set(themeCookieName,isDark?'dark':'light',{expires:createThemeCookieExpirationDate()})
     }, [isDark]);
 
     return (
@@ -148,6 +151,13 @@ function AppHeader(props: AppProps) {
             </MDBNavbar>
         </header>
     )
+}
+
+
+function createThemeCookieExpirationDate():Date{
+    const expiresDate = new Date();
+    expiresDate.setTime(expiresDate.getTime() + (100*365*24*60*60*1000)); // expires in 100 years
+    return expiresDate;
 }
 
 export default connect()(AppHeader);
