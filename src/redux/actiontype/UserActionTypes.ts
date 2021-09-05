@@ -99,7 +99,7 @@ export const loginActionCreator: ActionCreator<ThunkAction<void, void, LoginRequ
         API({
             url: "auth/login",
             method: 'POST',
-            data: JSON.stringify(loginRequest)
+            data: loginRequest
         }).then((response: AxiosResponse<UserLoggedInResponse>) => {
             if (response.data.twoFactorRequired) {
                 dispatch({type: LOGIN_TWO_FACTOR})
@@ -131,7 +131,7 @@ export const loginTwoFactorActionCreator: ActionCreator<ThunkAction<void, void, 
         API({
             url: "auth/login/verify",
             method: 'POST',
-            data: JSON.stringify(loginRequest)
+            data: loginRequest
         }).then(response => {
             dispatch({type: LOGIN_SUCCESS, accessToken: response.data.accessToken})
         }).catch(error => {
@@ -146,7 +146,7 @@ export const loginRecoveryCodeActionCreator: ActionCreator<ThunkAction<void, voi
         API({
             url: "auth/login/recovery-code",
             method: 'POST',
-            data: JSON.stringify(loginRequest)
+            data: loginRequest
         }).then(response => {
             dispatch({type: LOGIN_SUCCESS, accessToken: response.data.accessToken})
         }).catch(error => {
@@ -191,7 +191,7 @@ export const activateAccount: ActionCreator<ThunkAction<void, void, TwoFactorLog
         API({
             url: "auth/activate-account",
             method: 'POST',
-            data: JSON.stringify(accountActivationRequest)
+            data: accountActivationRequest
         }).then(response => {
             dispatch(successActionCreator(response.data.message));
             dispatch(doneActionCreator());
@@ -209,7 +209,7 @@ export const confirmEmailChange: ActionCreator<ThunkAction<void, void, TwoFactor
         API({
             url: "auth/confirm-email-change",
             method: 'POST',
-            data: JSON.stringify(accountActivationRequest)
+            data: accountActivationRequest
         }).then(response => {
             dispatch(successActionCreator(response.data.message));
             dispatch(doneActionCreator());
@@ -227,7 +227,7 @@ export const signUp: ActionCreator<ThunkAction<void, void, TwoFactorLoginRequest
         API({
             url: "auth/signup",
             method: 'POST',
-            data: JSON.stringify(signupRequest)
+            data: signupRequest
         }).then(response => {
             dispatch(successActionCreator(response.data.message));
             dispatch(doneActionCreator());
@@ -245,7 +245,7 @@ export const forgottenPasswordRequest: ActionCreator<ThunkAction<void, void, Two
         API({
             url: "auth/forgotten-password",
             method: 'POST',
-            data: JSON.stringify({email: email})
+            data: {email: email}
         }).then(response => {
             dispatch(doneActionCreator());
             dispatch(successActionCreator(response.data.message));
@@ -262,7 +262,7 @@ export const resetPassword: ActionCreator<ThunkAction<void, void, TwoFactorLogin
         API({
             url: "auth/password-reset",
             method: 'POST',
-            data: JSON.stringify(resetPasswordRequest)
+            data: resetPasswordRequest
         }).then(response => {
             dispatch(doneActionCreator());
             dispatch(successActionCreator(response.data.message));
@@ -279,7 +279,7 @@ export const changePassword: ActionCreator<ThunkAction<void, void, TwoFactorLogi
         API({
             url: "change-password",
             method: 'POST',
-            data: JSON.stringify(changePasswordRequest)
+            data: changePasswordRequest
         }).then(response => {
             dispatch(successActionCreator(response.data.message));
             dispatch({type: TOKEN_REFRESHED, accessToken: response.data.accessToken})
@@ -312,7 +312,7 @@ export const updateProfile: ActionCreator<ThunkAction<void, void, UpdateProfileR
         API({
             url: "update-profile",
             method: 'PUT',
-            data: JSON.stringify(updateProfileRequest)
+            data: updateProfileRequest
         }).then(response => {
             dispatch(doneActionCreator());
             dispatch({type: UPDATE_USER, newUser: updateProfileRequest})
@@ -330,7 +330,7 @@ export const enableTwoFactor: ActionCreator<ThunkAction<void, void, VerifyTwoFac
         API({
             url: "verify-two-factor",
             method: 'POST',
-            data: JSON.stringify(verifyTwoFactor)
+            data: verifyTwoFactor
         }).then(response => {
             dispatch({type: TWO_FACTOR_ENABLED, backupCodes: response.data.verificationCodes});
             dispatch(successActionCreator(response.data.message));
