@@ -18,18 +18,15 @@ function O2AuthAuthentication(props: O2AuthAuthenticationProps) {
     const providers = [
         {
             authUrl: GOOGLE_AUTH_URL(i18n.language),
-            name: 'Google',
-            socialIconUlr:'https://google'
+            name: 'Google'
         },
         {
             authUrl: FACEBOOK_AUTH_URL(i18n.language),
-            name: 'Facebook',
-            socialIconUlr:'https://facebook'
+            name: 'Facebook'
         },
         {
             authUrl: GITHUB_AUTH_URL(i18n.language),
-            name: 'Github',
-            socialIconUlr:'https://github'
+            name: 'Github'
         }
     ]
 
@@ -44,7 +41,7 @@ function O2AuthAuthentication(props: O2AuthAuthenticationProps) {
                                 message: props.registration ? i18next.t('ns1:signingUpWithProvider', {providerName: `${provider.name}`}) : i18next.t('ns1:loggingInWithProvider', {providerName: `${provider.name}`})
                             });
                         }}>
-                            <SocialIcon url={provider.socialIconUlr} style={{height: iconSize, width: iconSize}}/>
+                            <SocialIcon network={provider.name.toLowerCase()}  style={{height: iconSize, width: iconSize}}/>
                         </a></div>
                 )
             })}
