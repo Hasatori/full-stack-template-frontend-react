@@ -129,7 +129,7 @@ function Signup(props: SignUpProps) {
             <MDBCardFooter>
                 <div className="text-center mb-1">{t('ns1:orSignupWithSuggestion')}</div>
 
-                {<O2AuthAuthentication {...props} registration={false}/>}
+                {<O2AuthAuthentication {...props} registration={true}/>}
             </MDBCardFooter>
         </MDBCard>
 

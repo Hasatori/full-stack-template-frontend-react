@@ -69,5 +69,7 @@
   "invalidFileType": "Invalid file type. Allowed types are {{fileTypes}}",
   "invalidFileSize": "File is too big. Max size is {{maxFileSize}}",
   "notAvailableForO2AuthAccount": "Not available for third party accounts",
-  "requestNewPassword": "Request new password"
+  "requestNewPassword": "Request new password",
+  "loggingInWithProvider": "Logging in with {{providerName}}",
+  "signingUpWithProvider": "Signing up with {{providerName}}"
 }
