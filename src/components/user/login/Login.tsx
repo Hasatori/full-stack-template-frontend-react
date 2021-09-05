@@ -101,7 +101,7 @@ function Login(props:LoginProps) {
                                     <Link className="ml-1"
                                           to="/signup">{t('ns1:signupLabel')}!</Link></span>
                             </MDBCardBody>
-                            <MDBCardFooter>
+                            <MDBCardFooter >
                                 <div className="text-center mb-1">{t('ns1:orLoginWithSuggestion')}</div>
 
                                 {<O2AuthAuthentication {...props} registration={false}/>}

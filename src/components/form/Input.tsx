@@ -1,6 +1,6 @@
 import * as React from "react";
 import {ChangeEvent} from "react";
-
+import "./Input.css";
 
 interface InputProps {
     id: string;
@@ -20,14 +20,14 @@ export function Input(inputProps: InputProps) {
         <div className="form-item">
             <label
                 htmlFor={inputProps.id}
-                className="grey-text font-weight-light"
+                className="input-label"
             >
                 {inputProps.label}
             </label>
             <input
                 type={inputProps.type}
                 id={inputProps.id}
-                className={getFormControlClass(inputProps.validationStarted, inputProps.valid)}
+                className={`custom-input ${getFormControlClass(inputProps.validationStarted, inputProps.valid)}`}
                 disabled={typeof  inputProps.enabled === 'undefined' ? false : !inputProps.enabled}
                 value={inputProps.value} onChange={inputProps.onChange} required={inputProps.required}
             />

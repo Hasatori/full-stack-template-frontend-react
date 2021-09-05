@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {NavLink, useLocation} from 'react-router-dom';
 import './AppHeader.css';
 import {connect} from "react-redux";
@@ -20,6 +20,8 @@ import {
 } from 'mdbreact';
 import {useTranslation} from "react-i18next";
 import {getLanguageFlagPairFromLocale} from "../../i18n/I18nConfig";
+import DarkModeToggle from "react-dark-mode-toggle";
+import {Cookies} from "react-cookie";
 
 function AppHeader(props: AppProps) {
     const [open, setOpen] = useState(false);
@@ -27,10 +29,25 @@ function AppHeader(props: AppProps) {
     let [flagName] = getLanguageFlagPairFromLocale(i18n.language);
     const location = useLocation();
     const bgPink = {backgroundColor: '#ffffff'}
+    const cookies = new Cookies();
+
+    const [isDark,setIsDark]  = useState(cookies.get("theme")=== 'dark');
+
+    useEffect(() => {
+        if (isDark) {
+            document.body.classList.add('dark');
+        } else {
+            document.body.classList.remove('dark');
+        }
+        let expiresDate = new Date();
+        expiresDate.setTime(expiresDate.getTime() + (100*365*24*60*60*1000)); // expires in 100 years
+        cookies.set("theme",isDark?'dark':'light',{expires:expiresDate})
+    }, [isDark]);
+
     return (
 
         <header className="app-header z-depth-1">
-            <MDBNavbar fixed="top" style={bgPink} expand="lg">
+            <MDBNavbar className="navbar" fixed="top" style={bgPink} expand="lg">
                 <MDBContainer>
                     <MDBNavbarBrand href="/">
                         Full stack template
@@ -114,7 +131,17 @@ function AppHeader(props: AppProps) {
                                             </MDBDropdownItem>)
                                         })}
                                     </MDBDropdownMenu>
-                                </MDBDropdown></MDBNavItem>
+                                </MDBDropdown>
+                            </MDBNavItem>
+                            <MDBNavItem className="my-auto">
+                                <DarkModeToggle
+                                    onChange={()=>{
+                                        setIsDark(!isDark);
+                                    }}
+                                    checked={isDark}
+                                    size={50}
+                                />
+                            </MDBNavItem>
                         </MDBNavbarNav>
                     </MDBCollapse>
                 </MDBContainer>

@@ -8,26 +8,27 @@ import {store} from "../../../index";
 import {IN_PROGRESS} from "../../../redux/actiontype/GeneralActionTypes";
 import i18next from "i18next";
 import {useTranslation} from "react-i18next";
-
+import "./O2AuthAuthentication.css"
+import {SocialIcon} from "react-social-icons";
 export interface O2AuthAuthenticationProps {
     registration: boolean
 }
 
 function O2AuthAuthentication(props: O2AuthAuthenticationProps) {
     const {t,i18n} = useTranslation();
+    const iconSize = 35;
     return (
-        <div className="d-flex flex-row flex-center">
-            <div className="mx-2">
+        <div className="d-flex flex-row flex-center o2auth-wrapper">
+            <div className="mx-2 o2auth-provider">
                 <a href={GOOGLE_AUTH_URL(i18n.language)} onClick={() => {
                     store.dispatch({
                         type: IN_PROGRESS,
                         message: props.registration ? 'Signing up with Google' : 'Logging in with Google'
                     });
                 }}>
-                    <img className="rounded hoverable" width={30} height={30} src={googleLogo}
-                         alt="Google"/>
+                    <SocialIcon url="https://google" style={{ height: iconSize, width: iconSize }}/>
                 </a></div>
-            <div className="mx-2">
+            <div className="mx-2 o2auth-provider">
                 <a
                     onClick={() => {
                         store.dispatch({
@@ -35,10 +36,9 @@ function O2AuthAuthentication(props: O2AuthAuthenticationProps) {
                             message: props.registration ? 'Signing up with Facebook' : 'Logging in with Facebook'
                         });
                     }} href={FACEBOOK_AUTH_URL(i18n.language)}>
-                    <img className="rounded hoverable" src={fbLogo} width={25} height={25}
-                         alt="Facebook"/> </a></div>
+                    <SocialIcon url="https://facebook.com/in/facebook" style={{ height: iconSize, width: iconSize }}/> </a></div>
 
-            <div className="mx-2"><a
+            <div className="mx-2 o2auth-provider"><a
                 onClick={() => {
                     store.dispatch({
                         type: IN_PROGRESS,
@@ -46,8 +46,7 @@ function O2AuthAuthentication(props: O2AuthAuthenticationProps) {
                     });
                 }}
                 href={GITHUB_AUTH_URL(i18n.language)}>
-                <img className="rounded hoverable" width={25} height={25} src={githubLogo}
-                     alt="Github"/>
+                <SocialIcon url="https://github" style={{ height: iconSize, width: iconSize }}/>
             </a></div>
 
         </div>

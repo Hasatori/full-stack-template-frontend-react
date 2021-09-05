@@ -1,6 +1,8 @@
 @import "../../index";
+
+
 .navbar{
-  border-bottom: 2px solid $color-primary !important; 
+  background-color: var(--color-secondary) !important;
 }
 .active {
   font-weight: bold;
@@ -28,7 +30,7 @@ $nav-icon-width:30px;
   position: absolute;
   height: calc(#{$nav-icon-width}/10);
   width: 100%;
-  background: $color-primary !important;
+  background: var(--color-primary) !important;
   border-radius: 9px;
   opacity: 1;
   left: 0;

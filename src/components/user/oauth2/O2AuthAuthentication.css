@@ -109,17 +109,31 @@ a:hover {
   opacity: 1;
 }
 
-.footer {
-  background-color: var(--color-primary) !important;
-  position: static;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  margin-top: 5rem;
+.s-alert-box {
+  min-width: 250px;
 }
 
-footer-copyright {
-  color: var(--color-text-primary);
+.s-alert-close::before, .s-alert-close::after {
+  width: 2px;
 }
 
-/*# sourceMappingURL=Footer.css.map */
+.app-body {
+  margin-top: 10em;
+  min-height: 78vh !important;
+}
+
+.o2auth-provider {
+  border-radius: 50px;
+  background-color: var(--color-text-primary) !important;
+}
+
+/*
+.social-svg-mask {
+  fill: var(--color-primary) !important;
+}
+.social-svg-icon {
+  fill: var(--color-text-primary) !important;
+}
+*/
+
+/*# sourceMappingURL=O2AuthAuthentication.css.map */

@@ -1,4 +1,13 @@
 @import "../../index";
+
 .footer{
-background-color: $color-primary !important;
+  background-color: var(--color-primary) !important;
+  position: static;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  margin-top: 5rem;
+}
+footer-copyright{
+  color: var(--color-text-primary);
 }

@@ -1,5 +1,45 @@
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --color-primary:#4285f4;
+  --color-background:#F7F7F7;
+  --color-background-transparent:#F7F7F7;
+  --color-text-primary:#F2F2F2;
+  --color-text-main:#4E637A;
+  --color-text-secondary:#A3A7AC;
+  --color-secondary:#FFFFFF;
+  --color-error:#e74c3c;
+  --color-success:#00C851;
+  --color-info: #33b5e5;
+  --color-warning: #ffbb33;
+  background-color: var(--color-background) !important;
+  color: var(--color-text-main) !important;
+}
+body.dark {
+  --color-primary:#2EAD69;
+  --color-background:#112334;
+  --color-text-primary:#F2F2F2;
+  --color-text-main:#BBD3D5;
+  --color-text-secondary:#868686;
+  --color-secondary:#182B3E;
+  --color-error:#CF6679;
+  --color-success:#007E33;
+  --color-info: #0099CC;
+  --color-warning: #FF8800;
+}
+
+.Toastify__toast--error {
+  background-color: var(--color-error) !important;
+}
+
+.Toastify__toast--info {
+  background-color: var(--color-info) !important;
+}
+
+.Toastify__toast--success {
+  background-color: var(--color-success) !important;
+}
+
+.Toastify__toast--warning {
+  background-color: var(--color-warning) !important;
 }
 
 .visible {
@@ -13,10 +53,60 @@ body {
 .card {
   max-width: 450px;
   margin: auto;
+  background-color: var(--color-secondary);
+}
+
+.card-footer {
+  background-color: var(--color-secondary);
+  color: var(--color-text-main) !important;
 }
 
 .form-item {
   position: relative;
+}
+
+.btn-primary {
+  background-color: var(--color-primary) !important;
+  color: var(--color-text-primary);
+}
+
+.btn-danger {
+  background-color: var(--color-error) !important;
+  color: var(--color-text-primary);
+}
+
+.text-danger {
+  color: var(--color-error) !important;
+}
+
+.text-primary {
+  color: var(--color-primary) !important;
+}
+
+.alert-info {
+  color: var(--color-text-primary) !important;
+  background-color: var(--color-info) !important;
+}
+
+.dropdown-menu {
+  background-color: var(--color-secondary);
+}
+
+.dropdown-item {
+  color: var(--color-text-secondary) !important;
+}
+
+.dropdown-item:hover {
+  background-color: var(--color-text-primary);
+}
+
+a {
+  color: var(--color-primary) !important;
+  opacity: 0.9;
+}
+
+a:hover {
+  opacity: 1;
 }
 
 .s-alert-box {
@@ -29,7 +119,7 @@ body {
 
 .app-body {
   margin-top: 10em;
-  min-height: 75vh !important;
+  min-height: 78vh !important;
 }
 
 /*# sourceMappingURL=Login.css.map */
