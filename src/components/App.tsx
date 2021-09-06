@@ -224,7 +224,7 @@ export interface User {
     email: string;
     profileImage: ProfileImage;
     twoFactorEnabled: boolean;
-    o2AuthInfo?: O2AuthInfo;
+    o2AuthInfo: O2AuthInfo | null ;
     backupCodes: string[]
 
 }

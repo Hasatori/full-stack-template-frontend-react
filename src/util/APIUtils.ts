@@ -20,8 +20,8 @@ API.interceptors.response.use(
             !originalRequest._retry
         ) {
             originalRequest._retry = true;
-            return axios
-                .post(`${process.env.REACT_APP_REST_API_URL}/auth/refresh-token`)
+            return API
+                .get(`${process.env.REACT_APP_REST_API_URL}/auth/access-token`)
                 .then((res) => {
                     if (res.status === 200) {
                         store.dispatch({type: TOKEN_REFRESHED, accessToken: res.data.accessToken});

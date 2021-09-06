@@ -22,8 +22,7 @@ import {AppState} from "../../../redux/store/Store";
 import {
     disableTwoFactor,
     EMPTY_BACKUP_CODES,
-    enableTwoFactor,
-    getNewBackupCodes
+    enableTwoFactor
 } from "../../../redux/actiontype/UserActionTypes";
 import {AnyAction} from "redux";
 import {ThunkDispatch} from "redux-thunk";
@@ -43,15 +42,14 @@ function mapStateToProps(state: AppState, props: TwoFactorProps) {
     return {
         twoFactorEnabled: state.userState.currentUser.twoFactorEnabled,
         backupCodes: state.userState.currentUser.backupCodes,
-        isO2AuthAccount: typeof state.userState.currentUser.o2AuthInfo !== 'undefined'
+        isO2AuthAccount: state.userState.currentUser.o2AuthInfo !== null
     }
 }
 
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
     return {
         enableTwoFactor: (verifyTwoFactor: VerifyTwoFactor) => dispatch(enableTwoFactor(verifyTwoFactor)),
-        disableTwoFactor: () => dispatch(disableTwoFactor()),
-        getNewBackupCodes: () => dispatch(getNewBackupCodes()),
+        disableTwoFactor: () => dispatch(disableTwoFactor())
     };
 };
 
@@ -94,19 +92,12 @@ function TwoFactorSetup(props: TwoFactorProps) {
                                                         }}/> : <></>}
 
                             <div className='d-flex flex-row'>
-                                <div className='d-flex flex-center'><MDBAlert color="success">
+                                <div className='d-flex flex-center'><MDBAlert className="alert-success">
                                     {t('ns1:twoFactorAuthenticationEnabledMessage')}
                                 </MDBAlert></div>
-                                <div className='d-flex flex-center'><MDBBtn outline
+                                <div className='d-flex flex-center'><MDBBtn
                                                                             onClick={() => props.disableTwoFactor()}
-                                                                            color="danger">{t('ns1:disableButton')}</MDBBtn>
-                                </div>
-                            </div>
-                            <div className='d-flex flex-shrink-1'>
-                                <div>
-                                    <button type="submit" onClick={() => props.getNewBackupCodes()}
-                                            className="btn btn-block btn-primary">{t('ns1:twoFactorAuthenticationGetBackupCodesButton')}
-                                    </button>
+                                                                            className='btn-danger'>{t('ns1:disableButton')}</MDBBtn>
                                 </div>
                             </div>
 
@@ -117,7 +108,7 @@ function TwoFactorSetup(props: TwoFactorProps) {
                                              onClick={getTwoFactorSetup}>{t('ns1:enableTwoFactorAuthenticationButton')}</MDBBtn>
                                 </div>
                                 {props.isO2AuthAccount ?
-                                    <div><MDBAlert color="info">{t('ns1:notAvailableForO2AuthAccount')}</MDBAlert></div>
+                                    <div><MDBAlert className="alert-info">{t('ns1:notAvailableForO2AuthAccount')}</MDBAlert></div>
                                     : <></>
                                 }
                             </div>

@@ -118,8 +118,8 @@ export const loginActionCreator: ActionCreator<ThunkAction<void, void, LoginRequ
 export const refreshTokenActionCreator: ActionCreator<ThunkAction<void, void, void, AnyAction>> = () => {
     return async (dispatch: Dispatch) => {
         API({
-            url: "auth/refresh-token",
-            method: 'POST'
+            url: "auth/access-token",
+            method: 'GET'
         }).then((response) => {
             dispatch({type: TOKEN_REFRESHED, accessToken: response.data.accessToken})
         }).catch((error)=>{});
@@ -354,22 +354,6 @@ export const disableTwoFactor: ActionCreator<ThunkAction<void, void, void, Gener
         }).catch(error => {
             dispatch(doneActionCreator());
             dispatch(failureActionCreator((error.response && error.response.data && error.response.data.message) || i18next.t('ns1:defaultErrorMessage')));
-        });
-    };
-};
-export const getNewBackupCodes: ActionCreator<ThunkAction<void, void, void, GeneralActionTypes>> = () => {
-    return async (dispatch: Dispatch) => {
-        dispatch(inProgressActionCreator(''));
-        API({
-            url: "new-backup-codes",
-            method: 'POST',
-        }).then(response => {
-            dispatch({type: TWO_FACTOR_ENABLED, backupCodes: response.data.verificationCodes});
-            dispatch(doneActionCreator());
-        }).catch(error => {
-            dispatch(doneActionCreator());
-            dispatch(failureActionCreator((error.response && error.response.data && error.response.data.message) || i18next.t('ns1:defaultErrorMessage')));
-
         });
     };
 };
