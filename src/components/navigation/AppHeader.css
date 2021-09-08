@@ -101,7 +101,7 @@ body.dark {
   color: var(--color-text-secondary) !important;
 }
 
-.dropdown-item:hover {
+.dropdown-item:hover, .dropdown-item:checked {
   background-color: var(--color-text-primary);
 }
 
@@ -112,6 +112,25 @@ a {
 
 a:hover {
   opacity: 1;
+}
+
+.modal-body, .modal-footer {
+  background-color: var(--color-secondary) !important;
+  color: var(--color-text-main) !important;
+}
+
+.modal-footer {
+  border-color: var(--color-text-secondary) !important;
+}
+
+.modal-backdrop {
+  background-color: var(--color-background);
+  opacity: 0.9;
+}
+
+.dropdown-toggle::after {
+  border-top-color: var(--color-text-main) !important;
+  border-bottom-color: var(--color-text-main) !important;
 }
 
 .navbar {
@@ -201,6 +220,10 @@ a:hover {
   transform: rotate(-45deg);
   top: 22px;
   left: 0px;
+}
+
+.fa-sign-out-alt, .fa-cog {
+  color: var(--color-primary);
 }
 
 /*# sourceMappingURL=AppHeader.css.map */

@@ -1,0 +1,13 @@
+@import "../App";
+
+
+
+.modal-danger > .modal-content > .modal-header {
+  background-color: var(--color-error) !important;
+
+}
+
+
+.modal-header > .close, .modal-header > .modal-title {
+  color: var(--color-text-primary) !important;
+}

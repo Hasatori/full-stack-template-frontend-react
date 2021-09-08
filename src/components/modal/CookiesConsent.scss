@@ -1,0 +1,14 @@
+@import "../App";
+
+
+.CookieConsent {
+
+  background-color: var(--color-secondary) !important;
+  color: var(--color-text-main) !important;
+  z-index: 99999999999 !important;
+}
+
+.close-button {
+  background-color: var(--color-primary) !important;
+  color: var(--color-text-primary)
+}

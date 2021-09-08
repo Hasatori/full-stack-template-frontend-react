@@ -32,9 +32,8 @@ function AppHeader(props: AppProps) {
     const themeCookieName = 'theme';
     const cookies = new Cookies();
     let theme = cookies.get(themeCookieName);
-    console.log(theme);
     if (typeof  theme === 'undefined'){
-        cookies.set(themeCookieName,'dark',{expires:createThemeCookieExpirationDate()})
+        cookies.set(themeCookieName,'dark',{path:"/", expires:createThemeCookieExpirationDate()})
         theme = cookies.get(themeCookieName);
     }
     const [isDark,setIsDark]  = useState(theme==='dark');
@@ -44,7 +43,7 @@ function AppHeader(props: AppProps) {
         } else {
             document.body.classList.remove('dark');
         }
-        cookies.set(themeCookieName,isDark?'dark':'light',{expires:createThemeCookieExpirationDate()})
+        cookies.set(themeCookieName,isDark?'dark':'light',{path:"/", expires:createThemeCookieExpirationDate()})
     }, [isDark]);
 
     return (

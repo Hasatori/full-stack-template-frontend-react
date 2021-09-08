@@ -16,7 +16,7 @@ export default function AreYouSureModal(modalProps: ModalProps) {
     const {t} = useTranslation();
     return (
         <MDBContainer>
-            <MDBModal modalStyle="danger" className="text-white" size="md" overflowScroll={false} inline={false}
+            <MDBModal modalStyle="danger" className="modal-danger" size="md" overflowScroll={false} inline={false}
                       noClickableBodyWithoutBackdrop={false} isOpen={modalProps.isOpen}
                       position="bottom-center"
 
