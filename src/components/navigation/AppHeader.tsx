@@ -67,7 +67,7 @@ function AppHeader(props: AppProps) {
                     <MDBCollapse isOpen={open} navbar>
                         <MDBNavbarNav left>
                             <MDBNavItem active={location.pathname === '/'}>
-                                <MDBNavLink to="/" link>{t('ns1:homeLabel')}</MDBNavLink>
+                                <MDBNavLink to="/" link><div onClick={()=>{setOpen(false)}}>{t('ns1:homeLabel')}</div></MDBNavLink>
                             </MDBNavItem>
                         </MDBNavbarNav>
                         <MDBNavbarNav right>
@@ -83,20 +83,20 @@ function AppHeader(props: AppProps) {
                                         </MDBDropdownToggle>
                                         <MDBDropdownMenu>
                                             <MDBDropdownItem> <MDBIcon icon="cog"/> <NavLink
-                                                to="/account">{t('ns1:profileHeading')}</NavLink></MDBDropdownItem>
+                                                to="/account" onClick={()=>setOpen(false)}>{t('ns1:profileHeading')}</NavLink></MDBDropdownItem>
                                             <MDBDropdownItem><MDBIcon icon="sign-out-alt"/> <a
-                                                onClick={props.onLogOut}>{t('ns1:logoutLabel')}</a></MDBDropdownItem>
+                                                onClick={()=>{props.onLogOut();setOpen(false)}}>{t('ns1:logoutLabel')}</a></MDBDropdownItem>
                                         </MDBDropdownMenu>
                                     </MDBDropdown>
                                 </MDBNavItem>
                             ) : (
                                 <>
                                     <MDBNavItem active={location.pathname === '/login'} className='my-auto'>
-                                        <MDBNavLink to="/login" link>{t('ns1:loginLabel')}</MDBNavLink>
+                                        <MDBNavLink to="/login" link><div onClick={()=>{setOpen(false)}}>{t('ns1:loginLabel')}</div></MDBNavLink>
                                     </MDBNavItem>
                                     <MDBNavItem active={location.pathname === '/signup'} className='my-auto'>
 
-                                        <MDBNavLink to="/signup" link>{t('ns1:signupLabel')}</MDBNavLink>
+                                        <MDBNavLink to="/signup" link><div onClick={()=>{setOpen(false)}}>{t('ns1:signupLabel')}</div></MDBNavLink>
                                     </MDBNavItem>
                                 </>
                             )}
@@ -120,9 +120,10 @@ function AppHeader(props: AppProps) {
                                         }).map((language) => {
                                             let [flagName, languageName] = getLanguageFlagPairFromLocale(language);
                                             return (<MDBDropdownItem
-                                                onClick={() =>
-                                                    i18n.changeLanguage(language)
-                                                }>
+                                                onClick={() => {
+                                                    i18n.changeLanguage(language);
+                                                    setOpen(false);
+                                                }}>
                                                 <div className='flex-row d-flex'>
                                                     <div><img
                                                         style={{width: 20}}
@@ -139,6 +140,7 @@ function AppHeader(props: AppProps) {
                                 <DarkModeToggle
                                     onChange={()=>{
                                         setIsDark(!isDark);
+                                        setOpen(false);
                                     }}
                                     checked={isDark}
                                     size={50}
@@ -151,7 +153,6 @@ function AppHeader(props: AppProps) {
         </header>
     )
 }
-
 
 function createThemeCookieExpirationDate():Date{
     const expiresDate = new Date();
