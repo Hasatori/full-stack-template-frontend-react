@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Redirect, Route, Switch, useHistory, useLocation} from 'react-router-dom';
 import AppHeader from './navigation/AppHeader';
-import Home from './home/Home';
+import About from './about/About';
 import Signup from './user/signup/Signup';
 import OAuth2RedirectHandler from './user/oauth2/OAuth2RedirectHandler';
 import NotFound from './notfound/NotFound';
@@ -179,7 +179,7 @@ function App(appProps: AppProps) {
             <CookiesConsent/>
             <MDBContainer className="app-body">
                 <Switch>
-                    <Route exact path="/" component={Home}/>
+                    <Route exact path={["/","/about"]} component={About}/>
                     <PrivateRoute
                         path={["/account"]}
                         {...{

@@ -1,0 +1,26 @@
+@import "../App";
+
+.wrapper{
+  display: flex;
+}
+
+.side-nav{
+  position: sticky;
+  top: 7rem;
+  margin-top: 5rem;
+
+}
+
+.side-nav-item{
+  padding-left: 5px;
+}
+.is-active{
+  font-weight: bold;
+  border-left: 1px solid var(--color-primary);
+}
+
+@media screen and (max-width: 768px) {
+  .sm-display-none {
+    display: none !important;
+  }
+}

@@ -97,7 +97,6 @@ body {
 
 a {
   color: var(--color-primary) !important;
-
   opacity: 0.9;
 }
 a:hover{
@@ -121,7 +120,35 @@ a:hover{
 }
 
 
-.dropdown-toggle::after{
+.dropdown-toggle::after {
   border-top-color: var(--color-text-main) !important;
   border-bottom-color: var(--color-text-main) !important;
 }
+
+.bold {
+  font-weight: bold;
+}
+
+.color-primary {
+  color: var(--color-primary);
+}
+
+.text-long {
+  max-width: 80ch !important;
+  color: var(--color-text-main);
+  text-align: justify;
+
+}
+
+.text-container {
+  max-width: 80ch;
+  margin: auto;
+}
+
+.divider {
+  border-bottom:1px solid var(--color-text-secondary);
+  margin: 2rem auto 2rem auto;
+  width: 100%;
+  opacity: .25;
+}
+

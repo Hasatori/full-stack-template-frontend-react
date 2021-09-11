@@ -67,7 +67,7 @@ function AppHeader(props: AppProps) {
                     <MDBCollapse isOpen={open} navbar>
                         <MDBNavbarNav left>
                             <MDBNavItem active={location.pathname === '/'}>
-                                <MDBNavLink to="/" link><div onClick={()=>{setOpen(false)}}>{t('ns1:homeLabel')}</div></MDBNavLink>
+                                <MDBNavLink to="/" link><div onClick={()=>{setOpen(false)}}>{t('ns1:aboutAppLabel')}</div></MDBNavLink>
                             </MDBNavItem>
                         </MDBNavbarNav>
                         <MDBNavbarNav right>

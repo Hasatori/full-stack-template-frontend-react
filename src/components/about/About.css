@@ -138,13 +138,23 @@ a:hover {
   margin-top: 7em;
   min-height: 78vh !important; }
 
-.CookieConsent {
-  background-color: var(--color-secondary) !important;
-  color: var(--color-text-main) !important;
-  z-index: 99999999999 !important; }
+.wrapper {
+  display: flex; }
 
-.close-button {
-  background-color: var(--color-primary) !important;
-  color: var(--color-text-primary); }
+.side-nav {
+  position: sticky;
+  top: 7rem;
+  margin-top: 5rem; }
 
-/*# sourceMappingURL=CookiesConsent.css.map */
+.side-nav-item {
+  padding-left: 5px; }
+
+.is-active {
+  font-weight: bold;
+  border-left: 1px solid var(--color-primary); }
+
+@media screen and (max-width: 768px) {
+  .sm-display-none {
+    display: none !important; } }
+
+/*# sourceMappingURL=About.css.map */
