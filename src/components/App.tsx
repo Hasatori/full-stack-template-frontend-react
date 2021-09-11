@@ -46,6 +46,8 @@ import {Footer} from './footer/Footer';
 import ConfirmEmailChange from "./user/confirmemilchange/ConfirmEmailChange";
 import {MDBContainer} from "mdbreact";
 import Login from "./user/login/Login";
+import {Cookies} from "react-cookie";
+import {THEME_COOKIE_NAME} from "../redux/reducer/GeneralReducer";
 
 function mapStateToProps(state: AppState, props: AppProps) {
     return {
@@ -59,7 +61,8 @@ function mapStateToProps(state: AppState, props: AppProps) {
         loggedIn: state.userState.loggedIn,
         user: state.userState.currentUser,
         accessToken: state.userState.accessToken,
-        redirectUrl: state.generalState.redirectUrl
+        redirectUrl: state.generalState.redirectUrl,
+        theme: state.generalState.theme
     }
 }
 
@@ -158,6 +161,14 @@ function App(appProps: AppProps) {
         }
     },[appProps.redirectUrl])
 
+    useEffect(() => {
+        if (appProps.theme === 'dark') {
+            document.body.classList.add('dark');
+        } else {
+            document.body.classList.remove('dark');
+        }
+    }, [appProps.theme]);
+
     let location = useLocation<{ error: string }>();
     useEffect(() => {
         if (location.state && location.state.error) {
@@ -179,7 +190,7 @@ function App(appProps: AppProps) {
             <CookiesConsent/>
             <MDBContainer className="app-body">
                 <Switch>
-                    <Route exact path={["/","/about"]} component={About}/>
+                    <Route exact path={["/","/about"]} render={(props )=> <About {...appProps}/>}/>
                     <PrivateRoute
                         path={["/account"]}
                         {...{
@@ -216,6 +227,13 @@ function App(appProps: AppProps) {
         </div>
 
     );
+}
+
+
+function createThemeCookieExpirationDate():Date{
+    const expiresDate = new Date();
+    expiresDate.setTime(expiresDate.getTime() + (100*365*24*60*60*1000)); // expires in 100 years
+    return expiresDate;
 }
 
 export interface User {

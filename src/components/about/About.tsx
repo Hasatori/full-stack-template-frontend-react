@@ -3,8 +3,12 @@ import './About.css'
 import {MDBCol, MDBRow} from "mdbreact";
 import {Link} from 'react-router-dom';
 import Scrollspy from 'react-scrollspy';
+import stackDark from '../../assets/images/common/Fullstack boilerplate - Frame 1.jpg'
+import stackLight from '../../assets/images/common/Fullstack boilerplate - Frame 2.jpg'
+import {AppProps} from "../../index";
+import {connect} from "react-redux";
 
-export default function About() {
+function About(appProps:AppProps) {
     return (
         <MDBRow>
             <MDBCol sm='12' md="9">
@@ -23,6 +27,7 @@ export default function About() {
                     <div className="divider"/>
                     <section id="stack">
                         <h2 className="h2-responsive color-primary bold mb-4">Stack</h2>
+                        <img src={appProps.theme==='dark'?stackDark:stackLight} width='80%' className='center-image'/>
                         <p> Stack is based on React for frontend and Spring boot for backend REST api.</p>
                         <p>Source code for both is available on Github:</p>
                         <ul>
@@ -92,3 +97,5 @@ export default function About() {
 
     )
 }
+
+export default connect()(About)

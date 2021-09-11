@@ -1,5 +1,6 @@
 import {Action, ActionCreator} from "redux";
 import configureStore from "../store/Store";
+import {Theme} from "../reducer/GeneralReducer";
 
 export const IN_PROGRESS = "IN_PROGRESS";
 export const SUCCESS = "SUCCESS";
@@ -12,6 +13,7 @@ export const WARNING = "WARNING";
 export const DISMISS_WARNING = "DISMISS_WARNING";
 export const DONE = "DONE";
 export const REDIRECT = "REDIRECT";
+export const SET_THEME = "SET_THEME";
 
 export interface InProgressAction extends Action {
     type: typeof IN_PROGRESS,
@@ -63,6 +65,11 @@ export interface Redirect extends Action {
     url: string
 }
 
+export interface SetTheme extends Action {
+    type: typeof SET_THEME,
+    theme: Theme
+}
+
 export const inProgressActionCreator: ActionCreator<InProgressAction> = (message: string) => {
     return configureStore().dispatch({type: IN_PROGRESS, message: message});
 };
@@ -97,7 +104,9 @@ export const dismissFailure: ActionCreator<DismissFailure> = () => {
 export const dismissRedirect: ActionCreator<Redirect> = (url:string) => {
     return configureStore().dispatch({type: REDIRECT,url:url});
 };
-
+export const dismisSetTheme: ActionCreator<SetTheme> = (theme:Theme) => {
+    return configureStore().dispatch({type: SET_THEME,theme:theme});
+};
 export type GeneralActionTypes =
     InProgressAction
     | FailureAction
@@ -109,4 +118,6 @@ export type GeneralActionTypes =
     | DismissInfo
     | WarningAction
     | DismissWarning
-    | Redirect;
+    | Redirect
+    | SetTheme
+    ;

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {NavLink, useLocation} from 'react-router-dom';
 import './AppHeader.css';
 import {connect} from "react-redux";
@@ -21,31 +21,27 @@ import {
 import {useTranslation} from "react-i18next";
 import {getLanguageFlagPairFromLocale} from "../../i18n/I18nConfig";
 import DarkModeToggle from "react-dark-mode-toggle";
-import {Cookies} from "react-cookie";
+import {ThunkDispatch} from "redux-thunk";
+import {AnyAction} from "redux";
+import {AppState} from "../../redux/store/Store";
+import {Theme} from "../../redux/reducer/GeneralReducer";
+import {dismisSetTheme} from "../../redux/actiontype/GeneralActionTypes";
+
+
+function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
+    return {
+        setTheme: (theme: Theme) => dispatch(dismisSetTheme(theme))
+    };
+};
+
 
 function AppHeader(props: AppProps) {
     const [open, setOpen] = useState(false);
-    const {t,i18n} = useTranslation();
+    const {t, i18n} = useTranslation();
     let [flagName] = getLanguageFlagPairFromLocale(i18n.language);
     const location = useLocation();
     const bgPink = {backgroundColor: '#ffffff'}
-    const themeCookieName = 'theme';
-    const cookies = new Cookies();
-    let theme = cookies.get(themeCookieName);
-    if (typeof  theme === 'undefined'){
-        cookies.set(themeCookieName,'dark',{path:"/", expires:createThemeCookieExpirationDate()})
-        theme = cookies.get(themeCookieName);
-    }
-    const [isDark,setIsDark]  = useState(theme==='dark');
-    useEffect(() => {
-        if (isDark) {
-            document.body.classList.add('dark');
-        } else {
-            document.body.classList.remove('dark');
-        }
-        cookies.set(themeCookieName,isDark?'dark':'light',{path:"/", expires:createThemeCookieExpirationDate()})
-    }, [isDark]);
-
+    const [isDark,setIsDark] = useState(props.theme === 'dark')
     return (
 
         <header className="app-header z-depth-1">
@@ -140,6 +136,7 @@ function AppHeader(props: AppProps) {
                                 <DarkModeToggle
                                     onChange={()=>{
                                         setIsDark(!isDark);
+                                        props.setTheme(!isDark?'dark':'light');
                                         setOpen(false);
                                     }}
                                     checked={isDark}
@@ -154,10 +151,5 @@ function AppHeader(props: AppProps) {
     )
 }
 
-function createThemeCookieExpirationDate():Date{
-    const expiresDate = new Date();
-    expiresDate.setTime(expiresDate.getTime() + (100*365*24*60*60*1000)); // expires in 100 years
-    return expiresDate;
-}
 
-export default connect()(AppHeader);
+export default connect(null, mapDispatchToProps)(AppHeader);

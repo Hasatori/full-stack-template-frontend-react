@@ -8,6 +8,7 @@ import App, {User} from "./components/App";
 import ReactDOM from 'react-dom';
 import React from 'react';
 import './i18n/I18nConfig';
+import {Theme} from "./redux/reducer/GeneralReducer";
 
 export const store = configureStore();
 
@@ -25,7 +26,10 @@ export interface AppProps {
     onLogOut: () => void,
     refreshToken: () => void,
     user: User,
-    accessToken: string
+    accessToken: string,
+    setTheme:(theme:Theme) => void,
+    theme: Theme
+
 }
 
 export const initProps: AppProps = {
@@ -45,7 +49,9 @@ export const initProps: AppProps = {
         },
         refreshToken: () => {
         },
-        accessToken: ""
+        setTheme:(theme:Theme) => {},
+        accessToken: "",
+        theme: 'dark'
     }
 ;
 ReactDOM.render(
