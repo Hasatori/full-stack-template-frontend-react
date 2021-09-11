@@ -181,7 +181,7 @@ a:hover {
   transform-origin: left center; }
 
 .toggler-icon span:nth-child(3) {
-  top: calc(20px*0.8);
+  top: calc(20px*0.75);
   -webkit-transform-origin: left center;
   -moz-transform-origin: left center;
   -o-transform-origin: left center;
@@ -192,7 +192,7 @@ a:hover {
   -moz-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
-  top: calc(-20px*0.09);
+  top: calc(-20px*0.1);
   left: -1px; }
 
 .toggler-icon.open span:nth-child(2) {
@@ -204,14 +204,14 @@ a:hover {
   -moz-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
-  top: calc(20px*0.7);
-  left: 0px; }
+  top: calc(20px*0.75);
+  left: -1px; }
 
 .fa-sign-out-alt, .fa-cog {
   color: var(--color-primary); }
 
 .navbar {
-  height: 4rem !important; }
+  min-height: 4rem !important; }
 
 * {
   scroll-margin-top: calc(4rem + 1rem); }

@@ -61,7 +61,7 @@ $nav-icon-width:20px;
 }
 
 .toggler-icon span:nth-child(3) {
-  top: calc(#{$nav-icon-width}*0.8);
+  top: calc(#{$nav-icon-width}*0.75);
   -webkit-transform-origin: left center;
   -moz-transform-origin: left center;
   -o-transform-origin: left center;
@@ -73,7 +73,7 @@ $nav-icon-width:20px;
   -moz-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
-  top: calc(-#{$nav-icon-width}*0.09);
+  top: calc(-#{$nav-icon-width}*0.1);
   left: -1px;
 }
 
@@ -87,8 +87,8 @@ $nav-icon-width:20px;
   -moz-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
-  top: calc(#{$nav-icon-width}*0.7);
-  left: 0px;
+  top: calc(#{$nav-icon-width}*0.75);
+  left: -1px;
 }
 
 .fa-sign-out-alt,.fa-cog{
@@ -99,7 +99,7 @@ $nav-icon-width:20px;
 $navbar-height:4rem;
 
 .navbar{
-  height: $navbar-height !important;
+  min-height: $navbar-height !important;
 }
 
 * {
