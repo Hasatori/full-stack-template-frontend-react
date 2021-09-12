@@ -72,8 +72,9 @@ body {
 }
 
 .btn{
-  padding: 0 !important;
-}
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+ }
 
 .text-danger{
   color: var(--color-error) !important;
@@ -145,10 +146,6 @@ a:hover{
 
 }
 
-.text-container {
-  max-width: 80ch;
-  margin: auto;
-}
 
 .divider {
   border-bottom:1px solid var(--color-text-secondary);

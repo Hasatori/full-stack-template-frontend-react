@@ -11,9 +11,9 @@ function About(appProps:AppProps) {
     return (
         <MDBRow>
             <MDBCol sm='12' md="9">
-                <section className='d-flex flex-column justify-content-center text-container'>
+                <section className='d-flex flex-column justify-content-center'>
                     <section id='what-is-fullstack-template' >
-                        <h1 className="h1-responsive text-center bold color-primary mb-5">What is fullstack
+                        <h1 className="h1-responsive bold color-primary mb-5">What is fullstack
                             template? </h1>
                         <p className="text-long">
                             Fullstack template is a project that provides boilerplate app with all basic functionalities
