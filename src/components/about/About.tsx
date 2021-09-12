@@ -26,7 +26,7 @@ function About(appProps:AppProps) {
                     <div className="divider"/>
                     <section id="stack">
                         <h2 className="h2-responsive color-primary bold mb-4">Stack</h2>
-                        <img src={stack} width='80%' className='center-image'/>
+                        <img src={stack} width='80%' className='center-image' loading={"lazy"}/>
                         <p> Stack is based on React for frontend and Spring boot for backend REST api.</p>
                         <p>Source code for both is available on Github:</p>
                         <ul>
