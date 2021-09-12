@@ -62,6 +62,9 @@ body {
   background-color: var(--color-error) !important;
   color: var(--color-text-primary); }
 
+.btn {
+  padding: 0 !important; }
+
 .text-danger {
   color: var(--color-error) !important; }
 
