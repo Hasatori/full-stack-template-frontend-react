@@ -3,8 +3,7 @@ import './About.css'
 import {MDBCol, MDBRow} from "mdbreact";
 import {Link} from 'react-router-dom';
 import Scrollspy from 'react-scrollspy';
-import stackDark from '../../assets/images/common/Fullstack boilerplate - Frame 1.jpg'
-import stackLight from '../../assets/images/common/Fullstack boilerplate - Frame 2.jpg'
+import stack from '../../assets/images/common/react_plus_spring_boot.png'
 import {AppProps} from "../../index";
 import {connect} from "react-redux";
 
@@ -27,7 +26,7 @@ function About(appProps:AppProps) {
                     <div className="divider"/>
                     <section id="stack">
                         <h2 className="h2-responsive color-primary bold mb-4">Stack</h2>
-                        <img src={appProps.theme==='dark'?stackDark:stackLight} width='80%' className='center-image'/>
+                        <img src={stack} width='80%' className='center-image'/>
                         <p> Stack is based on React for frontend and Spring boot for backend REST api.</p>
                         <p>Source code for both is available on Github:</p>
                         <ul>
