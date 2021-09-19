@@ -6,10 +6,10 @@ import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
 import {useTranslation} from "react-i18next";
 import {Input} from "../../form/Input";
-import {MDBCard, MDBCardBody} from "mdbreact";
+import {MDBCard, MDBCardBody, MDBIcon} from "mdbreact";
 import "../../App.css"
 import {arePasswordsSame, getUrlParameter, isPasswordValid} from "../../../util/ValidationUtils";
-
+import {Routes} from "../../../util/Constants";
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
     return {
         resetPassword: (resetPasswordRequest: ResetPasswordRequest) => dispatch(resetPassword(resetPasswordRequest))
@@ -83,11 +83,12 @@ function PasswordReset(props: PasswordResetProps & RouteComponentProps) {
                                 invalidValueMessage= {t('ns1:passwordsDoNotMatchMessage')}
 
                             />
-                            <div className="form-item">
-                                <button type="submit"
-                                        className="btn btn-block btn-primary">{t('ns1:requestPasswordResetButtonLabel')}</button>
+                            <div className="form-item flex-center">
+                                <button className="btn btn-primary" onClick={()=>{history.push(Routes.LOGIN)}} >{t('ns1:goBackButton')}</button>
+                                <button type="submit" className="btn btn-primary">{t('ns1:passwordResetButtonLabel')}</button>
                             </div>
                         </form>
+
                     </MDBCardBody>
                 </MDBCard>
 

@@ -3,13 +3,13 @@ import {forgottenPasswordRequest} from "../../../redux/actiontype/UserActionType
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
 import {useTranslation} from "react-i18next";
-import {MDBCard, MDBCardBody} from "mdbreact";
+import {MDBCard, MDBCardBody, MDBIcon} from "mdbreact";
 import {Input} from "../../form/Input";
 import "../../App.css"
 import {isEmailValid} from "../../../util/ValidationUtils";
 import {useHistory} from "react-router-dom";
 import {connect} from "react-redux";
-
+import {Routes} from "../../../util/Constants";
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
     return {
         forgottenPasswordRequest: (email: string) => dispatch(forgottenPasswordRequest(email))
@@ -39,9 +39,10 @@ function ForgottenPassword(props: ForgottenPasswordProps) {
     }
 
     return (
+
         <MDBCard className="card">
             <MDBCardBody className="p-5">
-                <form onSubmit={handleSubmit}>
+               <form onSubmit={handleSubmit}>
                     <Input
                         id={"email"}
                         type="email"
@@ -58,14 +59,17 @@ function ForgottenPassword(props: ForgottenPasswordProps) {
                         invalidValueMessage={t('ns1:invalidEmailMessage')}
                     />
                     <div className="text-center">
-                        <div className="text-center my-2">
-                            <button className="btn btn-block btn-primary p-1"
+                        <div className=" flex-center my-2">
+                            <button className="btn btn-primary" onClick={()=>{history.push(Routes.LOGIN)}} >{t('ns1:goBackButton')}</button>
+                            <button className="btn  btn-primary p-2"
                                     type="submit"> {t('ns1:requestPasswordResetButtonLabel')}</button>
                         </div>
                     </div>
+
                 </form>
             </MDBCardBody>
         </MDBCard>
+
     );
 }
 
