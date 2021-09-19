@@ -114,12 +114,6 @@ function ChangePassword(props: ChangePasswordProps) {
                             <MDBBtn color="primary" type='submit'
                                     disabled={!confirmPasswordValid || !confirmPasswordValidationStarted || !newPasswordValid || !newPasswordValidationStarted}>     {t('ns1:saveButtonLabel')}</MDBBtn>
                         </div>
-                        {props.user.o2AuthInfo ?
-                            <MDBAlert color="info">
-                                {t('ns1:notAvailableForO2AuthAccount')}
-                            </MDBAlert>
-                            :
-                            <></>}
                     </form>
                 }
 
