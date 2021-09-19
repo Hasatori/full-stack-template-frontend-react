@@ -1,0 +1,21 @@
+@import "../App";
+
+
+
+.modal-header{
+  background-color: var(--color-primary);
+}
+
+.text-codes-area{
+  padding: 10px !important;
+  color: var(--color-text-main) !important;
+  border-color: var(--color-text-secondary);
+}
+
+.text-codes-area:hover{
+  border-color: var(--color-text-secondary);
+}
+.md-form.md-outline label.active{
+  background-color: var(--color-primary) !important;
+  color: var(--color-text-primary) !important;
+}

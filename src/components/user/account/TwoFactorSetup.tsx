@@ -28,6 +28,8 @@ import {AnyAction} from "redux";
 import {ThunkDispatch} from "redux-thunk";
 import {store} from "../../../index";
 import API from "../../../util/APIUtils";
+import TwoFactorCodeForm from "../login/TwoFactorCodeForm";
+import {TwoFactorBackupCodes} from "../../modal/TwoFactorBackupCodes";
 
 interface TwoFactorProps {
     twoFactorEnabled: boolean,
@@ -35,14 +37,16 @@ interface TwoFactorProps {
     enableTwoFactor: (verifyTwoFactor: VerifyTwoFactor) => void,
     disableTwoFactor: () => void,
     getNewBackupCodes: () => void,
-    isO2AuthAccount: boolean
+    isO2AuthAccount: boolean,
+    email:string
 }
 
 function mapStateToProps(state: AppState, props: TwoFactorProps) {
     return {
         twoFactorEnabled: state.userState.currentUser.twoFactorEnabled,
         backupCodes: state.userState.currentUser.backupCodes,
-        isO2AuthAccount: state.userState.currentUser.o2AuthInfo !== null
+        isO2AuthAccount: state.userState.currentUser.o2AuthInfo !== null,
+        email:state.userState.currentUser.email
     }
 }
 
@@ -68,7 +72,6 @@ function TwoFactorSetup(props: TwoFactorProps) {
             Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');
         });
     }
-
     function handleSubmit(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
         props.enableTwoFactor({code: verificationCode});
@@ -85,11 +88,13 @@ function TwoFactorSetup(props: TwoFactorProps) {
                 <div className='d-flex flex-column'>
                     {props.twoFactorEnabled ?
                         <>
-                            {props.backupCodes ? <Modal codes={props.backupCodes}
+                            {props.backupCodes ? <TwoFactorBackupCodes codes={props.backupCodes}
                                                         show={props.backupCodes && props.backupCodes.length > 0}
                                                         onClose={() => {
                                                             store.dispatch({type: EMPTY_BACKUP_CODES})
-                                                        }}/> : <></>}
+                                                        }}
+                            email={props.email}
+                            /> : <></>}
 
                             <div className='d-flex flex-row'>
                                 <div className='d-flex flex-center'><MDBAlert className="alert-success">
@@ -144,54 +149,6 @@ function TwoFactorSetup(props: TwoFactorProps) {
     )
 
 
-}
-
-interface ModalProps {
-    codes: Array<string>;
-    show: boolean;
-    onClose: () => void
-
-}
-
-export function Modal(modalProps: ModalProps) {
-    const codesString = modalProps.codes.join('\n');
-    const [copied, setCopied] = useState(false);
-    const {t} = useTranslation();
-    return (
-        <MDBContainer>
-            <MDBModal overflowScroll={false} inline={false} noClickableBodyWithoutBackdrop={false}
-                      isOpen={modalProps.show}
-                      position="top-center">
-                <MDBModalHeader>{t('ns1:twoFactorAuthenticationSaveBackupCodesHeading')}</MDBModalHeader>
-                <MDBModalBody>
-                    <MDBInput type="textarea" label="Codes" outline value={codesString} rows={16}
-                              style={{resize: 'none'}}/>
-                </MDBModalBody>
-                <MDBModalFooter>
-                    <CopyToClipboard text={codesString}>
-                        <MDBBtn size={"sm"} color={copied ? 'success' : 'primary'} onClick={() => {
-                            setCopied(true);
-                        }}>     {copied ? t('ns1:copiedLabel') : t('ns1:copyToClipboardLabel')}</MDBBtn>
-                    </CopyToClipboard>
-                    <MDBBtn size={"sm"} color="primary"
-                            onClick={() => {
-                                let link = document.createElement("a");
-                                const data = new Blob([codesString], {type: 'text/plain'});
-                                link.href = URL.createObjectURL(data);
-                                link.download = 'backup_codes_txt';
-                                link.click();
-                                URL.revokeObjectURL(link.href);
-                            }}
-
-                    > <MDBIcon icon="download"/>{t('ns1:downloadSomethingLabel')}</MDBBtn>
-                    <MDBBtn size={"sm"} color="danger" onClick={() => {
-                        modalProps.onClose();
-                    }}>{t('ns1:closeLabel')}</MDBBtn>
-
-                </MDBModalFooter>
-            </MDBModal>
-        </MDBContainer>
-    )
 }
 
 export interface TwoFactorSetup {
