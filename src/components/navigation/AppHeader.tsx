@@ -26,6 +26,8 @@ import {AnyAction} from "redux";
 import {AppState} from "../../redux/store/Store";
 import {Theme} from "../../redux/reducer/GeneralReducer";
 import {dismisSetTheme} from "../../redux/actiontype/GeneralActionTypes";
+import {Routes} from "../../util/Constants";
+import About from "../about/About";
 
 
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
@@ -47,7 +49,7 @@ function AppHeader(props: AppProps) {
         <header className="app-header z-depth-1">
             <MDBNavbar className="navbar" fixed="top" style={bgPink} expand="lg">
                 <MDBContainer>
-                    <MDBNavbarBrand href="/">
+                    <MDBNavbarBrand href={Routes.ABOUT1}>
                         Full stack template
                     </MDBNavbarBrand>
                     <MDBNavbarToggler
@@ -62,8 +64,8 @@ function AppHeader(props: AppProps) {
                     </MDBNavbarToggler>
                     <MDBCollapse isOpen={open} navbar>
                         <MDBNavbarNav left>
-                            <MDBNavItem active={location.pathname === '/'}>
-                                <MDBNavLink to="/" link><div onClick={()=>{setOpen(false)}}>{t('ns1:aboutAppLabel')}</div></MDBNavLink>
+                            <MDBNavItem active={location.pathname === Routes.ABOUT1}>
+                                <MDBNavLink to={Routes.ABOUT1} link><div onClick={()=>{setOpen(false)}}>{t('ns1:aboutAppLabel')}</div></MDBNavLink>
                             </MDBNavItem>
                         </MDBNavbarNav>
                         <MDBNavbarNav right>
@@ -79,7 +81,7 @@ function AppHeader(props: AppProps) {
                                         </MDBDropdownToggle>
                                         <MDBDropdownMenu>
                                             <MDBDropdownItem> <MDBIcon icon="cog"/> <NavLink
-                                                to="/account" onClick={()=>setOpen(false)}>{t('ns1:profileHeading')}</NavLink></MDBDropdownItem>
+                                                to={Routes.ACCOUNT} onClick={()=>setOpen(false)}>{t('ns1:profileHeading')}</NavLink></MDBDropdownItem>
                                             <MDBDropdownItem><MDBIcon icon="sign-out-alt"/> <a
                                                 onClick={()=>{props.onLogOut();setOpen(false)}}>{t('ns1:logoutLabel')}</a></MDBDropdownItem>
                                         </MDBDropdownMenu>
@@ -87,12 +89,12 @@ function AppHeader(props: AppProps) {
                                 </MDBNavItem>
                             ) : (
                                 <>
-                                    <MDBNavItem active={location.pathname === '/login'} className='my-auto'>
-                                        <MDBNavLink to="/login" link><div onClick={()=>{setOpen(false)}}>{t('ns1:loginLabel')}</div></MDBNavLink>
+                                    <MDBNavItem active={location.pathname === Routes.LOGIN} className='my-auto'>
+                                        <MDBNavLink to={Routes.LOGIN} link><div onClick={()=>{setOpen(false)}}>{t('ns1:loginLabel')}</div></MDBNavLink>
                                     </MDBNavItem>
-                                    <MDBNavItem active={location.pathname === '/signup'} className='my-auto'>
+                                    <MDBNavItem active={location.pathname === Routes.SIGNUP} className='my-auto'>
 
-                                        <MDBNavLink to="/signup" link><div onClick={()=>{setOpen(false)}}>{t('ns1:signupLabel')}</div></MDBNavLink>
+                                        <MDBNavLink to={Routes.SIGNUP} link><div onClick={()=>{setOpen(false)}}>{t('ns1:signupLabel')}</div></MDBNavLink>
                                     </MDBNavItem>
                                 </>
                             )}
@@ -136,7 +138,7 @@ function AppHeader(props: AppProps) {
                                 <DarkModeToggle
                                     onChange={()=>{
                                         setIsDark(!isDark);
-                                        props.setTheme(!isDark?'dark':'light');
+                                        props.setTheme(!isDark? 'dark':'light');
                                         setOpen(false);
                                     }}
                                     checked={isDark}

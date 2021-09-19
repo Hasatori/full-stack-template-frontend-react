@@ -48,6 +48,7 @@ import {MDBContainer} from "mdbreact";
 import Login from "./user/login/Login";
 import {Cookies} from "react-cookie";
 import {THEME_COOKIE_NAME} from "../redux/reducer/GeneralReducer";
+import {Routes} from "../util/Constants";
 
 function mapStateToProps(state: AppState, props: AppProps) {
     return {
@@ -190,34 +191,34 @@ function App(appProps: AppProps) {
             <CookiesConsent/>
             <MDBContainer className="app-body">
                 <Switch>
-                    <Route exact path={["/","/about"]} render={(props )=> <About {...appProps}/>}/>
+                    <Route exact path={[Routes.ABOUT1,Routes.ABOUT2]} render={(props )=> <About {...appProps}/>}/>
                     <PrivateRoute
-                        path={["/account"]}
+                        path={[Routes.ACCOUNT]}
                         {...{
                             authenticated: appProps.authenticated,
-                            authenticationPath: '/login',
-                            redirectPathOnAuthentication: "/account"
+                            authenticationPath: Routes.LOGIN,
+                            redirectPathOnAuthentication: Routes.ACCOUNT
                         }} exact={true}
                         render={(props) => <Account/>}/>
 
-                    <Route path={"/login"}
-                           render={(props) => appProps.authenticated ? <Redirect to='account'/> :// @ts-ignore
+                    <Route path={Routes.LOGIN}
+                           render={(props) => appProps.authenticated ? <Redirect to={Routes.ACCOUNT}/> :// @ts-ignore
                                <Login {...props} />}/>
-                    <Route path="/signup"
-                           render={(props) => appProps.authenticated ? <Redirect to='account'/> :
+                    <Route path={Routes.SIGNUP}
+                           render={(props) => appProps.authenticated ? <Redirect to={Routes.ACCOUNT}/> :
                                <Signup {...props}/>}/>
-                    <Route path="/forgotten-password"
-                           render={(props) => appProps.authenticated ? <Redirect to='account'/> :
+                    <Route path={Routes.FORGOTTEN_PASSWORD}
+                           render={(props) => appProps.authenticated ? <Redirect to={Routes.ACCOUNT}/> :
                                <ForgottenPassword {...props} />}/>
-                    <Route path="/password-reset"
+                    <Route path={Routes.PASSWORD_RESET}
                            render={(props) => <PasswordReset  {...props}/>}/>
-                    <Route path="/oauth2/redirect"
-                           render={(props) => appProps.authenticated ? <Redirect to='account'/> :
+                    <Route path={Routes.OAUTH2_REDIRECT}
+                           render={(props) => appProps.authenticated ? <Redirect to={Routes.ACCOUNT}/> :
                                <OAuth2RedirectHandler {...appProps}{...props}/>}/>
-                    <Route path="/activate-account*"
-                           render={(props) => appProps.authenticated ? <Redirect to='account'/> :
+                    <Route path={`${Routes.ACTIVATE_ACCOUNT}*`}
+                           render={(props) => appProps.authenticated ? <Redirect to={Routes.ACCOUNT}/> :
                                <ActivateAccount {...appProps}{...props}/>}/>
-                    <Route path="/confirm-email-change*"
+                    <Route path={`${Routes.CONFIRM_EMAIL_CHANGE}*`}
                            render={(props) => <ConfirmEmailChange {...appProps}{...props}/>}/>
                     <Route component={NotFound}/>
                 </Switch>

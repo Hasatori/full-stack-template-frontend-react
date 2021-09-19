@@ -11,6 +11,7 @@ import {useTranslation} from "react-i18next";
 import {connect} from "react-redux";
 import {Input} from "../../form/Input";
 import {arePasswordsSame, isEmailValid, isPasswordValid} from "../../../util/ValidationUtils";
+import {Routes} from "../../../util/Constants";
 
 interface SignUpProps {
     signUp: (signUpRequest: SignUpRequest) => void;
@@ -124,7 +125,7 @@ function Signup(props: SignUpProps) {
                 <span
                     className="font-weight-light-blue flex-center">{t('ns1:alreadyHavenAnAccountQuestion')}
                     <Link className="ml-1"
-                          to="/login">{t('ns1:loginLabel')}!</Link></span>
+                          to={Routes.LOGIN}>{t('ns1:loginLabel')}!</Link></span>
             </MDBCardBody>
             <MDBCardFooter>
                 <div className="text-center mb-1">{t('ns1:orSignupWithSuggestion')}</div>

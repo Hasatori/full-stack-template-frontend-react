@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import stack from '../../assets/images/common/react_plus_spring_boot.png'
 import {AppProps} from "../../index";
 import {connect} from "react-redux";
+import {Routes} from "../../util/Constants";
 
 function About(appProps: AppProps) {
     return (
@@ -26,8 +27,8 @@ function About(appProps: AppProps) {
                 <p className="text-long">Template supports basic functionalities that are needed for almost any
                     web application.
                     You can try each functionality for yourself by interacting with this webapp.
-                    You can either <Link to="/login">login</Link> using Facebook, Google or Github or you can
-                    <Link to="/signUp"> sign up </Link>and login using email and password.</p>
+                    You can either <Link to={Routes.LOGIN}>login</Link> using Facebook, Google or Github or you can
+                    <Link to={Routes.SIGNUP}> sign up </Link>and login using email and password.</p>
                 <p>Following functionalities are supported:</p>
                 <ul>
                     <li>Login</li>

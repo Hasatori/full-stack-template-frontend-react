@@ -6,6 +6,7 @@ import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
 import {activateAccount} from "../../../redux/actiontype/UserActionTypes";
 import {getUrlParameter} from "../../../util/ValidationUtils";
+import {Routes} from "../../../util/Constants";
 
 
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
@@ -22,7 +23,7 @@ function ActivateAccount(props: ActivateAccountProps & RouteComponentProps) {
     const token = getUrlParameter(window.location.search, 'token');
     props.activateAccount({token: token});
     return <Redirect to={{
-        pathname: "/login",
+        pathname: Routes.LOGIN,
         state: {
             from: props.location,
             state: {from: props.location}

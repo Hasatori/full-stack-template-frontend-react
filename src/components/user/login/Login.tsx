@@ -15,6 +15,7 @@ import {AppState} from "../../../redux/store/Store";
 import {useTranslation} from "react-i18next";
 import {Input} from "../../form/Input";
 import TwoFactorCodeForm from "./TwoFactorCodeForm";
+import {Routes} from "../../../util/Constants";
 
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
     return {
@@ -88,7 +89,7 @@ function Login(props:LoginProps) {
                                         invalidValueMessage={t('ns1:invalidPasswordFormatMessage')}
                                     />
                                     <div className="d-flex"><span className="link"> <Link
-                                        to="/forgotten-password">{t('ns1:forgotPasswordQuestion')}</Link></span>
+                                        to={Routes.FORGOTTEN_PASSWORD}>{t('ns1:forgotPasswordQuestion')}</Link></span>
                                     </div>
                                     <div className="text-center py-4 mt-3">
                                         <div className="text-center my-2">
@@ -100,7 +101,7 @@ function Login(props:LoginProps) {
                                 </form>
                                 <span className="font-weight-light-blue flex-center">{t('ns1:newUserLoginQuestion')}
                                     <Link className="ml-1"
-                                          to="/signup">{t('ns1:signupLabel')}!</Link></span>
+                                          to={Routes.SIGNUP}>{t('ns1:signupLabel')}!</Link></span>
                             </MDBCardBody>
                             <MDBCardFooter >
                                 <div className="text-center mb-1">{t('ns1:orLoginWithSuggestion')}</div>

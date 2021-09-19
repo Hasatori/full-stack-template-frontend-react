@@ -10,7 +10,7 @@ import {
     OAUTH2_PROVIDER_LOCAL_STORAGE_NAME, OAUTH2_USE_RECOVERY_LOCAL_STORAGE_NAME,
     O2AUTH_URL_RECOVERY,
     O2AUTH_URL_TWO_FACTOR,
-    OAuth2Provider
+    OAuth2Provider, Routes
 } from "../../../util/Constants";
 import {useTranslation} from "react-i18next";
 import i18next from "i18next";
@@ -68,12 +68,12 @@ function OAuth2RedirectHandler(props: AppProps & RouteComponentProps) {
         localStorage.removeItem(OAUTH2_USE_RECOVERY_LOCAL_STORAGE_NAME);
         localStorage.removeItem(OAUTH2_PROVIDER_LOCAL_STORAGE_NAME);
         return <Redirect to={{
-            pathname: "/account",
+            pathname: Routes.ACCOUNT,
             state: {from: props.location}
         }}/>;
     } else {
         return <Redirect to={{
-            pathname: "/login",
+            pathname: Routes.LOGIN,
             state: {
                 from: props.location,
                 error: error
