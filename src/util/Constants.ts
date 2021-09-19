@@ -22,7 +22,7 @@ export function O2AUTH_URL_RECOVERY(provider: OAuth2Provider, locale: string, re
 
 
 export enum Routes {
-    ABOUT1 = '/about',
+    ABOUT1 = '/',
     ABOUT2 = '/about',
     LOGIN = '/login',
     SIGNUP = '/signup',
