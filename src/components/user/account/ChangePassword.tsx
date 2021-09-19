@@ -40,6 +40,7 @@ function ChangePassword(props: ChangePasswordProps) {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [confirmPasswordValidationStarted, setConfirmPasswordValidationStarted] = useState(false);
     const [confirmPasswordValid, setConfirmPasswordValid] = useState(false);
+    const [newPasswordRequested,setNewPasswordRequested]  = useState(false);
     const {t} = useTranslation();
 
     function handleSubmit(event: React.FormEvent<EventTarget>) {
@@ -61,7 +62,7 @@ function ChangePassword(props: ChangePasswordProps) {
             <div className='col-md-4 col-sm-12'>
                 {props.user.o2AuthInfo?.needToSetPassword ?
                     <MDBBtn color="primary"
-                            onClick={() => props.forgottenPasswordRequest(props.user.email)}>{t('ns1:requestNewPassword')}</MDBBtn>
+                            onClick={() => {setNewPasswordRequested(prevState => true);props.forgottenPasswordRequest(props.user.email)}} disabled={newPasswordRequested}>{newPasswordRequested?t('ns1:newPasswordRequested'):t('ns1:requestNewPassword')}</MDBBtn>
                     :
                     <form onSubmit={handleSubmit}>
                         <Input

@@ -70,6 +70,7 @@
   "invalidFileType": "Invalid file type. Allowed types are {{fileTypes}}",
   "invalidFileSize": "File is too big. Max size is {{maxFileSize}}",
   "requestNewPassword": "Request new password",
+  "newPasswordRequested": "New password requested",
   "loggingInWithProvider": "Logging in with {{providerName}}",
   "signingUpWithProvider": "Signing up with {{providerName}}",
   "whatIsFullStackTemplateHeading": "What is full stack template?",

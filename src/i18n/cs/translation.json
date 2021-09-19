@@ -70,6 +70,7 @@
   "invalidFileType": "Nesprávný typ souboru. Povolené typy jsou {{fileTypes}}",
   "invalidFileSize": "Soubor je příliš veliký. Maximální velikost je {{maxFileSize}}",
   "requestNewPassword": "Požádat o nové heslo",
+  "newPasswordRequested": "O nové heslo bylo zažádáno",
   "loggingInWithProvider": "Přihlašování pomocí {{providerName}}",
   "signingUpWithProvider": "Registrace pomocí {{providerName}}",
   "whatIsFullStackTemplateHeading": "Co je full stack template?",

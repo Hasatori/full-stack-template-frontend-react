@@ -34,6 +34,9 @@ function ForgottenPassword(props: ForgottenPasswordProps) {
         setEmailValid(isEmailValid(email));
         if (emailValid) {
             props.forgottenPasswordRequest(email);
+            setEmail("");
+            setEmailValidationStarted(false);
+            setEmailValid(false);
         }
 
     }

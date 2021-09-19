@@ -250,7 +250,6 @@ export const forgottenPasswordRequest: ActionCreator<ThunkAction<void, void, Two
         }).then(response => {
             dispatch(doneActionCreator());
             dispatch(successActionCreator(response.data.message));
-            dispatch(dismissRedirect(Routes.LOGIN))
         }).catch(error => {
             dispatch(doneActionCreator());
             dispatch(failureActionCreator((error.response && error.response.data && error.response.data.message) || i18next.t('ns1:defaultErrorMessage')));
