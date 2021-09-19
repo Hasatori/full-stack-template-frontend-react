@@ -104,13 +104,10 @@ function TwoFactorSetup(props: TwoFactorProps) {
                         </>
                         : twoFactorSetup == null ?
                             <div className='d-flex flex-column'>
-                                <div><MDBBtn color="primary" disabled={props.isO2AuthAccount}
+                                <div><MDBBtn color="primary"
                                              onClick={getTwoFactorSetup}>{t('ns1:enableTwoFactorAuthenticationButton')}</MDBBtn>
                                 </div>
-                                {props.isO2AuthAccount ?
-                                    <div><MDBAlert className="alert-info">{t('ns1:notAvailableForO2AuthAccount')}</MDBAlert></div>
-                                    : <></>
-                                }
+
                             </div>
                             : <>
                                 <form onSubmit={handleSubmit}>

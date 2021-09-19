@@ -1,17 +1,72 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from "react-redux";
-import {Redirect, RouteComponentProps} from "react-router";
+import {Redirect, RouteComponentProps, useLocation} from "react-router";
 import {AppProps, store} from "../../../index";
-import {doneActionCreator, successActionCreator} from "../../../redux/actiontype/GeneralActionTypes";
+import {doneActionCreator, failureActionCreator, IN_PROGRESS} from "../../../redux/actiontype/GeneralActionTypes";
 import {getUrlParameter} from "../../../util/ValidationUtils";
 import {LOGIN_SUCCESS} from "../../../redux/actiontype/UserActionTypes";
+import TwoFactorCodeForm from "../login/TwoFactorCodeForm";
+import {
+    O2_AUTH_PROVIDER_LOCAL_STORAGE_NAME, O2_AUTH_USE_RECOVERY_LOCAL_STORAGE_NAME,
+    O2AUTH_URL_RECOVERY,
+    O2AUTH_URL_TWO_FACTOR,
+    O2AuthProvider
+} from "../../../util/Constants";
+import {useTranslation} from "react-i18next";
+import i18next from "i18next";
+import {useHistory} from "react-router-dom";
 
 function OAuth2RedirectHandler(props: AppProps & RouteComponentProps) {
-    const token = getUrlParameter(props.location.search, 'access_token');
-    const error = getUrlParameter(props.location.search, 'error');
-    if (token) {
+    const [token] = useState(getUrlParameter(props.location.search, 'access_token'));
+    const [error,setError] = useState(getUrlParameter(props.location.search, 'error'));
+    const [twoFactorRequired] = useState(getUrlParameter(props.location.search, 'two_factor_required'));
+    let [provider] = useState(localStorage.getItem(O2_AUTH_PROVIDER_LOCAL_STORAGE_NAME));
+    let [useRecovery] = useState(localStorage.getItem(O2_AUTH_USE_RECOVERY_LOCAL_STORAGE_NAME) === 'true');
+    const {t, i18n} = useTranslation();
+    const location = useLocation()
+    const history = useHistory()
+
+    useEffect(()=>{
+        const queryParams = new URLSearchParams(location.search)
+        queryParams.delete("error");
+        queryParams.delete('two_factor_required');
+        queryParams.delete('provider');
+        history.replace({
+            search: queryParams.toString(),
+        })
+    },[])
+    if (twoFactorRequired && provider != null && Object.values(O2AuthProvider).map(value => value.toString()).includes(provider)) {
+        if (error) {
+            store.dispatch(failureActionCreator(error));
+            setError("");
+        }
+        const castedProvider = provider as O2AuthProvider;
+        return (
+            <TwoFactorCodeForm
+                loginTwoFactor={(code) => {
+                    localStorage.setItem(O2_AUTH_USE_RECOVERY_LOCAL_STORAGE_NAME, 'false');
+                    store.dispatch({
+                        type: IN_PROGRESS,
+                        message: i18next.t('ns1:loggingInWithProvider', {providerName: `${provider}`})
+                    });
+                    window.location.replace(O2AUTH_URL_TWO_FACTOR(castedProvider, i18n.language, code));
+                }}
+                loginRecoveryCode={(code ) => {
+                    localStorage.setItem(O2_AUTH_USE_RECOVERY_LOCAL_STORAGE_NAME, 'true');
+                    store.dispatch({
+                        type: IN_PROGRESS,
+                        message: i18next.t('ns1:loggingInWithProvider', {providerName: `${provider}`})
+                    });
+                    window.location.replace(O2AUTH_URL_RECOVERY(castedProvider, i18n.language, code));
+                }}
+                userRecoveryCode={useRecovery}
+            />
+        )
+    } else if (token) {
         store.dispatch(doneActionCreator());
-        store.dispatch({type:LOGIN_SUCCESS,accessToken:token})
+        store.dispatch({type: LOGIN_SUCCESS, accessToken: token})
+        localStorage.removeItem(O2_AUTH_USE_RECOVERY_LOCAL_STORAGE_NAME);
+        localStorage.removeItem(O2_AUTH_PROVIDER_LOCAL_STORAGE_NAME);
         return <Redirect to={{
             pathname: "/account",
             state: {from: props.location}
@@ -21,7 +76,7 @@ function OAuth2RedirectHandler(props: AppProps & RouteComponentProps) {
             pathname: "/login",
             state: {
                 from: props.location,
-                error:error
+                error: error
             }
         }}/>;
     }

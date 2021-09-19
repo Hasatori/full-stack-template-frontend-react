@@ -7,7 +7,7 @@ import {TwoFactorFormProps, TwoFactorLoginRequest} from "./Login";
 export default function TwoFactorCodeForm(twoFactorFormProps: TwoFactorFormProps) {
     const {t} = useTranslation();
     const [code, setCode] = useState("");
-    const [userRecoveryCode, setUseRecoveryCode] = useState(false);
+    const [userRecoveryCode, setUseRecoveryCode] = useState(twoFactorFormProps.userRecoveryCode);
     const [recoveryCode, setRecoveryCode] = useState("");
 
     function handleTwoFactorLogin(event: React.FormEvent<EventTarget>) {
@@ -53,11 +53,11 @@ export default function TwoFactorCodeForm(twoFactorFormProps: TwoFactorFormProps
                                 </form>
                                 <span
                                     className="font-weight-light-blue flex-center">
-                                    <Link
-                                        className="ml-1" onClick={() => {
+                                    <div
+                                        className="ml-1 link" onClick={() => {
                                         setUseRecoveryCode(false)
                                     }}
-                                        to="#">{t('ns1:backToTwoFactorLoginLabel')}</Link></span>
+                                       >{t('ns1:backToTwoFactorLoginLabel')}</div></span>
                             </MDBCardBody>
                         </MDBCard>
                     </MDBCol>
@@ -98,11 +98,11 @@ export default function TwoFactorCodeForm(twoFactorFormProps: TwoFactorFormProps
                                 </form>
                                 <span
                                     className="font-weight-light-blue flex-center">{t('ns1:havingProblemsLoginTwoFactorQuestion')}
-                                    <Link
-                                        className="ml-1" onClick={() => {
+                                    <div
+                                        className="ml-1 link" onClick={() => {
                                         setUseRecoveryCode(true)
                                     }}
-                                        to="#">{t('ns1:useRecoveryCodeLabel')}</Link></span>
+                                        >{t('ns1:useRecoveryCodeLabel')}</div></span>
                             </MDBCardBody>
                         </MDBCard>
                     </MDBCol>

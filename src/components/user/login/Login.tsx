@@ -42,6 +42,7 @@ export interface LoginProps {
 export interface TwoFactorFormProps {
     loginTwoFactor: (code:string) => void
     loginRecoveryCode: (code:string) => void;
+    userRecoveryCode:boolean
 }
 
 function Login(props:LoginProps) {
@@ -129,6 +130,7 @@ function Login(props:LoginProps) {
                                    };
                                    props.loginRecoveryCode(loginRequest);
                                }}
+                userRecoveryCode={false}
             />
         )
     }

@@ -1,5 +1,5 @@
 import React from "react";
-import {FACEBOOK_AUTH_URL, GITHUB_AUTH_URL, GOOGLE_AUTH_URL} from "../../../util/Constants";
+import {O2_AUTH_PROVIDER_LOCAL_STORAGE_NAME, O2AUTH_URL, O2AuthProvider} from "../../../util/Constants";
 import {connect} from "react-redux";
 import {store} from "../../../index";
 import {IN_PROGRESS} from "../../../redux/actiontype/GeneralActionTypes";
@@ -17,31 +17,32 @@ function O2AuthAuthentication(props: O2AuthAuthenticationProps) {
     const iconSize = 35;
     const providers = [
         {
-            authUrl: GOOGLE_AUTH_URL(i18n.language),
-            name: 'Google'
+            authUrl: O2AUTH_URL(O2AuthProvider.GOOGLE, i18n.language),
+            provider: O2AuthProvider.GOOGLE
         },
         {
-            authUrl: FACEBOOK_AUTH_URL(i18n.language),
-            name: 'Facebook'
+            authUrl: O2AUTH_URL(O2AuthProvider.FACEBOOK, i18n.language),
+            provider: O2AuthProvider.FACEBOOK
         },
         {
-            authUrl: GITHUB_AUTH_URL(i18n.language),
-            name: 'Github'
+            authUrl: O2AUTH_URL(O2AuthProvider.GITHUB, i18n.language),
+            provider: O2AuthProvider.GITHUB
         }
     ]
 
     return (
         <div className="d-flex flex-row flex-center o2auth-wrapper">
-            {providers.map((provider)=>{
+            {providers.map((o2auth)=>{
                 return (
                     <div className="mx-2 o2auth-provider">
-                        <a href={provider.authUrl} onClick={() => {
+                        <a href={o2auth.authUrl} onClick={() => {
+                            localStorage.setItem(O2_AUTH_PROVIDER_LOCAL_STORAGE_NAME, o2auth.provider);
                             store.dispatch({
                                 type: IN_PROGRESS,
-                                message: props.registration ? i18next.t('ns1:signingUpWithProvider', {providerName: `${provider.name}`}) : i18next.t('ns1:loggingInWithProvider', {providerName: `${provider.name}`})
+                                message: props.registration ? i18next.t('ns1:signingUpWithProvider', {providerName: `${o2auth.provider}`}) : i18next.t('ns1:loggingInWithProvider', {providerName: `${o2auth.provider}`})
                             });
                         }}>
-                            <SocialIcon network={provider.name.toLowerCase()}  style={{height: iconSize, width: iconSize}}/>
+                            <SocialIcon network={o2auth.provider}  style={{height: iconSize, width: iconSize}}/>
                         </a></div>
                 )
             })}
