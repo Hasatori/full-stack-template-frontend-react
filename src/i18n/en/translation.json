@@ -70,5 +70,14 @@
   "invalidFileSize": "File is too big. Max size is {{maxFileSize}}",
   "requestNewPassword": "Request new password",
   "loggingInWithProvider": "Logging in with {{providerName}}",
-  "signingUpWithProvider": "Signing up with {{providerName}}"
+  "signingUpWithProvider": "Signing up with {{providerName}}",
+  "whatIsFullStackTemplateHeading": "What is full stack template?",
+  "whatIsFullStackTemplateParagraph": "Full stack template is Spring/React based template webapp that provides set of functionalities needed for any web app.",
+  "supportedFunctionalitiesHeading": "Supported functionalities",
+  "supportedFunctionalitiesParagraph": "Template supports basic functionalities that are needed for almost any web application. You can try each functionality for yourself by interacting with this webapp. You can either <loginLink>login</loginLink> using Facebook, Google or Github or you can <signUpLink>sign up</signUpLink> and login using email and password.",
+  "supportedFunctionalitiesListHeading": "Following functionalities are supported",
+  "reactParagraph": "Frontend was written in React - popular Javascript framework for making SPAs. It is fully integrated with <strong>Typescript</strong> and <strong>Redux</strong>. It also provides <strong>localization</strong> and <strong>dark and light dark theme</strong> support. <br/><br/>Much more information about this part and also whole source code can be found at <githubLink>Github</githubLink>",
+  "springBootParagraph": "Backend REST api was written in Spring using Spring boot. It uses double <strong>JWT token</strong> based authentication, provides support for <strong>localization</strong> and also <strong>email sending</strong>.<br/><br/>Much more information about this part and also whole source code can be found at <githubLink>Github</githubLink>"
+
+
 }
