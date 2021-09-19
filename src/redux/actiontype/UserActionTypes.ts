@@ -20,6 +20,7 @@ import i18next from "i18next";
 
 import {VerifyTwoFactor} from "../../components/user/account/TwoFactorSetup";
 import {UpdateProfileRequest} from "../../components/user/account/Profile";
+import {Routes} from "../../util/Constants";
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
@@ -231,7 +232,7 @@ export const signUp: ActionCreator<ThunkAction<void, void, TwoFactorLoginRequest
         }).then(response => {
             dispatch(successActionCreator(response.data.message));
             dispatch(doneActionCreator());
-            dispatch(dismissRedirect("/login"))
+            dispatch(dismissRedirect(Routes.LOGIN))
         }).catch(error => {
                 dispatch(doneActionCreator());
                 dispatch(failureActionCreator((error.response && error.response.data && error.response.data.message) || i18next.t('ns1:defaultErrorMessage')));
@@ -249,7 +250,7 @@ export const forgottenPasswordRequest: ActionCreator<ThunkAction<void, void, Two
         }).then(response => {
             dispatch(doneActionCreator());
             dispatch(successActionCreator(response.data.message));
-            dispatch(dismissRedirect("/login"))
+            dispatch(dismissRedirect(Routes.LOGIN))
         }).catch(error => {
             dispatch(doneActionCreator());
             dispatch(failureActionCreator((error.response && error.response.data && error.response.data.message) || i18next.t('ns1:defaultErrorMessage')));
@@ -266,7 +267,7 @@ export const resetPassword: ActionCreator<ThunkAction<void, void, TwoFactorLogin
         }).then(response => {
             dispatch(doneActionCreator());
             dispatch(successActionCreator(response.data.message));
-            dispatch(dismissRedirect("/login"))
+            dispatch(dismissRedirect(Routes.LOGIN))
         }).catch(error => {
             dispatch(doneActionCreator());
             dispatch(failureActionCreator((error.response && error.response.data && error.response.data.message) || i18next.t('ns1:defaultErrorMessage')));
