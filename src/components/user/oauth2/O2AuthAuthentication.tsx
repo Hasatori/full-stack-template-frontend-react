@@ -1,5 +1,5 @@
 import React from "react";
-import {O2_AUTH_PROVIDER_LOCAL_STORAGE_NAME, O2AUTH_URL, O2AuthProvider} from "../../../util/Constants";
+import {OAUTH2_PROVIDER_LOCAL_STORAGE_NAME, O2AUTH_URL, OAuth2Provider} from "../../../util/Constants";
 import {connect} from "react-redux";
 import {store} from "../../../index";
 import {IN_PROGRESS} from "../../../redux/actiontype/GeneralActionTypes";
@@ -17,16 +17,16 @@ function O2AuthAuthentication(props: O2AuthAuthenticationProps) {
     const iconSize = 35;
     const providers = [
         {
-            authUrl: O2AUTH_URL(O2AuthProvider.GOOGLE, i18n.language),
-            provider: O2AuthProvider.GOOGLE
+            authUrl: O2AUTH_URL(OAuth2Provider.GOOGLE, i18n.language),
+            provider: OAuth2Provider.GOOGLE
         },
         {
-            authUrl: O2AUTH_URL(O2AuthProvider.FACEBOOK, i18n.language),
-            provider: O2AuthProvider.FACEBOOK
+            authUrl: O2AUTH_URL(OAuth2Provider.FACEBOOK, i18n.language),
+            provider: OAuth2Provider.FACEBOOK
         },
         {
-            authUrl: O2AUTH_URL(O2AuthProvider.GITHUB, i18n.language),
-            provider: O2AuthProvider.GITHUB
+            authUrl: O2AUTH_URL(OAuth2Provider.GITHUB, i18n.language),
+            provider: OAuth2Provider.GITHUB
         }
     ]
 
@@ -36,7 +36,7 @@ function O2AuthAuthentication(props: O2AuthAuthenticationProps) {
                 return (
                     <div className="mx-2 o2auth-provider">
                         <a href={o2auth.authUrl} onClick={() => {
-                            localStorage.setItem(O2_AUTH_PROVIDER_LOCAL_STORAGE_NAME, o2auth.provider);
+                            localStorage.setItem(OAUTH2_PROVIDER_LOCAL_STORAGE_NAME, o2auth.provider);
                             store.dispatch({
                                 type: IN_PROGRESS,
                                 message: props.registration ? i18next.t('ns1:signingUpWithProvider', {providerName: `${o2auth.provider}`}) : i18next.t('ns1:loggingInWithProvider', {providerName: `${o2auth.provider}`})
