@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {useTranslation} from "react-i18next";
 import {MDBBtn, MDBCard, MDBCardBody, MDBCardText, MDBCardTitle} from 'mdbreact';
 import "../App.css";
@@ -7,6 +7,7 @@ import {Routes} from "../../util/Constants";
 
 function NotFound() {
     const {t} = useTranslation();
+    const history = useHistory();
     return (
                 <MDBCard className="card">
                     <MDBCardBody>
@@ -14,9 +15,7 @@ function NotFound() {
                         <MDBCardText className='text-center'>
                             {t('ns1:pageNotFoundMessage')}
                         </MDBCardText>
-                        <Link to={Routes.ABOUT1}>
-                            <MDBBtn className="flex-center" color="primary" href="#">{t('ns1:goBackButton')}</MDBBtn>
-                        </Link>
+                            <button className="btn btn-block btn-primary" onClick={()=>{history.push(Routes.ABOUT1)}} >{t('ns1:goBackButton')}</button>
                     </MDBCardBody>
                 </MDBCard>
     );
