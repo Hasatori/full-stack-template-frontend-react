@@ -1,0 +1,194 @@
+body {
+  --color-primary:#4285f4;
+  --color-background:#F7F7F7;
+  --color-background-transparent:#F7F7F7;
+  --color-text-primary:#F2F2F2;
+  --color-text-main:#4E637A;
+  --color-text-secondary:#A3A7AC;
+  --color-secondary:#FFFFFF;
+  --color-error:#e74c3c;
+  --color-success:#00C851;
+  --color-info: #33b5e5;
+  --color-warning: #ffbb33;
+  background-color: var(--color-background) !important;
+  color: var(--color-text-main) !important;
+}
+body.dark {
+  --color-primary:#2EAD69;
+  --color-background:#112334;
+  --color-text-primary:#F2F2F2;
+  --color-text-main:#BBD3D5;
+  --color-text-secondary:#868686;
+  --color-secondary:#182B3E;
+  --color-error:#CF6679;
+  --color-success:#007E33;
+  --color-info: #0099CC;
+  --color-warning: #FF8800;
+}
+
+.Toastify__toast--error {
+  background-color: var(--color-error) !important;
+}
+
+.Toastify__toast--info {
+  background-color: var(--color-info) !important;
+}
+
+.Toastify__toast--success {
+  background-color: var(--color-success) !important;
+}
+
+.Toastify__toast--warning {
+  background-color: var(--color-warning) !important;
+}
+
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.card {
+  max-width: 450px;
+  margin: auto;
+  background-color: var(--color-secondary);
+}
+
+.card-footer {
+  background-color: var(--color-secondary);
+  color: var(--color-text-main) !important;
+}
+
+.form-item {
+  position: relative;
+}
+
+.btn-primary {
+  background-color: var(--color-primary) !important;
+  color: var(--color-text-primary);
+}
+
+.btn-danger {
+  background-color: var(--color-error) !important;
+  color: var(--color-text-primary);
+}
+
+.btn {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.text-danger {
+  color: var(--color-error) !important;
+}
+
+.text-primary {
+  color: var(--color-primary) !important;
+}
+
+.alert-info {
+  color: var(--color-text-primary) !important;
+  background-color: var(--color-info) !important;
+}
+
+.alert-success {
+  color: var(--color-text-primary) !important;
+  background-color: var(--color-success) !important;
+}
+
+.dropdown-menu {
+  background-color: var(--color-secondary);
+}
+
+.dropdown-item {
+  color: var(--color-text-secondary) !important;
+}
+
+.dropdown-item:hover, .dropdown-item:checked {
+  background-color: var(--color-text-primary);
+}
+
+a, .link {
+  color: var(--color-primary) !important;
+  opacity: 0.9;
+}
+
+a:hover, .link:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.modal-body, .modal-footer {
+  background-color: var(--color-secondary) !important;
+  color: var(--color-text-main) !important;
+}
+
+.modal-footer {
+  border-color: var(--color-background) !important;
+}
+
+.modal-backdrop {
+  background-color: var(--color-background);
+  opacity: 0.9;
+}
+
+.dropdown-toggle::after {
+  border-top-color: var(--color-text-main) !important;
+  border-bottom-color: var(--color-text-main) !important;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.color-primary {
+  color: var(--color-primary);
+}
+
+.text-long {
+  color: var(--color-text-main);
+  text-align: justify;
+}
+
+.divider {
+  border-bottom: 1px solid var(--color-text-secondary);
+  margin: 2rem auto 2rem auto;
+  width: 100%;
+  opacity: 0.25;
+}
+
+.s-alert-box {
+  min-width: 250px;
+}
+
+.s-alert-close::before, .s-alert-close::after {
+  width: 2px;
+}
+
+.app-body {
+  margin-top: 7em;
+  min-height: 82vh !important;
+}
+
+.modal-header {
+  background-color: var(--color-primary);
+}
+
+.text-codes-area {
+  padding: 10px !important;
+  color: var(--color-text-main) !important;
+  border-color: var(--color-text-secondary);
+}
+
+.text-codes-area:hover {
+  border-color: var(--color-text-secondary);
+}
+
+.md-form.md-outline label.active {
+  background-color: var(--color-primary) !important;
+  color: var(--color-text-primary) !important;
+}
+
+/*# sourceMappingURL=TwoFactorBackupCodes.css.map */
