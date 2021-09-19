@@ -34,12 +34,13 @@ function OAuth2RedirectHandler(props: AppProps & RouteComponentProps) {
         history.replace({
             search: queryParams.toString(),
         })
-    },[])
+    },[])    ;
+    if (error) {
+        store.dispatch(failureActionCreator(error));
+        setError("");
+    }
     if (twoFactorRequired && provider != null && Object.values(OAuth2Provider).map(value => value.toString()).includes(provider)) {
-        if (error) {
-            store.dispatch(failureActionCreator(error));
-            setError("");
-        }
+
         const castedProvider = provider as OAuth2Provider;
         return (
             <TwoFactorCodeForm
