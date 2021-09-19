@@ -37,12 +37,10 @@ API.interceptors.response.use(
 );
 API.interceptors.request.use(
     (config) => {
-        //config.headers['Access-Control-Allow-Credentials'] = true;
         config.headers['Content-Type'] = 'application/json';
         config.headers['Accept-Language'] = i18next.language;
         config.withCredentials = true;
         if (store.getState().userState.accessToken) {
-            console.log('Auth', store.getState().userState.accessToken);
             config.headers['Authorization'] = 'Bearer ' + store.getState().userState.accessToken;
         }
 
