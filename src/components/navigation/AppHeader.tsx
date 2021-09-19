@@ -119,7 +119,7 @@ function AppHeader(props: AppProps) {
                                             let [flagName, languageName] = getLanguageFlagPairFromLocale(language);
                                             return (<MDBDropdownItem
                                                 onClick={() => {
-                                                    i18n.changeLanguage(language);
+                                                    i18n.changeLanguage(language).then(()=>{});
                                                     setOpen(false);
                                                 }}>
                                                 <div className='flex-row d-flex'>

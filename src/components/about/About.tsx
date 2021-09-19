@@ -6,40 +6,41 @@ import stack from '../../assets/images/common/react_plus_spring_boot.png'
 import {AppProps} from "../../index";
 import {connect} from "react-redux";
 import {Routes} from "../../util/Constants";
+import {Trans, useTranslation} from "react-i18next";
 
 function About(appProps: AppProps) {
+    const {t, i18n} = useTranslation();
     return (
         <section className='d-flex flex-column justify-content-center'>
             <section id='what-is-fullstack-template'>
-                <h1 className="h1-responsive bold color-primary mb-5 text-center">What is full stack
-                    template? </h1>
+                <h1 className="h1-responsive bold color-primary mb-5 text-center">   {t('ns1:whatIsFullStackTemplateHeading')}</h1>
                 <MDBTypography className='text-long lead text-center'>
-                    Full stack is Spring/React based template webapp that provides set of functionalities needed
-                    for any web app.
+                    {t('ns1:whatIsFullStackTemplateParagraph')}
                 </MDBTypography>
                 <img src={stack} width='80%' className='center-image' loading={"lazy"}/>
-
-
             </section>
             <div className="divider"/>
             <section id="supported-functionalities">
-                <h2 className="h2-responsive color-primary bold mb-4">Supported functionalities</h2>
-                <p className="text-long">Template supports basic functionalities that are needed for almost any
-                    web application.
-                    You can try each functionality for yourself by interacting with this webapp.
-                    You can either <Link to={Routes.LOGIN}>login</Link> using Facebook, Google or Github or you can
-                    <Link to={Routes.SIGNUP}> sign up </Link>and login using email and password.</p>
-                <p>Following functionalities are supported:</p>
+                <h2 className="h2-responsive color-primary bold mb-4">{t('ns1:supportedFunctionalitiesHeading')}</h2>
+                <p className="text-long">
+                    <Trans
+                        i18nKey="ns1:supportedFunctionalitiesParagraph"
+                        components={{
+                            loginLink: <Link to={Routes.LOGIN}/>,
+                            signUpLink: <Link to={Routes.SIGNUP}/>
+                        }}/>
+                </p>
+                <p>{t('ns1:supportedFunctionalitiesListHeading', {})}</p>
                 <ul>
-                    <li>Login</li>
-                    <li>Sign up</li>
-                    <li>Forgotten password</li>
-                    <li>O2Auth for Facebook, Google and Github</li>
-                    <li>Profile management
+                    <li>{t('ns1:loginHeading')}</li>
+                    <li>{t('ns1:signupHeading')}</li>
+                    <li>{t('ns1:forgottenPasswordHeading')}</li>
+                    <li>O2Auth Facebook, Google and Github</li>
+                    <li>{t('ns1:manageProfileHeading')}
                         <ul>
-                            <li>Change profile image, email, username or password</li>
-                            <li>Enable two factor authentication</li>
-                            <li>Cancel your account</li>
+                            <li>{t('ns1:profileDescription')}</li>
+                            <li>{t('ns1:twoFactorAuthenticationLabel')}</li>
+                            <li>{t('ns1:closeAccountHeading')}</li>
                         </ul>
                     </li>
                 </ul>
@@ -47,21 +48,20 @@ function About(appProps: AppProps) {
             <div className="divider"/>
             <section id="react">
                 <h2 className="h2-responsive color-primary bold mb-4">React</h2>
-                <p>Frontend was written in React - popular Javascript framework for making SPAs. It is fully
-                    integrated with <strong>Typescript</strong> and <strong>Redux</strong>.
-                    It also provides <strong>localization</strong> and <strong>theme</strong> support.</p>
-                <p>Much more information about this part and also whole source code can be found at <a
-                    href="https://github.com/Hasatori/fullstack-boilerplate-react-frontend"
-                    target="_blank">Github</a>.</p>
+                <Trans
+                    i18nKey="ns1:reactParagraph"
+                    components={{
+                        githubLink: <a href="https://github.com/Hasatori/fullstack-boilerplate-react-frontend" target="_blank"/>
+                    }}/>
             </section>
             <div className="divider"/>
             <section id='spring-boot'>
                 <h2 className="h2-responsive color-primary bold mb-4">Spring boot</h2>
-                <p>Backend REST api was written in Spring using Spring boot. It uses double JWT token based
-                    authentication, provides support for localization and also email sending.</p>
-                <p>Much more information about this part and also whole source code can be found at <a
-                    href="https://github.com/Hasatori/fullstack-boilerplate-spring-backend"
-                    target="_blank">Github</a>.</p>
+                <Trans
+                    i18nKey="ns1:springBootParagraph"
+                    components={{
+                        githubLink: <a href="https://github.com/Hasatori/fullstack-boilerplate-spring-backend" target="_blank"/>
+                    }}/>
 
             </section>
         </section>
