@@ -90,11 +90,11 @@ function AppHeader(props: AppProps) {
                             ) : (
                                 <>
                                     <MDBNavItem active={location.pathname === Routes.LOGIN} className='my-auto'>
-                                        <MDBNavLink to={Routes.LOGIN} link><div onClick={()=>{setOpen(false)}}>{t('ns1:loginLabel')}</div></MDBNavLink>
+                                        <MDBNavLink to={Routes.LOGIN} link><div onClick={()=>{setOpen(false)}}>{t('ns1:loginHeading')}</div></MDBNavLink>
                                     </MDBNavItem>
                                     <MDBNavItem active={location.pathname === Routes.SIGNUP} className='my-auto'>
 
-                                        <MDBNavLink to={Routes.SIGNUP} link><div onClick={()=>{setOpen(false)}}>{t('ns1:signupLabel')}</div></MDBNavLink>
+                                        <MDBNavLink to={Routes.SIGNUP} link><div onClick={()=>{setOpen(false)}}>{t('ns1:signupHeading')}</div></MDBNavLink>
                                     </MDBNavItem>
                                 </>
                             )}

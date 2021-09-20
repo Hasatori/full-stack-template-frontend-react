@@ -101,7 +101,7 @@ function Login(props:LoginProps) {
                                 </form>
                                 <span className="font-weight-light-blue flex-center">{t('ns1:newUserLoginQuestion')}
                                     <Link className="ml-1"
-                                          to={Routes.SIGNUP}>{t('ns1:signupLabel')}!</Link></span>
+                                          to={Routes.SIGNUP}>{t('ns1:signupHeading')}</Link></span>
                             </MDBCardBody>
                             <MDBCardFooter >
                                 <div className="text-center mb-1">{t('ns1:orLoginWithSuggestion')}</div>

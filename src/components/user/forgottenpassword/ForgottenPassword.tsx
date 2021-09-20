@@ -62,10 +62,9 @@ function ForgottenPassword(props: ForgottenPasswordProps) {
                         invalidValueMessage={t('ns1:invalidEmailMessage')}
                     />
                     <div className="text-center">
-                        <div className=" flex-center my-2">
-                            <button className="btn btn-primary" onClick={()=>{history.push(Routes.LOGIN)}} >{t('ns1:goBackButton')}</button>
-                            <button className="btn  btn-primary p-2"
-                                    type="submit"> {t('ns1:requestPasswordResetButtonLabel')}</button>
+                        <div className=" flex-column flex-center my-2">
+                            <button className="btn btn-block btn-primary" type="submit"> {t('ns1:requestPasswordResetButtonLabel')}</button>
+                            <button className="btn  btn-block btn-primary" onClick={()=>{history.push(Routes.LOGIN)}} >{t('ns1:goBackButton')}</button>
                         </div>
                     </div>
 

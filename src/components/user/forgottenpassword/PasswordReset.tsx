@@ -32,9 +32,9 @@ function PasswordReset(props: PasswordResetProps & RouteComponentProps) {
     const email = getUrlParameter(props.location.search, 'email');
     const {t} = useTranslation();
     const history = useHistory();
-    if (token === '' || email === '') {
+ /*   if (token === '' || email === '') {
         props.history.push("/login");
-    }
+    }*/
 
     function handleSubmit(event: React.FormEvent<EventTarget>) {
         event.preventDefault();
@@ -83,9 +83,9 @@ function PasswordReset(props: PasswordResetProps & RouteComponentProps) {
                                 invalidValueMessage= {t('ns1:passwordsDoNotMatchMessage')}
 
                             />
-                            <div className="form-item flex-center">
-                                <button className="btn btn-primary" onClick={()=>{history.push(Routes.LOGIN)}} >{t('ns1:goBackButton')}</button>
-                                <button type="submit" className="btn btn-primary">{t('ns1:passwordResetButtonLabel')}</button>
+                            <div className="form-item flex-center flex-column">
+                                <button type="submit" className="btn btn-block btn-primary">{t('ns1:passwordResetButtonLabel')}</button>
+                                <button className="btn btn-block btn-primary" onClick={()=>{history.push(Routes.LOGIN)}} >{t('ns1:goBackButton')}</button>
                             </div>
                         </form>
 
