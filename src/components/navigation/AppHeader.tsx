@@ -60,7 +60,6 @@ function AppHeader(props: AppProps) {
                             onChange={()=>{
                                 setIsDark(!isDark);
                                 props.setTheme(!isDark? 'dark':'light');
-                                setOpen(false);
                             }}
                             checked={isDark}
                             size={50}
@@ -154,7 +153,6 @@ function AppHeader(props: AppProps) {
                                     onChange={()=>{
                                         setIsDark(!isDark);
                                         props.setTheme(!isDark? 'dark':'light');
-                                        setOpen(false);
                                     }}
                                     checked={isDark}
                                     size={50}
