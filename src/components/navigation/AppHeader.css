@@ -169,8 +169,8 @@ a:hover, .link:hover {
 }
 
 .toggler-icon {
-  width: 20px;
-  height: calc(20px/2);
+  width: 30px;
+  height: calc(30px/2);
   position: relative;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
@@ -186,7 +186,7 @@ a:hover, .link:hover {
 .toggler-icon span {
   display: block;
   position: absolute;
-  height: calc(20px/10);
+  height: calc(30px/10);
   width: 100%;
   background: var(--color-primary) !important;
   border-radius: 9px;
@@ -203,7 +203,7 @@ a:hover, .link:hover {
 }
 
 .toggler-icon span:nth-child(1) {
-  top: calc(20px*0);
+  top: calc(30px*0.1);
   -webkit-transform-origin: left center;
   -moz-transform-origin: left center;
   -o-transform-origin: left center;
@@ -211,7 +211,7 @@ a:hover, .link:hover {
 }
 
 .toggler-icon span:nth-child(2) {
-  top: calc(20px*0.4);
+  top: calc(30px*0.35);
   -webkit-transform-origin: left center;
   -moz-transform-origin: left center;
   -o-transform-origin: left center;
@@ -219,7 +219,7 @@ a:hover, .link:hover {
 }
 
 .toggler-icon span:nth-child(3) {
-  top: calc(20px*0.75);
+  top: calc(30px*0.60);
   -webkit-transform-origin: left center;
   -moz-transform-origin: left center;
   -o-transform-origin: left center;
@@ -231,7 +231,7 @@ a:hover, .link:hover {
   -moz-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
-  top: calc(-20px*0.1);
+  top: calc(-30px*0.05);
   left: -1px;
 }
 
@@ -245,7 +245,7 @@ a:hover, .link:hover {
   -moz-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
-  top: calc(20px*0.75);
+  top: calc(30px*0.7);
   left: -1px;
 }
 

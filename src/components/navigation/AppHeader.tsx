@@ -28,6 +28,7 @@ import {Theme} from "../../redux/reducer/GeneralReducer";
 import {dismisSetTheme} from "../../redux/actiontype/GeneralActionTypes";
 import {Routes} from "../../util/Constants";
 import About from "../about/About";
+import {useMediaQuery} from "@react-hook/media-query";
 
 
 function mapDispatchToProps(dispatch: ThunkDispatch<any, any, AnyAction>) {
@@ -44,6 +45,8 @@ function AppHeader(props: AppProps) {
     const location = useLocation();
     const bgPink = {backgroundColor: '#ffffff'}
     const [isDark,setIsDark] = useState(props.theme === 'dark')
+    const collapsed = useMediaQuery('only screen and (max-width: 991px)')
+    console.log(collapsed)
     return (
 
         <header className="app-header z-depth-1">
@@ -52,6 +55,18 @@ function AppHeader(props: AppProps) {
                     <MDBNavbarBrand href={Routes.ABOUT1}>
                         Full stack template
                     </MDBNavbarBrand>
+                    <div className="d-flex flex-row">
+                    <div className="mr-3">
+                        {collapsed? <DarkModeToggle
+                            onChange={()=>{
+                                setIsDark(!isDark);
+                                props.setTheme(!isDark? 'dark':'light');
+                                setOpen(false);
+                            }}
+                            checked={isDark}
+                            size={50}
+                        />:<></>}
+                   </div>
                     <MDBNavbarToggler
                         className={open?'toggler-icon open':'toggler-icon'}
 
@@ -62,6 +77,7 @@ function AppHeader(props: AppProps) {
                         <span></span>
                         <span></span>
                     </MDBNavbarToggler>
+                    </div>
                     <MDBCollapse isOpen={open} navbar>
                         <MDBNavbarNav left>
                             <MDBNavItem active={location.pathname === Routes.ABOUT1}>
@@ -134,7 +150,7 @@ function AppHeader(props: AppProps) {
                                     </MDBDropdownMenu>
                                 </MDBDropdown>
                             </MDBNavItem>
-                            <MDBNavItem className="my-auto">
+                            {!collapsed?   <MDBNavItem className="my-auto">
                                 <DarkModeToggle
                                     onChange={()=>{
                                         setIsDark(!isDark);
@@ -144,7 +160,8 @@ function AppHeader(props: AppProps) {
                                     checked={isDark}
                                     size={50}
                                 />
-                            </MDBNavItem>
+                            </MDBNavItem>:<></>}
+
                         </MDBNavbarNav>
                     </MDBCollapse>
                 </MDBContainer>

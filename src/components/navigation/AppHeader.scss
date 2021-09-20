@@ -8,7 +8,7 @@
   font-weight: bold;
 }
 
-$nav-icon-width:20px;
+$nav-icon-width:30px;
 
 .toggler-icon {
   width: $nav-icon-width;
@@ -45,7 +45,7 @@ $nav-icon-width:20px;
 }
 
 .toggler-icon span:nth-child(1) {
-  top: calc(#{$nav-icon-width}*0);
+  top: calc(#{$nav-icon-width}*0.1);
   -webkit-transform-origin: left center;
   -moz-transform-origin: left center;
   -o-transform-origin: left center;
@@ -53,7 +53,7 @@ $nav-icon-width:20px;
 }
 
 .toggler-icon span:nth-child(2) {
-  top: calc(#{$nav-icon-width}*0.4);
+  top: calc(#{$nav-icon-width}*0.35);
   -webkit-transform-origin: left center;
   -moz-transform-origin: left center;
   -o-transform-origin: left center;
@@ -61,7 +61,7 @@ $nav-icon-width:20px;
 }
 
 .toggler-icon span:nth-child(3) {
-  top: calc(#{$nav-icon-width}*0.75);
+  top: calc(#{$nav-icon-width}*0.60);
   -webkit-transform-origin: left center;
   -moz-transform-origin: left center;
   -o-transform-origin: left center;
@@ -73,7 +73,7 @@ $nav-icon-width:20px;
   -moz-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
-  top: calc(-#{$nav-icon-width}*0.1);
+  top: calc(-#{$nav-icon-width}*0.05);
   left: -1px;
 }
 
@@ -87,7 +87,7 @@ $nav-icon-width:20px;
   -moz-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
-  top: calc(#{$nav-icon-width}*0.75);
+  top: calc(#{$nav-icon-width}*0.7);
   left: -1px;
 }
 
