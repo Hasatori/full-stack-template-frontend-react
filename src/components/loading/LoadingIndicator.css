@@ -176,6 +176,8 @@ a:hover, .link:hover {
   display: block;
   text-align: center;
   color: var(--color-text-main) !important;
+  padding: 1em;
+  word-break: break-all;
 }
 
 .loadingBackground {
