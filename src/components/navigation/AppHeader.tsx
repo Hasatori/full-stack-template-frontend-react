@@ -46,7 +46,6 @@ function AppHeader(props: AppProps) {
     const bgPink = {backgroundColor: '#ffffff'}
     const [isDark,setIsDark] = useState(props.theme === 'dark')
     const collapsed = useMediaQuery('only screen and (max-width: 991px)')
-    console.log(collapsed)
     return (
 
         <header className="app-header z-depth-1">
