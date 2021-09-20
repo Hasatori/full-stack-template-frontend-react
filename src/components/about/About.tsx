@@ -48,19 +48,21 @@ function About(appProps: AppProps) {
             <div className="divider"/>
             <section id="react">
                 <h2 className="h2-responsive color-primary bold mb-4">React</h2>
-                <Trans
+                <Trans className="text-long"
                     i18nKey="ns1:reactParagraph"
                     components={{
-                        githubLink: <a href="https://github.com/Hasatori/fullstack-boilerplate-react-frontend" target="_blank"/>
+                        githubLink: <a href="https://github.com/Hasatori/fullstack-boilerplate-react-frontend" target="_blank"/>,
+                        p: <p className="text-long"/>
                     }}/>
             </section>
             <div className="divider"/>
             <section id='spring-boot'>
                 <h2 className="h2-responsive color-primary bold mb-4">Spring boot</h2>
-                <Trans
+                <Trans className="text-long"
                     i18nKey="ns1:springBootParagraph"
                     components={{
-                        githubLink: <a href="https://github.com/Hasatori/fullstack-boilerplate-spring-backend" target="_blank"/>
+                        githubLink: <a href="https://github.com/Hasatori/fullstack-boilerplate-spring-backend" target="_blank"/>,
+                        p: <p className="text-long"/>
                     }}/>
 
             </section>
