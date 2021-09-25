@@ -14,6 +14,21 @@ The template is running on the following url:  <a href="https://www.full-stack-t
 
 Backend can be foun [HERE](https://github.com/Hasatori/fullstack-boilerplate-spring-backend)
 
+## Installation
+
+1) Install yarh - `npm install --global yarn`
+2) Install packages - `yarn install`
+3) Run app - `npm start`
+
+## Environment configuration
+
+Application can be configured via .env files. Currently there are two configuration files:
+
+* `.env` - configuration for production
+* `.env.development` - configuration for **development** environment
+
+There are of course more configuration files for other environments - detailed information can be found at [Create React App](https://create-react-app.dev/docs/adding-custom-environment-variables/#what-other-env-files-can-be-used)
+
 ## General supported functionalities
 ### User registration
   * username, email and password. Account has to be activated via email
@@ -61,9 +76,3 @@ The locale is also used for communication with backed which also supports locali
 ### Theme support
   App supports light and dark theme. Theme colors are set in [./src/index.scss](./src/index.scss). Toggler is part of the [AppHeader](./src/components/navigation/AppHeader.tsx) component and selected theme is set using redux. Main component [App](./src/App.tsx) then uses `useEffect` hook to change body class. Theme choice is also saved into a Cookie.
 
-## Environment configuration
-
-Application can be configured via .env files. There are two configuration files:
-
-* `.env` - configuration for production
-* `.env.development` - configuration for **development** environment
