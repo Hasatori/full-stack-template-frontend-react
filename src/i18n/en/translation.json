@@ -52,9 +52,9 @@
   "passwordDescription": "Change your password",
   "profileUpdated": "Profile updated",
   "profileUpdateEmailActivation": "In order for email update to take effect the change needs to be confirmed via link that has been send to the new email ",
-  "twoFactorAuthenticationLabel": "Two factor authentication",
+  "twoFactorAuthenticationLabel": "Two-factor authentication",
   "twoFactorAuthenticationDescription": "Set up or update the two-factor authentication",
-  "twoFactorAuthenticationEnabledMessage": "Two factor authentication enabled!",
+  "twoFactorAuthenticationEnabledMessage": "Two-factor authentication enabled!",
   "twoFactorAuthenticationGetBackupCodesButton": "Get backup codes",
   "twoFactorAuthenticationScanQRInstruction": "Scan the QR code and enter a verification code",
   "twoFactorAuthenticationSaveBackupCodesHeading": "Save backup codes somewhere safe",
@@ -74,12 +74,12 @@
   "loggingInWithProvider": "Logging in with {{providerName}}",
   "signingUpWithProvider": "Signing up with {{providerName}}",
   "whatIsFullStackTemplateHeading": "What is full stack template?",
-  "whatIsFullStackTemplateParagraph": "Full stack template is Spring/React based template webapp that provides set of functionalities needed for any web app.",
+  "whatIsFullStackTemplateParagraph": "Full stack template is Spring/React based template webapp that provides a set of functionalities needed for any web app.",
   "supportedFunctionalitiesHeading": "Supported functionalities",
-  "supportedFunctionalitiesParagraph": "Template supports basic functionalities that are needed for almost any web application. You can try each functionality for yourself by interacting with this webapp. You can either <loginLink>login</loginLink> using Facebook, Google or Github or you can <signUpLink>sign up</signUpLink> and login using email and password.",
+  "supportedFunctionalitiesParagraph": "Template supports basic functionalities that are needed for almost any web application. You can try each functionality for yourself by interacting with this webapp. You can either <loginLink>log in</loginLink> using Facebook, Google or Github or you can <signUpLink>sign up</signUpLink> and login using email and password.",
   "supportedFunctionalitiesListHeading": "Following functionalities are supported",
-  "reactParagraph": "<p>Frontend was written in React - popular Javascript framework for making SPAs. It is fully integrated with <strong>Typescript</strong> and <strong>Redux</strong>. It also provides <strong>localization</strong> and <strong>dark and light dark theme</strong> support. <br/><br/>Much more information about this part and also whole source code can be found at <githubLink>Github</githubLink></p>",
-  "springBootParagraph": "<p>Backend REST api was written in Spring using Spring boot. It uses double <strong>JWT</strong> based authentication, provides support for <strong>localization</strong> and also <strong>email sending</strong>.<br/><br/>Much more information about this part and also whole source code can be found at <githubLink>Github</githubLink></p>"
+  "reactParagraph": "<p>The Frontend was written in React - a popular Javascript framework for making SPAs. It is fully integrated with <strong>Typescript</strong> and <strong>Redux</strong>. It also provides <strong>localization</strong> and <strong>dark/light theme</strong> support. <br/><br/>Much more information about this part and also whole source code can be found on <githubLink>Github</githubLink></p>",
+  "springBootParagraph": "<p>Backend REST API was written in Spring using Spring boot. It uses double <strong>JWT</strong> based authentication, provides support for <strong>localization</strong> and also <strong>email sending</strong>.<br/><br/>Much more information about this part and also whole source code can be found on <githubLink>Github</githubLink></p>"
 
 
 }
