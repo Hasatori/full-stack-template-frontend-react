@@ -10,9 +10,11 @@ Full stack template is a **React/Spring** based template webapp that provides se
 
 This is a repository for the frontend part written in React.
 
-The template is running on the following url:  <a href="https://www.full-stack-template.com/" target="_blank">https://www.full-stack-template.com/</a>
+Backend can be found [HERE](https://github.com/Hasatori/fullstack-boilerplate-spring-backend)
 
-Backend can be foun [HERE](https://github.com/Hasatori/fullstack-boilerplate-spring-backend)
+The template is running on the following url:  <a href="https://www.full-stack-template.com/" target="_blank">https://www.full-stack-template.com</a>
+
+![frontend-login-page](./docs/frontend-login-page.png)
 
 ## Installation
 
