@@ -11,6 +11,8 @@ export const resources = {
     cs: {ns1: cs,}
 } as const;
 
+export const SUPPORTED_LANGUAGES = ['en','cs'];
+
 export function getLanguageFlagPairFromLocale(locale: string) {
     switch (locale) {
         case 'en':
@@ -18,7 +20,7 @@ export function getLanguageFlagPairFromLocale(locale: string) {
         case 'cs':
             return [cs_flag, 'čeština'];
         default:
-            return ['', ''];
+            return [english_flag, 'english'];
     }
 }
 
