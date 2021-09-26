@@ -8,7 +8,7 @@ export function Footer() {
     return (
         <MDBFooter className="footer">
             <div className="footer-copyright text-center py-3 ">Copyright
-                &copy;{new Date().getFullYear()}<strong>Hasatori</strong>
+                &copy;{new Date().getFullYear()} <strong>Hasatori(hradil.o@email.cz)</strong>
             </div>
         </MDBFooter>
     )
