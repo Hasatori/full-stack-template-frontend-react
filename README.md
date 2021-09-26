@@ -6,7 +6,7 @@
 
 
 
-Full stack template is a **React/Spring** based template webapp that provides set of functionalities that are necessary for almost any web app. The code and all components were structured so that project is easy to test, maintain and expand.
+Full stack template is a **React/Spring** based template web app that provides a set of functionalities that are necessary for almost any web app. The code and all components were structured so that project is easy to test, maintain and expand.
 
 This is a repository for the frontend part written in React.
 
@@ -37,15 +37,15 @@ There are of course more configuration files for other environments - detailed i
   * O2 - Github, Google, Facebook
 ### User login
   * email + password
-  * email + password + two-factor code. Two-factor can be set once user is logged in.
+  * email + password + two-factor code. Two-factor can be set once the user is logged in.
   * email + password + recovery code. In case two factor code can not be used.
   * O2 authentication - Github, Google, Facebook
   * O2 authentication + two-factor. Two-factor can be set once user is logged in
 ### Forgotten password 
-   * Password change request is send on email
+   * Password change request is sent by email
 ### Account management
-  * profile picture, email, username update. If email is updated the change has to be approved from new email -
-    otherwise email will not be updated
+  * profile picture, email, username update. If an email is updated the change has to be approved from the new email -
+    otherwise, email will not be updated
   * password change
   * cancel account
 
@@ -53,7 +53,7 @@ There are of course more configuration files for other environments - detailed i
 
 ### Typescript
 
-App is written in Typescript. Configuration can be found at [./tsconfig.json](./tsconfig.json). Target version is for es5 and strict mode is enabled.
+The App is written in Typescript. Configuration can be found at [./tsconfig.json](./tsconfig.json). Target version is for es5 and strict mode is enabled.
 
 ### Redux
 
@@ -73,7 +73,7 @@ App uses HTTP client [axios](https://www.npmjs.com/package/axios) for communicat
   ....
  <div>t('ns1:aboutAppLabel')}</div>
 ```
-The locale is also used for communication with backed which also supports localization so messages comming from backed will also be translated into correct language.
+The locale is also used for communication with backed which also supports localization so messages coming from backed will also be translated into correct language.
 
 ### Theme support
   App supports light and dark theme. Theme colors are set in [./src/index.scss](./src/index.scss). Toggler is part of the [AppHeader](./src/components/navigation/AppHeader.tsx) component and selected theme is set using redux. Main component [App](./src/App.tsx) then uses `useEffect` hook to change body class. Theme choice is also saved into a Cookie.
