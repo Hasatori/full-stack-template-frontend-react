@@ -76,5 +76,5 @@ App uses HTTP client [axios](https://www.npmjs.com/package/axios) for communicat
 The locale is also used for communication with backed which also supports localization so messages coming from backed will also be translated into correct language.
 
 ### Theme support
-  App supports light and dark theme. Theme colors are set in [./src/index.scss](./src/index.scss). Toggler is part of the [AppHeader](./src/components/navigation/AppHeader.tsx) component and selected theme is set using redux. Main component [App](./src/App.tsx) then uses `useEffect` hook to change body class. Theme choice is also saved into a Cookie.
+  App supports light and dark theme. Theme colors are set in [./src/index.scss](./src/index.scss). Toggler is part of the [AppHeader](./src/components/navigation/AppHeader.tsx) component and selected theme is set using redux. Main component [App](./src/components/App.tsx) then uses `useEffect` hook to change body class. Theme choice is also saved into a Cookie.
 
