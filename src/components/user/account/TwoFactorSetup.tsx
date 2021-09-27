@@ -135,7 +135,7 @@ function TwoFactorSetup(props: TwoFactorProps) {
                                            onChange={(event) => setVerificationCode(event.target.value)}/>
                                     <br/>
                                     <div className="form-item mt-3 save text-center">
-                                        <MDBBtn color="primary" type='submit'> {t('ns1:enableButton')}</MDBBtn>
+                                        <MDBBtn color="primary" type='submit' disabled={verificationCode===''}> {t('ns1:enableButton')}</MDBBtn>
                                     </div>
                                 </form>
                             </>
