@@ -51,7 +51,7 @@ function About(appProps: AppProps) {
                 <Trans className="text-long"
                     i18nKey="ns1:reactParagraph"
                     components={{
-                        githubLink: <a href="https://github.com/Hasatori/fullstack-boilerplate-react-frontend" target="_blank"/>,
+                        githubLink: <a href="https://github.com/Hasatori/full-stack-template-frontend-react" target="_blank"/>,
                         p: <p className="text-long"/>
                     }}/>
             </section>
@@ -61,7 +61,7 @@ function About(appProps: AppProps) {
                 <Trans className="text-long"
                     i18nKey="ns1:springBootParagraph"
                     components={{
-                        githubLink: <a href="https://github.com/Hasatori/fullstack-boilerplate-spring-backend" target="_blank"/>,
+                        githubLink: <a href="https://github.com/Hasatori/full-stack-template-backend-spring" target="_blank"/>,
                         p: <p className="text-long"/>
                     }}/>
 
