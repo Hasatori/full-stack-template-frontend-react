@@ -1,4 +1,4 @@
-# Full stack template - React
+# Full-stack template - React
 
 <p align="center">
  <img src="./docs/logo.png" width="400">
@@ -6,7 +6,7 @@
 
 
 
-Full stack template is a **React/Spring** based template web app that provides a set of functionalities that are necessary for almost any web app. The code and all components were structured so that project is easy to test, maintain and expand.
+Full-stack template is a **React/Spring** based template web app that provides a set of functionalities that are necessary for almost any web app. The code and all components were structured so that project is easy to test, maintain and expand.
 
 This is a repository for the frontend part written in React.
 

@@ -50,7 +50,7 @@ function AppHeader(props: AppProps) {
             <MDBNavbar className="navbar" fixed="top" style={bgPink} expand="lg">
                 <MDBContainer>
                     <MDBNavbarBrand href={Routes.ABOUT1}>
-                        Full stack template
+                        Full-stack template
                     </MDBNavbarBrand>
                     <div className="d-flex flex-row">
                         <div className="mr-3">
