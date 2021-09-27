@@ -74,7 +74,7 @@
   "loggingInWithProvider": "Logging in with {{providerName}}",
   "signingUpWithProvider": "Signing up with {{providerName}}",
   "whatIsFullStackTemplateHeading": "What is Full-stack template?",
-  "whatIsFullStackTemplateParagraph": "Full-stack template is Spring/React based template webapp that provides a set of functionalities needed for any web app.",
+  "whatIsFullStackTemplateParagraph": "Full-stack template is Spring/React based template that provides a set of functionalities needed for any web app.",
   "supportedFunctionalitiesHeading": "Supported functionalities",
   "supportedFunctionalitiesParagraph": "Template supports basic functionalities that are needed for almost any web application. You can try each functionality for yourself by interacting with this webapp. You can either <loginLink>log in</loginLink> using Facebook, Google or Github or you can <signUpLink>sign up</signUpLink> and login using email and password.",
   "supportedFunctionalitiesListHeading": "Following functionalities are supported",
