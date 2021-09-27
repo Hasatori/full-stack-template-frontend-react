@@ -18,7 +18,7 @@ The template is running on the following url:  <a href="https://www.full-stack-t
 
 ## Installation
 
-1) Install yarh - `npm install --global yarn`
+1) Install yarn - `npm install --global yarn`
 2) Install packages - `yarn install`
 3) Run app - `npm start`
 
