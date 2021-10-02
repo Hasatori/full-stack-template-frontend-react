@@ -21,6 +21,7 @@ import i18next from "i18next";
 import {VerifyTwoFactor} from "../../components/user/account/TwoFactorSetup";
 import {UpdateProfileRequest} from "../../components/user/account/Profile";
 import {Routes} from "../../util/Constants";
+import {store} from "../../index";
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';

@@ -122,7 +122,7 @@ function TwoFactorSetup(props: TwoFactorProps) {
                                     >
                                         {t('ns1:twoFactorAuthenticationScanQRInstruction')}
                                     </label>
-                                    <div className='flex-center'><img
+                                    <div className='flex-center mb-3'><img
                                         src={`data:${twoFactorSetup.mimeType};base64,${twoFactorSetup.qrData}`}
                                         className="flex-center img-fluid"/></div>
 

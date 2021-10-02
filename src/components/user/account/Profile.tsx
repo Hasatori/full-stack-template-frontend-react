@@ -109,7 +109,7 @@ function Profile(props: ProfileProps) {
                         {
                             typeof file !== 'undefined' ?
                                 <img
-                                    style={{width: 150}}
+                                    style={{height:150,width:150}}
                                     src={`data:${file.type};base64,${file.data}`}
                                     alt={user?.name}/>
                                 :
