@@ -91,7 +91,7 @@ function AppHeader(props: AppProps) {
                                         <MDBDropdownToggle caret color='transparent'
                                                            className='z-depth-0  mx-2 p-0 profile-avatar text-center border-0'>
                                             <img
-                                                style={{width: 30}}
+                                                style={{width: 30, height: 30}}
                                                 src={`data:${props.user?.profileImage.type};base64,${props.user?.profileImage.data}`}
                                                 alt={props.user?.name}/>
                                         </MDBDropdownToggle>
