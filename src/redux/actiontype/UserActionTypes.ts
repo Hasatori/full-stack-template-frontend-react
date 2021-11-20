@@ -34,7 +34,7 @@ export const TWO_FACTOR_DISABLED = 'TWO_FACTOR_DISABLED';
 export const TWO_FACTOR_ENABLED = 'TWO_FACTOR_ENABLED';
 export const EMPTY_BACKUP_CODES = 'EMPTY_BACKUP_CODES';
 export const REGISTRATION_SUCCESSFUL = 'REGISTRATION_SUCCESSFUL';
-
+export const PASSWORD_RESET = 'PASSWORD_RESET';
 
 export interface LoginSuccessAction extends Action {
     readonly  type: typeof LOGIN_SUCCESS,
@@ -93,6 +93,11 @@ export interface EmptyBackupCodes extends Action {
 
 export interface RegistrationSuccessful extends Action {
     readonly  type: typeof REGISTRATION_SUCCESSFUL
+}
+
+export interface PasswordReset extends Action {
+    readonly type: typeof PASSWORD_RESET
+    userEmail: string
 }
 
 export const loginActionCreator: ActionCreator<ThunkAction<void, void, LoginRequest, LoginSuccessAction>> = (loginRequest: LoginRequest) => {
@@ -268,6 +273,7 @@ export const resetPassword: ActionCreator<ThunkAction<void, void, TwoFactorLogin
             dispatch(doneActionCreator());
             dispatch(successActionCreator(response.data.message));
             dispatch(dismissRedirect(Routes.LOGIN))
+            dispatch({type: PASSWORD_RESET, userEmail: resetPasswordRequest.email})
         }).catch(error => {
             dispatch(doneActionCreator());
             dispatch(failureActionCreator((error.response && error.response.data && error.response.data.message) || i18next.t('ns1:defaultErrorMessage')));
@@ -370,3 +376,4 @@ export type UserActionTypes =
     | TwoFactorEnabled
     | TwoFactorDisabled
     | EmptyBackupCodes
+    | PasswordReset

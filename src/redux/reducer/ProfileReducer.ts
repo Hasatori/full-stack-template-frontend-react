@@ -82,6 +82,19 @@ export function userReducer(state = initialState, action: UserActionTypes): User
                     backupCodes: []
                 }
             };
+        case "PASSWORD_RESET":
+            if (state.currentUser?.email === action.userEmail && state.currentUser?.o2AuthInfo !== null){
+                return {
+                    ...state,
+                    currentUser: {
+                        ...state.currentUser,
+                        o2AuthInfo:{
+                            needToSetPassword: false
+                        }
+                    }
+                };
+            }
+            return state;
         default:
             return state;
     }
